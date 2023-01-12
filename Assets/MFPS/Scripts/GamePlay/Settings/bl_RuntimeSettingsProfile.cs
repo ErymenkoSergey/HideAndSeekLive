@@ -89,10 +89,6 @@ namespace MFPS.Runtime.Settings
 
             private bool hasBeenModified = false;
 
-            /// <summary>
-            /// 
-            /// </summary>
-            /// <returns></returns>
             public object GetValue()
             {
                 string v = PlayerPrefs.GetString(SettingKey, Value);

@@ -61,7 +61,7 @@ MonoBehaviour:
   maxSuicideAttempts: 3
   MainMenuScene: MainMenu
   OnDisconnectScene: MainMenu
-  highLightColor: {r: 0.44827604, g: 0, b: 1, a: 1}
+  highLightColor: {r: 0.9056604, g: 0.31547338, b: 0.055535804, a: 1}
   AllScenes:
   - ShowName: Guanaco Desert
     m_Scene: {fileID: 102900000, guid: 7b433244bb0354246a7c6a8c682e5441, type: 3}
@@ -264,9 +264,9 @@ MonoBehaviour:
     GameGoalsOptions: 
     timeLimits: 8403000058020000b00400002c010000
   Team1Name: Delta
-  Team1Color: {r: 0.017799927, g: 0.08306635, b: 0.1509434, a: 1}
+  Team1Color: {r: 0.09109115, g: 0.8396226, b: 0.4111874, a: 1}
   Team2Name: Recon
-  Team2Color: {r: 1, g: 0.89019614, b: 0, a: 1}
+  Team2Color: {r: 0, g: 0.28763032, b: 1, a: 1}
   Player1: {fileID: 114038687236655164, guid: 353d635db0698974b963c4153ac19a5d, type: 3}
   Player2: {fileID: 114797454524261884, guid: 8b43b97c50cac1d43a7c27ca8b6a6cdf, type: 3}
   BotTeam1: {fileID: 114101145339246268, guid: 424e7da58c2e1de49aef138757fca69a, type: 3}
