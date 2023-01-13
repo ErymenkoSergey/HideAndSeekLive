@@ -49,36 +49,6 @@ MonoBehaviour:
   VirtualCoins:
     InitialCoins: 1000
     CoinScoreValue: 100
-  GameVersion: 1.8.2
-  guestNameFormat: Guest {0}
-  SpawnProtectedTime: 5
-  CountDownTime: 10
-  PlayerRespawnTime: 7
-  MaxFriendsAdded: 25
-  afterMatchCountdown: 5
-  AFKTimeLimit: 60
-  MaxChangeTeamTimes: 3
-  maxSuicideAttempts: 3
-  MainMenuScene: MainMenu
-  OnDisconnectScene: MainMenu
-  highLightColor: {r: 0, g: 0.5001688, b: 1, a: 1}
-  AllScenes:
-  - ShowName: Guanaco Desert
-    m_Scene: {fileID: 102900000, guid: 7b433244bb0354246a7c6a8c682e5441, type: 3}
-    RealSceneName: ExampleLevel
-    Preview: {fileID: 21300000, guid: 6566c02619a33c04b83af91ef6aa5026, type: 3}
-  - ShowName: Maniac Mode
-    m_Scene: {fileID: 102900000, guid: 0d48c7b688f198341a180edadb83f89a, type: 3}
-    RealSceneName: ManiacMode_01
-    Preview: {fileID: 21300000, guid: 6566c02619a33c04b83af91ef6aa5026, type: 3}
-  - ShowName: Maze Mode
-    m_Scene: {fileID: 102900000, guid: 6291fb833662fff4b8c2670ac1ff064a, type: 3}
-    RealSceneName: Maze_01
-    Preview: {fileID: 21300000, guid: 62549dafad385a44e80dc57af4fe3e78, type: 3}
-  - ShowName: Maniac
-    m_Scene: {fileID: 102900000, guid: 179b8e6c4f2d83343a690dcec92fdbdf, type: 3}
-    RealSceneName: ManiacLevel
-    Preview: {fileID: 21300000, guid: 483741f0817d5b348a206491a920526c, type: 3}
   AllWeapons:
   - Name: Rifle
     Type: 1
@@ -177,10 +147,15 @@ MonoBehaviour:
       type: 3}
     GunIcon: {fileID: 21300000, guid: f22b479294de3414e987ba1cb0e2e81f, type: 3}
   defaultSettings: {fileID: 11400000, guid: 5fadfa78dabe7f6429f21e8ed3cc747b, type: 2}
+  AllScenes:
+  - ShowName: Guanaco Desert
+    m_Scene: {fileID: 102900000, guid: 7b433244bb0354246a7c6a8c682e5441, type: 3}
+    RealSceneName: ExampleLevel
+    Preview: {fileID: 21300000, guid: 6566c02619a33c04b83af91ef6aa5026, type: 3}
   gameModes:
   - ModeName: Team Death Match
     gameMode: 0
-    isEnabled: 1
+    isEnabled: 0
     supportBots: 1
     AutoTeamSelection: 0
     RequiredPlayersToStart: 1
@@ -192,7 +167,7 @@ MonoBehaviour:
     timeLimits: 8403000058020000b00400002c010000
   - ModeName: Free For All
     gameMode: 1
-    isEnabled: 1
+    isEnabled: 0
     supportBots: 1
     AutoTeamSelection: 0
     RequiredPlayersToStart: 1
@@ -204,7 +179,7 @@ MonoBehaviour:
     timeLimits: 8403000058020000b00400002c010000
   - ModeName: Capture Of Flag
     gameMode: 2
-    isEnabled: 1
+    isEnabled: 0
     supportBots: 0
     AutoTeamSelection: 1
     RequiredPlayersToStart: 2
@@ -274,6 +249,31 @@ MonoBehaviour:
     maxPlayers: 06000000020000000400000008000000
     GameGoalsOptions: 
     timeLimits: 8403000058020000b00400002c010000
+  - ModeName: Maniac
+    gameMode: 9
+    isEnabled: 1
+    supportBots: 1
+    AutoTeamSelection: 0
+    RequiredPlayersToStart: 1
+    onRoundStartedSpawn: 0
+    onPlayerDie: 0
+    GoalName: Rounds
+    maxPlayers: 08000000020000000400000008000000
+    GameGoalsOptions: 3c00000078000000b40000002c010000
+    timeLimits: 8403000058020000b00400002c010000
+  GameVersion: 1.8.2
+  guestNameFormat: Guest {0}
+  SpawnProtectedTime: 5
+  CountDownTime: 10
+  PlayerRespawnTime: 7
+  MaxFriendsAdded: 25
+  afterMatchCountdown: 5
+  AFKTimeLimit: 60
+  MaxChangeTeamTimes: 3
+  maxSuicideAttempts: 3
+  MainMenuScene: MainMenu
+  OnDisconnectScene: MainMenu
+  highLightColor: {r: 0, g: 0.5001688, b: 1, a: 1}
   Team1Name: Hiding
   Team1Color: {r: 0.008075642, g: 0.6037736, b: 0, a: 1}
   Team2Name: Maniac

@@ -9,4 +9,5 @@
     BR,
     ELIM,
     DM,
+    Maniac,
 }
