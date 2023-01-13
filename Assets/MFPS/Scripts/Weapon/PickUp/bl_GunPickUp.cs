@@ -4,7 +4,7 @@ using Photon.Pun;
 
 public class bl_GunPickUp : bl_MonoBehaviour
 {
-    [GunID] public int GunID = 0;
+    public int GunID = 0;
     public DetectMode m_DetectMode = DetectMode.Raycast;
     [HideInInspector]
     public bool PickupOnCollide = true;

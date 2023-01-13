@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
@@ -7,11 +6,11 @@ public class GameModeSettings
 {
     public string ModeName;
     public GameMode gameMode;
-    [LovattoToogle] public bool isEnabled = true;
+    public bool isEnabled = true;
 
     [Header("Settings")]
-    [LovattoToogle] public bool supportBots = false;
-    [LovattoToogle] public bool AutoTeamSelection = false;
+    public bool supportBots = false;
+    public bool AutoTeamSelection = false;
     [Range(1, 16)] public int RequiredPlayersToStart = 1;
     public OnRoundStartedSpawn onRoundStartedSpawn = OnRoundStartedSpawn.SpawnAfterSelectTeam;
     public OnPlayerDie onPlayerDie = OnPlayerDie.SpawnAfterDelay;
@@ -24,9 +23,6 @@ public class GameModeSettings
 
     public string GetGoalFullName(int goalID) { return string.Format("{0} {1}", GameGoalsOptions[goalID], GoalName); }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public string GetGoalName(int goalID)
     {
         if (GameGoalsOptions.Length <= 0) return GoalName;
@@ -41,14 +37,14 @@ public class GameModeSettings
         return GameGoalsOptions[goalID];
     }
 
-    [System.Serializable]
+    [Serializable]
     public enum OnRoundStartedSpawn
     {
         SpawnAfterSelectTeam,
         WaitUntilRoundFinish,
     }
 
-    [System.Serializable]
+    [Serializable]
     public enum OnPlayerDie
     {
         SpawnAfterDelay,

@@ -5,7 +5,7 @@ using Photon.Pun;
 
 public class bl_BodyPartManager : bl_PhotonHelper
 {
-    [Header("Hit Boxes"), Reorderable]
+    [Header("Hit Boxes")]
     public List<BodyHitBox> HitBoxs = new List<BodyHitBox>();
     public List<Rigidbody> rigidBodys = new List<Rigidbody>();
     public bool ApplyVelocityToRagdoll = true;

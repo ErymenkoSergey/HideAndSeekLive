@@ -5,10 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Weapon Slot Ruler", menuName = "MFPS/Loadout/Ruler")]
 public class bl_WeaponSlotRuler : ScriptableObject
 {
-    [Reorderable] public GunType[] primarySlots;
-    [Reorderable] public GunType[] secondarySlots;
-    [Reorderable] public GunType[] perksSlots;
-    [Reorderable] public GunType[] letalSlots;
+     public GunType[] primarySlots;
+     public GunType[] secondarySlots;
+     public GunType[] perksSlots;
+     public GunType[] letalSlots;
     public bool CanBeOnSlot(GunType gunType, int slotID)
     {
         if (slotID == 0) return TypeInList(gunType, primarySlots);

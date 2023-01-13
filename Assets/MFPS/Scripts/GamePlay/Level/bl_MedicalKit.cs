@@ -4,13 +4,10 @@ namespace MFPS.Runtime.Level
 {
     public class bl_MedicalKit : bl_NetworkItem
     {
-        [LovattoToogle] public bool autoRespawn = false;
+        public bool autoRespawn = false;
         [Range(0, 100)]
         public int health = 25;
 
-        /// <summary>
-        /// 
-        /// </summary>
         void OnTriggerEnter(Collider m_other)
         {
             if (!m_other.gameObject.CompareTag(bl_PlayerSettings.LocalTag)) return;

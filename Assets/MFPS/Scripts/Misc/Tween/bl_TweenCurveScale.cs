@@ -9,8 +9,8 @@ namespace MFPS.Tween
     {
 
         [Header("Settings")]
-        [LovattoToogle] public bool OnStart = true;
-        [LovattoToogle] public bool ApplyOnStart = true;
+         public bool OnStart = true;
+         public bool ApplyOnStart = true;
         [Range(0, 10)] public float Delay = 0;
         [Range(0.1f, 7)] public float Duration = 1;
         [Range(0.1f, 4)] public float Multiplier = 1;

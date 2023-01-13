@@ -10,7 +10,6 @@ namespace MFPS.Runtime.Settings
     [CreateAssetMenu(fileName = "Settings Profile", menuName = "MFPS/Settings/Profile")]
     public class bl_RuntimeSettingsProfile : ScriptableObject
     {
-        [Reorderable]
         public List<SettingValue> settingValues = new List<SettingValue>();
         public int[] RefreshRates = new int[] { 30, 60, 120, 144, 200, 260, 0 };
 

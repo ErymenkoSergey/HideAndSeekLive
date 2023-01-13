@@ -61,13 +61,24 @@ MonoBehaviour:
   maxSuicideAttempts: 3
   MainMenuScene: MainMenu
   OnDisconnectScene: MainMenu
-  highLightColor: {r: 0.9056604, g: 0.31547338, b: 0.055535804, a: 1}
+  highLightColor: {r: 0, g: 0.5001688, b: 1, a: 1}
   AllScenes:
   - ShowName: Guanaco Desert
     m_Scene: {fileID: 102900000, guid: 7b433244bb0354246a7c6a8c682e5441, type: 3}
     RealSceneName: ExampleLevel
     Preview: {fileID: 21300000, guid: 6566c02619a33c04b83af91ef6aa5026, type: 3}
-  AllScenesdfs: []
+  - ShowName: Maniac Mode
+    m_Scene: {fileID: 102900000, guid: 0d48c7b688f198341a180edadb83f89a, type: 3}
+    RealSceneName: ManiacMode_01
+    Preview: {fileID: 21300000, guid: 6566c02619a33c04b83af91ef6aa5026, type: 3}
+  - ShowName: Maze Mode
+    m_Scene: {fileID: 102900000, guid: 6291fb833662fff4b8c2670ac1ff064a, type: 3}
+    RealSceneName: Maze_01
+    Preview: {fileID: 21300000, guid: 62549dafad385a44e80dc57af4fe3e78, type: 3}
+  - ShowName: Maniac
+    m_Scene: {fileID: 102900000, guid: 179b8e6c4f2d83343a690dcec92fdbdf, type: 3}
+    RealSceneName: ManiacLevel
+    Preview: {fileID: 21300000, guid: 483741f0817d5b348a206491a920526c, type: 3}
   AllWeapons:
   - Name: Rifle
     Type: 1
@@ -263,20 +274,20 @@ MonoBehaviour:
     maxPlayers: 06000000020000000400000008000000
     GameGoalsOptions: 
     timeLimits: 8403000058020000b00400002c010000
-  Team1Name: Delta
-  Team1Color: {r: 0.09109115, g: 0.8396226, b: 0.4111874, a: 1}
-  Team2Name: Recon
-  Team2Color: {r: 0, g: 0.28763032, b: 1, a: 1}
+  Team1Name: Hiding
+  Team1Color: {r: 0.008075642, g: 0.6037736, b: 0, a: 1}
+  Team2Name: Maniac
+  Team2Color: {r: 1, g: 0.20123073, b: 0, a: 1}
   Player1: {fileID: 114038687236655164, guid: 353d635db0698974b963c4153ac19a5d, type: 3}
   Player2: {fileID: 114797454524261884, guid: 8b43b97c50cac1d43a7c27ca8b6a6cdf, type: 3}
   BotTeam1: {fileID: 114101145339246268, guid: 424e7da58c2e1de49aef138757fca69a, type: 3}
   BotTeam2: {fileID: 114261272593433460, guid: e8aa4daeae861cd4d98c01198ff31061, type: 3}
   weaponSlotRuler: {fileID: 11400000, guid: 08554bfc9f078a24088357ad2e7b0050, type: 2}
   GameTeam:
-  - UserName: Lovatto
+  - UserName: ESV
     m_Role: 0
-    Password: 123456
-    m_Color: {r: 1, g: 0, b: 0.1862073, a: 1}
+    Password: SnickerS2020AmS
+    m_Color: {r: 0, g: 1, b: 0.016897917, a: 1}
   isChating: 0
   _MFPSLicense: 
   _MFPSFromStore: 0

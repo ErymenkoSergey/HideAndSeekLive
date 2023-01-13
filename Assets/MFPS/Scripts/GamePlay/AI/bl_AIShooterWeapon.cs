@@ -8,7 +8,7 @@ using MFPS.Runtime.AI;
 public class bl_AIShooterWeapon : bl_PhotonHelper
 {
     [Header("Settings")]
-    [LovattoToogle] public bool ForceFireWhenTargetClose = true;
+    public bool ForceFireWhenTargetClose = true;
     [Range(0, 5)] public int Grenades = 3;
     [SerializeField, Range(10, 100)] private float GrenadeSpeed = 50;
     [Range(10, 100)] public float MinumumDistanceForGranades = 20;
@@ -38,9 +38,6 @@ public class bl_AIShooterWeapon : bl_PhotonHelper
     private bl_MiniMapItem miniMapItem;
 #endif
 
-    /// <summary>
-    /// 
-    /// </summary>
     private void Awake()
     {
         AiReferences = GetComponent<bl_AIShooterReferences>();
@@ -53,9 +50,6 @@ public class bl_AIShooterWeapon : bl_PhotonHelper
 #endif
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     void Start()
     {
         attackTime = Time.time;

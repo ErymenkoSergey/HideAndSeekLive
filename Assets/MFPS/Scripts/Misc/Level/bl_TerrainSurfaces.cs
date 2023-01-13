@@ -1,5 +1,4 @@
-﻿using MFPSEditor;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -66,7 +65,6 @@ public class bl_TerrainSurfaces : MonoBehaviour
 		return maxIndex;
 	}
 
-
 	private void OnValidate()
     {
         if (terrain == null) terrain = GetComponent<Terrain>();
@@ -87,11 +85,11 @@ public class bl_TerrainSurfaces : MonoBehaviour
         }
     }
 
-    [System.Serializable]
+    [Serializable]
     public class TerrainSurface
     {
         public string Tag;
-        [SpritePreview] public Texture2D MainTexture;
+        public Texture2D MainTexture;
         public TerrainLayer terrainLayer;
     }
 }

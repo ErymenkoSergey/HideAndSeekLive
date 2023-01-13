@@ -9,9 +9,9 @@ namespace MFPS.Tween
     public class bl_TweenCurveAlpha : bl_TweenBase, ITween
     {
         [Header("Settings")]
-        [LovattoToogle] public bool OnStart = true;
-        [LovattoToogle] public bool AlphaOnStart = true;
-        [LovattoToogle] public bool Loop = false;
+        public bool OnStart = true;
+        public bool AlphaOnStart = true;
+        public bool Loop = false;
         [Range(0, 10)] public float Delay = 0;
         [Range(0.1f, 10)] public float Duration = 1;
         public AnimationCurve m_Curve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(1, 1));
@@ -39,8 +39,8 @@ namespace MFPS.Tween
         /// </summary>
         void OnEnable()
         {
-            if(m_Canvas == null)
-            m_Canvas = GetComponent<CanvasGroup>();
+            if (m_Canvas == null)
+                m_Canvas = GetComponent<CanvasGroup>();
             if (m_Canvas == null) { Debug.Log("Not canvas", gameObject); return; }
 
             if (!isInitializated)
@@ -98,7 +98,7 @@ namespace MFPS.Tween
             }
             else
             {
-            //    if (Delay > 0) { yield return new EditorWaitForSeconds(Delay); }
+                //    if (Delay > 0) { yield return new EditorWaitForSeconds(Delay); }
             }
 #else
         if(Delay > 0) { yield return new WaitForSecondsRealtime(Delay); }

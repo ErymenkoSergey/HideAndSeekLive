@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class bl_SpawnPointManager : MonoBehaviour
 {
     public SpawnMode spawnMode = SpawnMode.Random;
-    [LovattoToogle] public bool drawSpawnPoints = true;
+    public bool drawSpawnPoints = true;
 #if UNITY_EDITOR
     public Mesh SpawnPointPlayerGizmo;
 #endif

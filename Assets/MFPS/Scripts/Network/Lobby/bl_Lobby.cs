@@ -14,7 +14,7 @@ public class bl_Lobby : bl_PhotonHelper, IConnectionCallbacks, ILobbyCallbacks, 
     #region Public members
     [Header("Photon")]
     public SeverRegionCode DefaultServer = SeverRegionCode.usw;
-    [LovattoToogle] public bool ShowPhotonStatistics;
+     public bool ShowPhotonStatistics;
 
     [Header("Room Options")]
     //Room Max Ping

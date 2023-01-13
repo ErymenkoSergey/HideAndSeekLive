@@ -10,9 +10,9 @@ public class bl_OfflineRoom : MonoBehaviour, IConnectionCallbacks
 {
     [Header("Offline Room")]
     public GameMode gameMode = GameMode.FFA;
-    [LovattoToogle] public bool forceOffline = false;
-    [LovattoToogle] public bool withBots = false;
-    [LovattoToogle] public bool autoTeamSelection = true;
+     public bool forceOffline = false;
+     public bool withBots = false;
+     public bool autoTeamSelection = true;
     [Range(1, 10)] public int maxPlayers = 1;
     public int MatchTime = 9989;
     public RoundStyle roundStyle = RoundStyle.OneMacht;

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace MFPS.Runtime.AI
@@ -9,9 +8,9 @@ namespace MFPS.Runtime.AI
         [Header("Settings")]
         public AIAgentBehave agentBehave = AIAgentBehave.Agressive;
         public AIWeaponAccuracy weaponAccuracy = AIWeaponAccuracy.Casual;
-        [LovattoToogle] public bool GetRandomTargetOnStart = true;
-        [LovattoToogle] public bool forceFollowAtHalfHealth = true;
-        [LovattoToogle] public bool checkEnemysWhenHaveATarget = true;
+        public bool GetRandomTargetOnStart = true;
+        public bool forceFollowAtHalfHealth = true;
+        public bool checkEnemysWhenHaveATarget = true;
         public AITargetOutRangeBehave targetOutRangeBehave = AITargetOutRangeBehave.KeepFollowingBasedOnState;
 
         [Header("Cover")]

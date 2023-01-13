@@ -29,11 +29,11 @@ public class bl_FirstPersonController : bl_MonoBehaviour
     [Range(0, 2)] public float AirControlMultiplier = 0.8f;
     public float m_StickToGroundForce;
     public float m_GravityMultiplier;
-    [LovattoToogle] public bool RunFovEffect = true;
+    public bool RunFovEffect = true;
     public float runFOVAmount = 8;
-    [LovattoToogle] public bool KeepToCrouch = true;
+    public bool KeepToCrouch = true;
     [Header("Falling")]
-    [LovattoToogle] public bool FallDamage = true;
+    public bool FallDamage = true;
     [Range(0.1f, 5f)]
     public float SafeFallDistance = 3;
     [Range(3, 25)]

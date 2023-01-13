@@ -7,7 +7,7 @@ public class bl_UCrosshair : bl_MonoBehaviour
 {
 
     [Header("Settings")]
-    [LovattoToogle] public bool fadeOnAim = true;
+    public bool fadeOnAim = true;
     [Range(1, 10)] public float ScaleLerp = 5;
     [Range(0.1f, 5)] public float RotationSpeed = 2;
     [Range(0.01f, 1)] public float OnFireScaleRate = 0.1f;
@@ -37,9 +37,6 @@ public class bl_UCrosshair : bl_MonoBehaviour
     private float hitDuration;
     private CanvasGroup CrossAlpha;
 
-    /// <summary>
-    /// 
-    /// </summary>
     protected override void Awake()
     {
         base.Awake();

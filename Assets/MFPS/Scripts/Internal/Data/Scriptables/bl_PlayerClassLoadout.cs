@@ -3,10 +3,10 @@
 [DisallowMultipleComponent, CreateAssetMenu(fileName = "Player Class Loadout", menuName = "MFPS/Player Class/Loadout")]
 public class bl_PlayerClassLoadout : ScriptableObject
 {
-    [GunID] public int Primary = 0;
-    [GunID] public int Secondary = 1;
-    [GunID] public int Perks = 2;
-    [GunID] public int Letal = 3;
+     public int Primary = 0;
+     public int Secondary = 1;
+     public int Perks = 2;
+     public int Letal = 3;
 
     public void FromString(string str)
     {

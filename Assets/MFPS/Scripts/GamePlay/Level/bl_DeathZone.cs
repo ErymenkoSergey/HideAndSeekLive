@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 
 namespace MFPS.Runtime.Level
 {
     public class bl_DeathZone : bl_PhotonHelper
     {
-        [LovattoToogle] public bool instaKill = false;
+        public bool instaKill = false;
         public int countDown = 5;   
         [TextArea(2,4)]
         public string CustomMessage = "you're in a zone prohibited \n returns to the playing area or die at \n";

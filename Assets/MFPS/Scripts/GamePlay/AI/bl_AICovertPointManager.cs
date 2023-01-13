@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -9,29 +8,20 @@ public class bl_AICovertPointManager : MonoBehaviour
 {
     public float MaxDistance = 50;
     public float UsageTime = 10;
-    [LovattoToogle] public bool ShowGizmos = true;
+    public bool ShowGizmos = true;
 
     public static List<bl_AICoverPoint> AllCovers = new List<bl_AICoverPoint>();
 
-    /// <summary>
-    /// 
-    /// </summary>
     private void OnDestroy()
     {
         AllCovers.Clear();
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public static void Register(bl_AICoverPoint co)
     {
         AllCovers.Add(co);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     /// <param name="target"></param>
     /// <returns></returns>
     public bl_AICoverPoint GetCloseCover(Transform target)

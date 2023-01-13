@@ -1,12 +1,10 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 using Photon.Pun;
-using Photon.Realtime;
 
 public class bl_RoomSettings : bl_MonoBehaviour
 {
-    [LovattoToogle] public bool canSuicide = true;
+    public bool canSuicide = true;
 
     #region Public properties
     public GameMode CurrentGameMode => CurrentRoomInfo.gameMode;
@@ -16,9 +14,6 @@ public class bl_RoomSettings : bl_MonoBehaviour
     public bool RoomInfoFetched { get; set; } = false;
     #endregion
 
-    /// <summary>
-    /// 
-    /// </summary>
     protected override void Awake()
     {
         base.Awake();
@@ -29,9 +24,6 @@ public class bl_RoomSettings : bl_MonoBehaviour
         GetRoomInfo();
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     IEnumerator Start()
     {
         while (!bl_GameData.isDataCached) yield return null;

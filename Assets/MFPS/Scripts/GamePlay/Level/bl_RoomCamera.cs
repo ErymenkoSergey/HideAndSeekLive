@@ -1,11 +1,10 @@
 using UnityEngine;
-using System.Collections;
 using UnityEngine.Animations;
 
 public class bl_RoomCamera : bl_MonoBehaviour
 {
     [Header("Auto Rotation")]
-    [LovattoToogle] public bool autoRotation = true;
+    public bool autoRotation = true;
     public Axis rotationDirection = Axis.X;
     public float rotationSpeed = 4;
 

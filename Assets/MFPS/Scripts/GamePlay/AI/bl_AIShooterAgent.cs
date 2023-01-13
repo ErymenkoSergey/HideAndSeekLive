@@ -13,8 +13,8 @@ public class bl_AIShooterAgent : bl_AIShooter
 {
     #region Public Members
     [Space(5)]
-    [ScriptableDrawer] public bl_AIBehaviorSettings behaviorSettings;
-    [ScriptableDrawer] public bl_AISoldierSettings soldierSettings;
+     public bl_AIBehaviorSettings behaviorSettings;
+     public bl_AISoldierSettings soldierSettings;
 
 
     [Header("AutoTargets")]

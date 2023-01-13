@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 public class bl_NetworkItem : MonoBehaviour
 {
     public ItemAuthority itemAuthority = ItemAuthority.All;
-    [LovattoToogle] public bool isSceneItem = false;
+    public bool isSceneItem = false;
 
     [SerializeField, HideInInspector]
     private bool isInitializated = false;
@@ -27,9 +25,6 @@ public class bl_NetworkItem : MonoBehaviour
         }set => m_itemName = value;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     private void Start()
     {
         Init();

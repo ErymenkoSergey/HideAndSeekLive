@@ -8,7 +8,7 @@ public class bl_Bullet : bl_MonoBehaviour
     /// <summary>
     /// If is enabled, on all collisions will check if the hitted object have a IMFPSDamageable component
     /// </summary>
-    [LovattoToogle] public bool checkDamageables = false;
+     public bool checkDamageables = false;
     public LayerMask HittableLayers;
     public TrailRenderer Trail = null;
     #endregion

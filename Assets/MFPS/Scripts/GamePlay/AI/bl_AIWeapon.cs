@@ -1,14 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Animations;
+﻿using UnityEngine;
 
 namespace MFPS.Runtime.AI
 {
     public class bl_AIWeapon : MonoBehaviour
     {
         [Header("Info")]
-        [GunID] public int GunID;
+        public int GunID;
         [Range(1, 60)] public int Bullets = 30;
         [Range(1, 6)] public int bulletsPerShot = 1;
         public int maxFollowingShots = 5;
@@ -22,9 +19,6 @@ namespace MFPS.Runtime.AI
         // public WeaponAudioBank weaponAudio;
         // public Transform leftArmPosition;
 
-        /// <summary>
-        /// 
-        /// </summary>
         public void Initialize(bl_AIShooterWeapon shooterWeapon)
         {
             /* if (shooterWeapon.leftArmConstrain != null)

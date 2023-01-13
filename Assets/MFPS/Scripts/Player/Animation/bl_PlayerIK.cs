@@ -17,7 +17,7 @@ public class bl_PlayerIK : bl_MonoBehaviour
     public Vector3 AimSightPosition = new Vector3(0.02f, 0.19f, 0.02f);
 
     [Header("FOOT IK")]
-    [LovattoToogle] public bool useFootPlacement = true;
+    public bool useFootPlacement = true;
     public LayerMask FootLayers;
     [Range(0.01f, 2)] public float FootDownOffset = 1.25f;
     [Range(0.1f, 1)] public float FootHeight = 0.43f;

@@ -9,8 +9,8 @@ using System.Linq;
 public class bl_PlayerScoreboard : bl_MonoBehaviour
 {
     [Header("Settings")]
-    [LovattoToogle] public bool updateOnEnable = true;
-    [LovattoToogle] public bool autoUpdate = true;
+     public bool updateOnEnable = true;
+     public bool autoUpdate = true;
 
     [Header("References")]
     public GameObject playerscoreboardUIBinding;

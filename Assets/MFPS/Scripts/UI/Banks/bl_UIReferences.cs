@@ -1,10 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine.UI;
 using UnityEngine;
-using System.Collections.Generic;
 using Photon.Pun;
 using Photon.Realtime;
-using MFPS.Internal;
 using MFPS.Runtime.UI.Layout;
 using MFPS.Runtime.UI;
 using MFPS.Runtime.UI.Bindings;
@@ -14,7 +12,7 @@ public class bl_UIReferences : bl_PhotonHelper, IInRoomCallbacks
 {
     public RoomMenuState State = RoomMenuState.Init;
 
-    [FlagEnum, SerializeField] private RoomUILayers m_uiMask = 0;
+    [SerializeField] private RoomUILayers m_uiMask = 0;
     public RoomUILayers UIMask
     {
         get => m_uiMask;

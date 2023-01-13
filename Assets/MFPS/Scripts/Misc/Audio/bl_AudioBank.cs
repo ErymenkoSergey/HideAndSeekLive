@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace MFPS.Audio
@@ -7,7 +6,7 @@ namespace MFPS.Audio
     [CreateAssetMenu(fileName = "Audio Bank", menuName = "MFPS/Audio/Bank", order = 301)]
     public class bl_AudioBank : ScriptableObject
     {
-        [Reorderable] public List<AudioInfo> AudioBank = new List<AudioInfo>();
+        public List<AudioInfo> AudioBank = new List<AudioInfo>();
 
         public AudioInfo PlayAudioInSource(AudioSource source, string bankInfo)
         {
@@ -22,9 +21,6 @@ namespace MFPS.Audio
             return info;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         public AudioInfo GetInfoOf(string bankName)
         {
             return AudioBank.Find(x => x.Name.ToLower() == bankName.ToLower());

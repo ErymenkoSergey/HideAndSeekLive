@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using UnityEngine.Events;
 using UnityEngine;
 
 namespace MFPS.Tween
@@ -7,9 +6,8 @@ namespace MFPS.Tween
     [AddComponentMenu("MFPS/Tween/Position", 4)]
     public class bl_TweenPosition : bl_TweenBase, ITween
     {
-
         [Header("Settings")]
-        [LovattoToogle] public bool onEnable = true;
+        public bool onEnable = true;
         [Range(0, 10)] public float Delay = 0;
         [Range(0.1f, 7)] public float Duration = 1;
         public TweenOrigin tweenTarget = TweenOrigin.To;
@@ -25,18 +23,12 @@ namespace MFPS.Tween
         private float duration = 0;
         private Vector3 defaultVector;
 
-        /// <summary>
-        /// 
-        /// </summary>
         void Awake()
         {
             m_Transform = transform;
             defaultVector = m_Transform.localPosition;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         void OnEnable()
         {
             if (onEnable)
