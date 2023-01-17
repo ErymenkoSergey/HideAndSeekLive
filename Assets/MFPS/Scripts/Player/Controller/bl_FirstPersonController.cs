@@ -705,14 +705,11 @@ public class bl_FirstPersonController : bl_MonoBehaviour
         }
         else//if the player was falling without jumping
         {
-
+            Debug.Log("if the player was falling without jumping ");
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    private void GetInput(out float speed)
+    private void GetInput(out float speed) // TODO = Add New input sysytem!!  
     {
         if (!isControlable) { speed = 0; return; }
 
@@ -841,6 +838,11 @@ public class bl_FirstPersonController : bl_MonoBehaviour
         hasPlatformJump = true;
         PlatformJumpForce = force;
         JumpInmune = true;
+    }
+
+    public void SetPosition(Transform transform)
+    {
+        gameObject.transform.position = transform.position;
     }
 
 #if MFPSM

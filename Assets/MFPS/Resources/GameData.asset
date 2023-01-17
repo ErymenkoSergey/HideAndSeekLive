@@ -152,6 +152,10 @@ MonoBehaviour:
     m_Scene: {fileID: 102900000, guid: 7b433244bb0354246a7c6a8c682e5441, type: 3}
     RealSceneName: ExampleLevel
     Preview: {fileID: 21300000, guid: 6566c02619a33c04b83af91ef6aa5026, type: 3}
+  - ShowName: Forest Maniac
+    m_Scene: {fileID: 102900000, guid: 4cc1f2b5a62fb4f4c8d17ba1caa662b4, type: 3}
+    RealSceneName: Map_001
+    Preview: {fileID: 21300000, guid: ca37e507e47f9f148b92dd984e3137f3, type: 3}
   gameModes:
   - ModeName: Team Death Match
     gameMode: 0
@@ -252,7 +256,7 @@ MonoBehaviour:
   - ModeName: Maniac
     gameMode: 9
     isEnabled: 1
-    supportBots: 1
+    supportBots: 0
     AutoTeamSelection: 0
     RequiredPlayersToStart: 1
     onRoundStartedSpawn: 0
@@ -268,7 +272,7 @@ MonoBehaviour:
   PlayerRespawnTime: 7
   MaxFriendsAdded: 25
   afterMatchCountdown: 5
-  AFKTimeLimit: 60
+  AFKTimeLimit: 10
   MaxChangeTeamTimes: 3
   maxSuicideAttempts: 3
   MainMenuScene: MainMenu

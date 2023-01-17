@@ -1,10 +1,3 @@
-////////////////////////////////////////////////////////////////////////////////
-// bl_PlayerSettings.cs
-//
-// This script configures the required settings for the local and remote player
-//
-//                        Lovatto Studio
-////////////////////////////////////////////////////////////////////////////////
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -32,10 +25,7 @@ public class bl_PlayerSettings : bl_PhotonHelper
     public bl_FPArmsMaterial armsMaterial;
     private List<bl_FPArmsMaterial.MaterialColor> currentWeaponMaterials = new List<bl_FPArmsMaterial.MaterialColor>();
     
-    /// <summary>
-    /// 
-    /// </summary>
-    void Awake()
+    private void Awake()
     {
         if (!PhotonNetwork.IsConnected || !PhotonNetwork.InRoom) return;
         PlayerTeam = (Team)photonView.InstantiationData[0];
@@ -106,17 +96,11 @@ public class bl_PlayerSettings : bl_PhotonHelper
 #endif
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     private void OnDisable()
     {
         SetDeafultWeaponRender();
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     private void OnDestroy()
     {
         if(!photonView.IsMine)
@@ -202,9 +186,6 @@ public class bl_PlayerSettings : bl_PhotonHelper
         SetDeafultWeaponRender();
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     void SetDeafultWeaponRender()
     {
         if (currentWeaponMaterials.Count > 0)

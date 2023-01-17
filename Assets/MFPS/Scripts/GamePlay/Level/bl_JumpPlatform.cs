@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace MFPS.Runtime.Level
 {
     [RequireComponent(typeof(AudioSource))]
     public class bl_JumpPlatform : MonoBehaviour
     {
-        [Range(0, 25)] public float JumpForce;
+        [Range(0, 125)] public float JumpForce;
         [SerializeField] private AudioClip JumpSound;
 
         private void OnTriggerEnter(Collider other)
