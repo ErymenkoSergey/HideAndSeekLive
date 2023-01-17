@@ -8,4 +8,5 @@
     Grenade = 5,
     Knife = 6,
     Launcher = 7,
+    JumpMine = 8,
 }

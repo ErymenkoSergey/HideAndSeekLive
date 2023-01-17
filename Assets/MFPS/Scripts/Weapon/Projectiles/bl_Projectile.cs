@@ -148,5 +148,6 @@ public class bl_Projectile : MonoBehaviour
         Grenade,
         Molotov,
         Smoke,
+        Jumper,
     }
 }

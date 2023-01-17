@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 3302230}
   - component: {fileID: 2308446}
   - component: {fileID: 6547144}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: lo_Prop_Lamp_D_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 16
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &470192
 Transform:
@@ -107,12 +107,12 @@ GameObject:
   m_Component:
   - component: {fileID: 451280}
   - component: {fileID: 20520078}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Prop_Lamp_D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 16
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &451280
 Transform:
@@ -166,12 +166,12 @@ GameObject:
   - component: {fileID: 3355304}
   - component: {fileID: 2307798}
   - component: {fileID: 6527162}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: lo_Prop_Lamp_D_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 16
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &439000
 Transform:

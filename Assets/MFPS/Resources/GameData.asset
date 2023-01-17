@@ -146,6 +146,18 @@ MonoBehaviour:
     PickUpPrefab: {fileID: 9043734865955749252, guid: e5267eb24b2bb3e44b7e5b2b4961a28c,
       type: 3}
     GunIcon: {fileID: 21300000, guid: f22b479294de3414e987ba1cb0e2e81f, type: 3}
+  - Name: Jump Mine
+    Type: 8
+    Damage: 0
+    FireRate: 2
+    ReloadTime: 2
+    Range: 125
+    Accuracy: 1
+    Weight: 1
+    Price: 0
+    PickUpPrefab: {fileID: 5457118051884881371, guid: 32c13f0a781a9244facdc752c3a5f6ee,
+      type: 3}
+    GunIcon: {fileID: 21300000, guid: 5838646af604a634088ab6f334e885ea, type: 3}
   defaultSettings: {fileID: 11400000, guid: 5fadfa78dabe7f6429f21e8ed3cc747b, type: 2}
   AllScenes:
   - ShowName: Forest Maniac
@@ -153,6 +165,18 @@ MonoBehaviour:
     RealSceneName: Map_001
     Preview: {fileID: 21300000, guid: ca37e507e47f9f148b92dd984e3137f3, type: 3}
   gameModes:
+  - ModeName: Maniac
+    gameMode: 9
+    isEnabled: 1
+    supportBots: 0
+    AutoTeamSelection: 0
+    RequiredPlayersToStart: 1
+    onRoundStartedSpawn: 0
+    onPlayerDie: 0
+    GoalName: Rounds
+    maxPlayers: 08000000020000000400000008000000
+    GameGoalsOptions: 3c00000078000000b40000002c010000
+    timeLimits: 8403000058020000b00400002c010000
   - ModeName: Team Death Match
     gameMode: 0
     isEnabled: 0
@@ -248,18 +272,6 @@ MonoBehaviour:
     GoalName: Alives
     maxPlayers: 06000000020000000400000008000000
     GameGoalsOptions: 
-    timeLimits: 8403000058020000b00400002c010000
-  - ModeName: Maniac
-    gameMode: 9
-    isEnabled: 1
-    supportBots: 0
-    AutoTeamSelection: 0
-    RequiredPlayersToStart: 1
-    onRoundStartedSpawn: 0
-    onPlayerDie: 0
-    GoalName: Rounds
-    maxPlayers: 08000000020000000400000008000000
-    GameGoalsOptions: 3c00000078000000b40000002c010000
     timeLimits: 8403000058020000b00400002c010000
   GameVersion: 1.8.2
   guestNameFormat: Guest {0}
