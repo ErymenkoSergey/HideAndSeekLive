@@ -32,7 +32,6 @@ public class bl_MonoBehaviour : bl_PhotonHelper
         }
     }
 
-
     protected virtual void OnEnable()
     {
         if (!isRegister)

@@ -84,6 +84,7 @@ public class bl_FirstPersonController : bl_MonoBehaviour
     private bool isClimbing = false;
     private bl_Ladder m_Ladder;
     private bool MoveToStarted = false;
+    private bool _isTeleportation;
 #if MFPSM
     private bl_Joystick Joystick;
 #endif
@@ -114,9 +115,6 @@ public class bl_FirstPersonController : bl_MonoBehaviour
     private Vector3 surfaceNormal = Vector3.zero;
     #endregion
 
-    /// <summary>
-    /// 
-    /// </summary>
     protected override void Awake()
     {
         if (!photonView.IsMine)
@@ -176,6 +174,9 @@ public class bl_FirstPersonController : bl_MonoBehaviour
     /// </summary>
     public override void OnUpdate()
     {
+        if (_isTeleportation)
+            return;
+
         Velocity = m_CharacterController.velocity;
         VelocityMagnitude = Velocity.magnitude;
         RotateView();
@@ -206,7 +207,7 @@ public class bl_FirstPersonController : bl_MonoBehaviour
     /// <summary>
     /// Handle the player input key/buttons for the player controller
     /// </summary>
-    void MovementInput()
+    private void MovementInput()
     {
         if (State == PlayerState.Sliding)
         {
@@ -300,6 +301,8 @@ public class bl_FirstPersonController : bl_MonoBehaviour
     /// </summary>
     public override void OnFixedUpdate()
     {
+        if (_isTeleportation)
+            return;
         if (Finish)
             return;
         if (m_CharacterController == null || !m_CharacterController.enabled || MoveToStarted)
@@ -428,10 +431,7 @@ public class bl_FirstPersonController : bl_MonoBehaviour
         bl_EventHandler.DispatchPlayerLandEvent();
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    void OnCrouchChanged()
+    private void OnCrouchChanged()
     {
         if (Crounching)
         {
@@ -512,10 +512,12 @@ public class bl_FirstPersonController : bl_MonoBehaviour
     /// </summary>
     void DoSlide()
     {
-        if ((Time.time - lastSlideTime) < slideTime * slideCoolDown) return;//wait the equivalent of one extra slide before be able to slide again
+        if ((Time.time - lastSlideTime) < slideTime * slideCoolDown)
+            return;//wait the equivalent of one extra slide before be able to slide again
         if (m_Jumping) return;
         Vector3 startPosition = (m_Transform.position - feetPositionOffset) + (m_Transform.forward * m_CharacterController.radius);
-        if (Physics.Linecast(startPosition, startPosition + m_Transform.forward)) return;//there is something in front of the feet's
+        if (Physics.Linecast(startPosition, startPosition + m_Transform.forward))
+            return;//there is something in front of the feet's
 
         State = PlayerState.Sliding;
         slideForce = slideSpeed;//slide force will be continually decreasing
@@ -604,9 +606,6 @@ public class bl_FirstPersonController : bl_MonoBehaviour
         State = PlayerState.Gliding;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     void OnGliding()
     {
         desiredMove = (m_Transform.forward * m_Input.y) + (m_Transform.right * m_Input.x);
@@ -622,9 +621,6 @@ public class bl_FirstPersonController : bl_MonoBehaviour
         m_CollisionFlags = m_CharacterController.Move(m_MoveDir * Time.fixedDeltaTime);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     void OnClimbing()
     {
         if (m_Ladder.HasPending)
@@ -679,7 +675,7 @@ public class bl_FirstPersonController : bl_MonoBehaviour
     /// <summary>
     /// Check in which vertical direction is the player translating to
     /// </summary>
-    void VerticalDirectionCheck()
+    private void VerticalDirectionCheck()
     {
         if (m_Transform.position.y == PostGroundVerticalPos) return;
 
@@ -705,13 +701,17 @@ public class bl_FirstPersonController : bl_MonoBehaviour
         }
         else//if the player was falling without jumping
         {
-            Debug.Log("if the player was falling without jumping ");
+            Debug.Log("Урон от падения ");
         }
     }
 
     private void GetInput(out float speed) // TODO = Add New input sysytem!!  
     {
-        if (!isControlable) { speed = 0; return; }
+        if (_isTeleportation)
+        { speed = 0; return; }
+
+        if (!isControlable)
+        { speed = 0; return; }
 
         // Read input
         HorizontalInput = bl_GameInput.Horizontal;
@@ -811,9 +811,6 @@ public class bl_FirstPersonController : bl_MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void PlayFootStepAudio(bool b)
     {
         if (State == PlayerState.Sliding) return;
@@ -830,9 +827,6 @@ public class bl_FirstPersonController : bl_MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void PlatformJump(float force)
     {
         hasPlatformJump = true;
@@ -842,7 +836,11 @@ public class bl_FirstPersonController : bl_MonoBehaviour
 
     public void SetPosition(Transform transform)
     {
-        gameObject.transform.position = transform.position;
+        _isTeleportation = true;
+        m_CharacterController.enabled = false;
+        m_Transform.position = transform.position;
+         m_CharacterController.enabled = true;
+        _isTeleportation = false;
     }
 
 #if MFPSM
@@ -864,9 +862,6 @@ public class bl_FirstPersonController : bl_MonoBehaviour
     }
 #endif
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void RotateView()
     {
         if (!isClimbing)
@@ -879,19 +874,14 @@ public class bl_FirstPersonController : bl_MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     private void CheckStates()
     {
-        if (lastState == State) return;
+        if (lastState == State)
+            return;
         OnStateChanged(lastState, State);
         lastState = State;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     private void PlayLandingSound(float vol = 1)
     {
         vol = Mathf.Clamp(vol, 0.05f, 1);
@@ -900,9 +890,6 @@ public class bl_FirstPersonController : bl_MonoBehaviour
         m_AudioSource.Play();
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     private void PlayJumpSound()
     {
         m_AudioSource.volume = 1;
@@ -918,10 +905,6 @@ public class bl_FirstPersonController : bl_MonoBehaviour
     void OnGameSettingsChanged() => mouseLook.FetchSettings();
     void OnAimChange(bool aim) => mouseLook.OnAimChange(aim);
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
     public bool IsHeadHampered()
     {
         Vector3 origin = m_Transform.localPosition + m_CharacterController.center + Vector3.up * m_CharacterController.height * 0.5F;
@@ -929,9 +912,6 @@ public class bl_FirstPersonController : bl_MonoBehaviour
         return Physics.Raycast(origin, Vector3.up, dist);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     void OnRoundEnd()
     {
         Finish = true;
@@ -944,12 +924,10 @@ public class bl_FirstPersonController : bl_MonoBehaviour
         bl_UIReferences.Instance.JumpLadder.SetActive(isClimbing);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    IEnumerator MoveTo(Vector3 pos, bool down)
+    private IEnumerator MoveTo(Vector3 pos, bool down)
     {
-        if (m_Transform == null) m_Transform = transform;
+        if (m_Transform == null)
+            m_Transform = transform;
 
         MoveToStarted = true;
         float t = 0;
@@ -968,11 +946,7 @@ public class bl_FirstPersonController : bl_MonoBehaviour
         MoveToStarted = false;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="other"></param>
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.transform.parent == null)
             return;
@@ -1019,9 +993,6 @@ public class bl_FirstPersonController : bl_MonoBehaviour
         }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         surfaceNormal = hit.normal;
