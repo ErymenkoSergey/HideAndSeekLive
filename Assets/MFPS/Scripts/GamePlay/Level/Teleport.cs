@@ -1,11 +1,13 @@
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class Teleport : MonoBehaviour
 {
     [SerializeField] private bool _isRandomPoint;
     [SerializeField] private Transform[] _spawnPoints;
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private AudioClip _teleportSound;
+    [SerializeField] private AudioSource _source;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -23,8 +25,10 @@ public class Teleport : MonoBehaviour
                 fpc.SetPosition(_spawnPoint);
             }
 
-            if (_teleportSound != null) 
-                AudioSource.PlayClipAtPoint(_teleportSound, transform.position);
+            _source = GetComponent<AudioSource>();
+            _source.PlayOneShot(_teleportSound, 0.5f);
+            //if (_teleportSound != null) 
+            //    AudioSource.PlayClipAtPoint(_teleportSound, transform.position);
         }
     }
 }

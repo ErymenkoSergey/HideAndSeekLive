@@ -276,7 +276,7 @@ MonoBehaviour:
   GameVersion: 1.8.2
   guestNameFormat: Guest {0}
   SpawnProtectedTime: 5
-  CountDownTime: 10
+  CountDownTime: 7
   PlayerRespawnTime: 7
   MaxFriendsAdded: 25
   afterMatchCountdown: 5
