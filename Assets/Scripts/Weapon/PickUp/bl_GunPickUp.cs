@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Photon.Pun;
+using System;
 
 public class bl_GunPickUp : bl_MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class bl_GunPickUp : bl_MonoBehaviour
     private bl_GunPickUpManager pickupManager;
 
     //Cache info
-    [System.Serializable]
+    [Serializable]
     public class m_Info
     {
         public int Bullets = 0;
@@ -46,22 +47,15 @@ public class bl_GunPickUp : bl_MonoBehaviour
     public bool IsFocus { set { isFocus = value; } }
     private byte uniqueLocal = 0;
 
-    /// <summary>
-    /// 
-    /// </summary>
     protected override void Awake()
     {
         if (!PhotonNetwork.IsConnected) return;
         base.Awake();
         pickupManager = FindObjectOfType<bl_GunPickUpManager>();
         CacheGun = bl_GameData.Instance.GetWeapon(GunID);
-        uniqueLocal = (byte)Random.Range(0, 9998);
+        uniqueLocal = (byte)UnityEngine.Random.Range(0, 9998);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
     IEnumerator Start()
     {
         if (AutoDestroy)
@@ -76,9 +70,6 @@ public class bl_GunPickUp : bl_MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     protected override void OnDestroy()
     {
         base.OnDestroy();
@@ -99,10 +90,6 @@ public class bl_GunPickUp : bl_MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="c"></param>
     void OnTriggerEnter(Collider c)
     {
         if (bl_GameManager.Instance.GameMatchState == MatchState.Waiting)
@@ -244,7 +231,7 @@ public class bl_GunPickUp : bl_MonoBehaviour
         }
     }
 
-    [System.Serializable]
+    [Serializable]
     public enum DetectMode
     {
         Raycast,

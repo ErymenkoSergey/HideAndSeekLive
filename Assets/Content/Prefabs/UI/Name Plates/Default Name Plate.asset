@@ -84,6 +84,6 @@ MonoBehaviour:
   HealthBarTexture: {fileID: 2800000, guid: ca4f245ce554ba04e9077565d5667264, type: 3}
   HealthBarThickness: 7
   HealthBackColor: {r: 0, g: 0, b: 0, a: 0.60784316}
-  HealthBarColor: {r: 1, g: 0.89019614, b: 0, a: 1}
+  HealthBarColor: {r: 0.039649345, g: 0.764151, b: 0.12400258, a: 1}
   HealthBackOffset: {x: 0, y: 0}
   TalkingIcon: {fileID: 2800000, guid: 95a58546c822cc34592252627681cf23, type: 3}

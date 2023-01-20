@@ -477,7 +477,15 @@ public class bl_MatchTimeManager : bl_MonoBehaviour
             bl_UIReferences.Instance.ResetRound();
 
             if (bl_RoomSettings.Instance.AutoTeamSelection)
+            {
                 bl_RoomSettings.Instance.CheckAutoSpawn();
+                Debug.Log($"AutoTeamSelection = true ");
+            }
+            else
+            {
+                Debug.Log($"AutoTeamSelection = false ");
+            }
+
 
         }
     }

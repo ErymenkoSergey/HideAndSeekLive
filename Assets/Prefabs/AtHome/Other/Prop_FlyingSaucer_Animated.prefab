@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1689710007582484742}
   - component: {fileID: 1689710007564229976}
   - component: {fileID: 1689710007565155074}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Part_ExhaustRings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4830,7 +4830,8 @@ GameObject:
   - component: {fileID: 1689710007581711622}
   - component: {fileID: 1689710007580519374}
   - component: {fileID: 1689710007592396966}
-  m_Layer: 8
+  - component: {fileID: 334839964}
+  m_Layer: 0
   m_Name: FlyingSaucer_Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4923,6 +4924,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!64 &334839964
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689710007582749744}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 9e0f549b4811e8d40b442f55a29bb169, type: 3}
 --- !u!1 &1689710007582926546
 GameObject:
   m_ObjectHideFlags: 0
@@ -4932,7 +4947,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1689710007582509092}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Prop_FlyingSaucer_Animated
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4948,8 +4963,8 @@ Transform:
   m_GameObject: {fileID: 1689710007582926546}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 386.51138, y: 107.9, z: 684.55414}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.32, y: 0.32, z: 0.32}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1689710007582577456}
   m_Father: {fileID: 0}

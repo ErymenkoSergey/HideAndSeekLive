@@ -298,10 +298,6 @@ public class bl_Lobby : bl_PhotonHelper, IConnectionCallbacks, ILobbyCallbacks, 
         if (bl_AudioController.Instance != null) { bl_AudioController.Instance.StopBackground(); }
     }
 
-
-    /// <summary>
-    /// 
-    /// </summary>
     public void CreateRoom()
     {
         SetLobbyChat(false);
@@ -351,12 +347,13 @@ public class bl_Lobby : bl_PhotonHelper, IConnectionCallbacks, ILobbyCallbacks, 
             BroadcastPropsChangeToAll = true,
         }, null);
         bl_LobbyUI.Instance.blackScreenFader.FadeIn(0.3f);
-        if (bl_AudioController.Instance != null) { bl_AudioController.Instance.StopBackground(); }
+
+        if (bl_AudioController.Instance != null) 
+        {
+            bl_AudioController.Instance.StopBackground(); 
+        }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void SignOut()
     {
         PlayerPrefs.SetString(PropertiesKeys.RememberMe, string.Empty);
@@ -376,17 +373,11 @@ public class bl_Lobby : bl_PhotonHelper, IConnectionCallbacks, ILobbyCallbacks, 
         rememberMe = value;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void CheckRoomPassword(RoomInfo room)
     {
         checkingRoom = room;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public bool SetRoomPassworld(string pass)
     {
         if (checkingRoom == null)
@@ -413,9 +404,6 @@ public class bl_Lobby : bl_PhotonHelper, IConnectionCallbacks, ILobbyCallbacks, 
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     private bool serverchangeRequested = false;
     public void ChangeServerCloud(int id)
     {
@@ -466,9 +454,6 @@ public class bl_Lobby : bl_PhotonHelper, IConnectionCallbacks, ILobbyCallbacks, 
     }
     #endregion
 
-    /// <summary>
-    /// 
-    /// </summary>
     void GetPlayerName()
     {
         bool isNameEmpty = string.IsNullOrEmpty(PhotonNetwork.NickName);
@@ -498,9 +483,6 @@ public class bl_Lobby : bl_PhotonHelper, IConnectionCallbacks, ILobbyCallbacks, 
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     void GeneratePlayerName()
     {
         if (!rememberMe)
@@ -531,9 +513,6 @@ public class bl_Lobby : bl_PhotonHelper, IConnectionCallbacks, ILobbyCallbacks, 
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     void GoToMainMenu()
     {
         if (!PhotonNetwork.IsConnected)
@@ -571,9 +550,6 @@ public class bl_Lobby : bl_PhotonHelper, IConnectionCallbacks, ILobbyCallbacks, 
         bl_UtilityHelper.LoadLevel((string)PhotonNetwork.CurrentRoom.CustomProperties[PropertiesKeys.SceneNameKey]);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void ShowLevelList()
     {
 #if LM
@@ -585,10 +561,6 @@ public class bl_Lobby : bl_PhotonHelper, IConnectionCallbacks, ILobbyCallbacks, 
 #endif
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
     IEnumerator StartFade()
     {
         bl_LobbyUI.Instance.LoadingScreen.gameObject.SetActive(true);

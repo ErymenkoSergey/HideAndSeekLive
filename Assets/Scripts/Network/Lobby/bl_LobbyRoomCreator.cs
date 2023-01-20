@@ -7,10 +7,6 @@ public class bl_LobbyRoomCreator : MonoBehaviour, IConnectionCallbacks, ILobbyCa
 {
     public string defaultRoomPrefix = "Room";
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
     public MFPSRoomInfo BuildRoomInfo()
     {
         var mode = GameModeInfo;
@@ -29,6 +25,7 @@ public class bl_LobbyRoomCreator : MonoBehaviour, IConnectionCallbacks, ILobbyCa
         room.autoTeamSelection = AutoTeamSelection;
         room.withBots = BotsActive;
         room.roundStyle = PerRoundGame;
+        Debug.Log($"BuildRoomInfo {AutoTeamSelection}");
         return room;
     }
 

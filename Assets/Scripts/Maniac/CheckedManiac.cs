@@ -9,7 +9,8 @@ public class CheckedManiac : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(bl_PlayerSettings.LocalTag))
+        //if (other.CompareTag(bl_PlayerSettings.LocalTag))
+        if (other.GetComponent<bl_PlayerSettings>().PlayerTeam == Team.Team2)
         {
             AudioSignal();
         }

@@ -22589,24 +22589,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   State: 0
   WalkSpeed: 4.5
-  runSpeed: 8
+  runSpeed: 10
   crouchSpeed: 2
   slideSpeed: 12
   climbSpeed: 2.2
-  jumpSpeed: 7
+  jumpSpeed: 10
   slopeFriction: 3
   crouchTransitionSpeed: 0.16
   slideTime: 0.7
   slideFriction: 6
   slideCoolDown: 1.2
-  JumpMinRate: 0.82
+  JumpMinRate: 1
   AirControlMultiplier: 0.8
   m_StickToGroundForce: 8
   m_GravityMultiplier: 2
   RunFovEffect: 1
-  runFOVAmount: 8
+  runFOVAmount: 9
   KeepToCrouch: 1
-  FallDamage: 1
+  FallDamage: 0
   SafeFallDistance: 4.5
   DeathFallDistance: 15
   dropControlSpeed: 20
@@ -22631,13 +22631,13 @@ MonoBehaviour:
   slideSound: {fileID: 8300000, guid: 0e62cba4936c6004da842fed6f787ae0, type: 3}
   StandIcon: {fileID: 21300000, guid: 6ef352dfd7bd28d48a26719e9c313e3c, type: 3}
   CrouchIcon: {fileID: 21300002, guid: 6ef352dfd7bd28d48a26719e9c313e3c, type: 3}
-  _movementExpand: 0
-  _jumpExpand: 0
-  _fallExpand: 0
-  _mouseExpand: 0
-  _bobExpand: 0
-  _soundExpand: 0
-  _miscExpand: 0
+  _movementExpand: 1
+  _jumpExpand: 1
+  _fallExpand: 1
+  _mouseExpand: 1
+  _bobExpand: 1
+  _soundExpand: 1
+  _miscExpand: 1
 --- !u!114 &114038687236655164
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 8110925971697087313}
   - component: {fileID: 8160687045184955791}
   - component: {fileID: 8210195725213503520}
-  - component: {fileID: 5457118051884881371}
   - component: {fileID: 114511636994355088}
+  - component: {fileID: 7601427748142088200}
   m_Layer: 0
   m_Name: JumpMine
   m_TagString: Untagged
@@ -163,7 +163,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5457118051884881371
+--- !u!135 &114511636994355088
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8098352709776572337}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.62
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7601427748142088200
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -184,21 +197,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   Info:
-    Bullets: 0
-    Clips: 0
---- !u!135 &114511636994355088
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8098352709776572337}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.62
-  m_Center: {x: 0, y: 0, z: 0}
+    Bullets: 30
+    Clips: 3
 --- !u!1 &8098974489989083039
 GameObject:
   m_ObjectHideFlags: 0

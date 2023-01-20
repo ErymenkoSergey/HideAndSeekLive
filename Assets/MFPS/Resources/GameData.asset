@@ -38,7 +38,7 @@ MonoBehaviour:
   AmmoType: 1
   killFeedWeaponShowMode: 1
   lobbyJoinMethod: 2
-  killCameraType: 1
+  killCameraType: 0
   localKillsShowMode: 0
   switchToPickupWeapon: 1
   ScoreReward:
@@ -148,7 +148,7 @@ MonoBehaviour:
     GunIcon: {fileID: 21300000, guid: f22b479294de3414e987ba1cb0e2e81f, type: 3}
   - Name: Jump Mine
     Type: 8
-    Damage: 0
+    Damage: 1
     FireRate: 2
     ReloadTime: 2
     Range: 125
@@ -172,7 +172,7 @@ MonoBehaviour:
     AutoTeamSelection: 0
     RequiredPlayersToStart: 1
     onRoundStartedSpawn: 0
-    onPlayerDie: 0
+    onPlayerDie: 1
     GoalName: Rounds
     maxPlayers: 08000000020000000400000008000000
     GameGoalsOptions: 3c00000078000000b40000002c010000
