@@ -9,4 +9,5 @@
     Knife = 6,
     Launcher = 7,
     JumpMine = 8,
+    Interact = 9,
 }

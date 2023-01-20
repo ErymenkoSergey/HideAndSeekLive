@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b33f0ff16976a942b2873cb5a7b974f, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  offlineMode: 1
+  offlineMode: 0
   UseLobbyChat: 1
   UseVoiceChat: 1
   BulletTracer: 1
@@ -155,7 +155,19 @@ MonoBehaviour:
     Accuracy: 1
     Weight: 1
     Price: 0
-    PickUpPrefab: {fileID: 5457118051884881371, guid: 32c13f0a781a9244facdc752c3a5f6ee,
+    PickUpPrefab: {fileID: 7601427748142088200, guid: 32c13f0a781a9244facdc752c3a5f6ee,
+      type: 3}
+    GunIcon: {fileID: 21300000, guid: 5838646af604a634088ab6f334e885ea, type: 3}
+  - Name: Intreract
+    Type: 9
+    Damage: 0
+    FireRate: 0
+    ReloadTime: 0
+    Range: 0
+    Accuracy: 0
+    Weight: 0
+    Price: 0
+    PickUpPrefab: {fileID: 7601427748142088200, guid: 32c13f0a781a9244facdc752c3a5f6ee,
       type: 3}
     GunIcon: {fileID: 21300000, guid: 5838646af604a634088ab6f334e885ea, type: 3}
   defaultSettings: {fileID: 11400000, guid: 5fadfa78dabe7f6429f21e8ed3cc747b, type: 2}
@@ -179,7 +191,7 @@ MonoBehaviour:
     timeLimits: 8403000058020000b00400002c010000
   - ModeName: Team Death Match
     gameMode: 0
-    isEnabled: 0
+    isEnabled: 1
     supportBots: 1
     AutoTeamSelection: 0
     RequiredPlayersToStart: 1

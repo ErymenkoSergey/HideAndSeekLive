@@ -56,7 +56,7 @@ public class bl_GunPickUp : bl_MonoBehaviour
         uniqueLocal = (byte)UnityEngine.Random.Range(0, 9998);
     }
 
-    IEnumerator Start()
+    private IEnumerator Start()
     {
         if (AutoDestroy)
         {
@@ -90,7 +90,7 @@ public class bl_GunPickUp : bl_MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider c)
+    private void OnTriggerEnter(Collider c)
     {
         if (bl_GameManager.Instance.GameMatchState == MatchState.Waiting)
             return;
@@ -100,6 +100,7 @@ public class bl_GunPickUp : bl_MonoBehaviour
             return;
         }
 #endif
+
         // we only call Pickup() if "our" character collides with this PickupItem.
         // note: if you "position" remote characters by setting their translation, triggers won't be hit.
 
@@ -121,6 +122,7 @@ public class bl_GunPickUp : bl_MonoBehaviour
                     Equiped = false;
                 }
             }
+            
             if (m_DetectMode == DetectMode.Raycast)
             {
                 if (playerReferences.cameraRay != null)
@@ -130,15 +132,12 @@ public class bl_GunPickUp : bl_MonoBehaviour
             }
             else if (m_DetectMode == DetectMode.Trigger)
             {
-                bl_PickUpUI.Instance?.SetPickUp(true, GunID,this, Equiped);
+                bl_PickUpUI.Instance?.SetPickUp(true, GunID, this, Equiped);
             }
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    void OnTriggerExit(Collider c)
+    private void OnTriggerExit(Collider c)
     {
         if (c.transform.CompareTag(bl_PlayerSettings.LocalTag) && Into)
         {
@@ -159,9 +158,6 @@ public class bl_GunPickUp : bl_MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public override void OnUpdate()
     {
         if (!Into || Equiped) return;
@@ -184,11 +180,13 @@ public class bl_GunPickUp : bl_MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void Pickup()
     {
+        if (CacheGun.Type == GunType.Interact)
+        {
+            GetComponent<Interactive>().UseObject();
+            return;
+        }
 #if GR
         if (GetGameMode == GameMode.GR)
             return;
@@ -202,7 +200,7 @@ public class bl_GunPickUp : bl_MonoBehaviour
     public void FocusThis(bool focus)
     {
         isFocus = focus;
-        bl_PickUpUI.Instance?.SetPickUp(focus, GunID, this , Equiped);
+        bl_PickUpUI.Instance?.SetPickUp(focus, GunID, this, Equiped);
     }
 
     private SphereCollider SpheCollider;

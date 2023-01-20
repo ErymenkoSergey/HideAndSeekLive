@@ -68,6 +68,8 @@ public class bl_PlayerNetwork : bl_MonoBehaviour, IPunObservable
     public PlayerState NetworkBodyState { get; set; }
     #endregion
 
+    private CharacterController m_CharacterController;
+
     /// <summary>
     /// 
     /// </summary>
@@ -78,6 +80,9 @@ public class bl_PlayerNetwork : bl_MonoBehaviour, IPunObservable
         if (!PhotonNetwork.IsConnected || !PhotonNetwork.InRoom) return;
 
         m_Transform = transform;
+        playerReferences = GetComponent<bl_PlayerReferences>();
+        m_CharacterController = playerReferences.characterController;
+
         m_PositionControl = new PhotonTransformViewPositionControl(m_PositionModel);
         m_RotationControl = new PhotonTransformViewRotationControl(m_RotationModel);
         DrawName = GetComponent<bl_NamePlateDrawer>();
@@ -97,6 +102,24 @@ public class bl_PlayerNetwork : bl_MonoBehaviour, IPunObservable
     private void Start()
     {
         InvokeRepeating(nameof(SlowLoop), 0, 1);
+    }
+    //private bool _isNewProcessPosition;
+    //private Transform _newpos;
+
+    public void SetNewPosition(Transform newPosition)
+    {
+        //_newpos = newPosition;
+        //if (_isNewProcessPosition)
+        //    return;
+        //_isNewProcessPosition = true;
+        //Debug.Log($"SetNewPosition 6 {transform.position} / new/ {newPosition.position} ");
+        ////m_CharacterController.enabled = false;
+        //m_Transform.position = newPosition.position; 
+        //Debug.Log("SetNewPosition 6.1 ");
+        //m_Transform.localPosition = m_PositionControl.UpdatePosition(newPosition.localPosition);
+        //Debug.Log($"SetNewPosition 6.2  {transform.position} / new/ {newPosition.position} ");
+        //m_CharacterController.enabled = true;
+        //m_PositionControl.SetSynchronizedValues(m_Transform.localPosition, 1f);
     }
 
     /// <summary>
@@ -185,8 +208,23 @@ public class bl_PlayerNetwork : bl_MonoBehaviour, IPunObservable
     /// </summary>
     void OnRemotePlayer()
     {
+        
+        //Debug.Log($"OnRemotePlayer 0");
+        //if (_isNewProcessPosition)
+        //{
+        //    Debug.Log($"OnRemotePlayer 1");
+        //    if (_newpos.position == m_Transform.position)
+        //    {
+        //        Debug.Log($"OnRemotePlayer 1.1 ");
+        //        _isNewProcessPosition = false;
+        //    }
+        //    return;
+        //}
+            
+        Debug.Log($"OnRemotePlayer 1.2 ");
         if (m_Transform.parent == null)
         {
+            Debug.Log($"OnRemotePlayer m_Transform.parent == null 2");
             UpdatePosition();
             UpdateRotation();
         }

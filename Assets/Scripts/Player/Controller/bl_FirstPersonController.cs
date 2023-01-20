@@ -836,10 +836,21 @@ public class bl_FirstPersonController : bl_MonoBehaviour
 
     public void SetPosition(Transform transform)
     {
+        Debug.Log($"OnTriggerStay 4 ");
         _isTeleportation = true;
         m_CharacterController.enabled = false;
         m_Transform.position = transform.position;
-         m_CharacterController.enabled = true;
+        m_CharacterController.enabled = true;
+        _isTeleportation = false;
+    }
+
+    public void SetPositionNet(Transform transform)
+    {
+        Debug.Log($"OnTriggerStay 4 ");
+        _isTeleportation = true;
+        m_CharacterController.enabled = false;
+        m_Transform.position = transform.position;
+        m_CharacterController.enabled = true;
         _isTeleportation = false;
     }
 

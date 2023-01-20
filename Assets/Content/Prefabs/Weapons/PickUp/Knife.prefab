@@ -51,7 +51,7 @@ MonoBehaviour:
   GunID: 5
   m_DetectMode: 0
   PickupOnCollide: 1
-  AutoDestroy: 1
+  AutoDestroy: 0
   DestroyIn: 30
   onPickUp:
     m_PersistentCalls:

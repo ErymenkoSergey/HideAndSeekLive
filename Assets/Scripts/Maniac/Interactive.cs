@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Interactive : MonoBehaviour
@@ -9,6 +7,6 @@ public class Interactive : MonoBehaviour
 
     public void UseObject()
     {
-
+        _placeInteraction.SetNewPlace(_pointSpawn);
     }
 }

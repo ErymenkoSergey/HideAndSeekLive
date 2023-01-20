@@ -1415,6 +1415,11 @@ public class bl_Gun : bl_GunBase
                 numberOfClips += projectiles;
                 bl_UIReferences.Instance.AddLeftNotifier(string.Format("+{0} {1}", projectiles.ToString(), Info.Name));
             }
+            else if (WeaponType == GunType.JumpMine)
+            {
+                numberOfClips += projectiles;
+                bl_UIReferences.Instance.AddLeftNotifier(string.Format("+{0} {1}", projectiles.ToString(), Info.Name));
+            }
             else
             {
                 int oldCount = numberOfClips;
