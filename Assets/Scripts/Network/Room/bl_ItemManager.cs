@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using Photon.Pun;
+using ExitGames.Client.Photon;
 
 public class bl_ItemManager : bl_MonoBehaviour
 {
@@ -10,37 +11,30 @@ public class bl_ItemManager : bl_MonoBehaviour
     [Header("Settings")]
     public float respawnItemsAfter = 12;
 
-    //private
     public Dictionary<string, bl_NetworkItem> networkItemsPool = new Dictionary<string, bl_NetworkItem>();
     private List<RespawnItems> respawnItems = new List<RespawnItems>();
 
-
-    /// <summary>
-    /// 
-    /// </summary>
     protected override void OnEnable()
     {
-        if (!PhotonNetwork.IsConnected) return;
+        if (!PhotonNetwork.IsConnected) 
+            return;
 
         base.OnEnable();
         bl_PhotonNetwork.Instance.AddCallback(PropertiesKeys.NetworkItemInstance, OnNetworkItemInstance);
         bl_PhotonNetwork.Instance.AddCallback(PropertiesKeys.NetworkItemChange, OnNetworkItemChange);
+
+
+        bl_PhotonNetwork.Instance.AddCallback(PropertiesKeys.InteractiveInstance, OnNetworkTeleport);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     protected override void OnDisable()
     {
         base.OnDisable();
         bl_PhotonNetwork.Instance?.RemoveCallback(OnNetworkItemInstance);
         bl_PhotonNetwork.Instance?.RemoveCallback(OnNetworkItemChange);
+        bl_PhotonNetwork.Instance.RemoveCallback(OnNetworkTeleport);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="data"></param>
     void OnNetworkItemInstance(ExitGames.Client.Photon.Hashtable data)
     {
         //don't instance for the player that create the item since it's already instance for him
@@ -65,9 +59,6 @@ public class bl_ItemManager : bl_MonoBehaviour
         PoolItem(prefabName, prefab);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void PoolItem(string itemName, bl_NetworkItem item)
     {
         if (networkItemsPool.ContainsKey(itemName)) return;
@@ -77,7 +68,7 @@ public class bl_ItemManager : bl_MonoBehaviour
     /// <summary>
     /// Called when the state of a network item change, eg: OnDestroy, OnEnable or OnDisable
     /// </summary>
-    void OnNetworkItemChange(ExitGames.Client.Photon.Hashtable data)
+    void OnNetworkItemChange(Hashtable data)
     {
         string itemName = (string)data["name"];
 
@@ -97,17 +88,11 @@ public class bl_ItemManager : bl_MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public override void OnSlowUpdate()
     {
         CheckTimers();
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     void CheckTimers()
     {
         if (respawnItems.Count <= 0) return;
@@ -152,5 +137,27 @@ public class bl_ItemManager : bl_MonoBehaviour
             if (_instance == null) { _instance = FindObjectOfType<bl_ItemManager>(); }
             return _instance;
         }
+    }
+
+    [SerializeField] private Interactive[] interactives;
+    public void Teleport(int index)
+    {
+        interactives[index].UseObject();
+    }
+
+    public void OnNetworkTeleports(int index)
+    {
+        Debug.Log($"Отправили сюда индекс кнопки телепорта. {index}");
+
+        var data = bl_UtilityHelper.CreatePhotonHashTable();
+        data.Add("actorID", index);
+
+        bl_PhotonNetwork.Instance.SendDataOverNetwork(PropertiesKeys.InteractiveInstance, data);
+    }
+    public void OnNetworkTeleport(Hashtable data)
+    {
+        int index = (int)data["actorID"];
+        Debug.Log("Это входящий сигнал на всех, поидее " + index);
+        Teleport(index);
     }
 }

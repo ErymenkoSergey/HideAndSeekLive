@@ -52,6 +52,7 @@ public static class PropertiesKeys
     public const byte WeaponPickUpEvent = 113;
     public const byte VoteEvent = 114;
     public const byte EliminationGameMode = 115;
+    public const byte InteractiveInstance = 116;
 
     //Unique User
     public static string UserCoins { get { return string.Format("{0}.mfps.coins", PlayerPrefs.GetString(PlayerName)); } }

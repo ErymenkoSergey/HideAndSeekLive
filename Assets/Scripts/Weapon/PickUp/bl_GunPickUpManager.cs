@@ -4,7 +4,6 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class bl_GunPickUpManager : bl_PhotonHelper
 {
-
     [Range(100,500)] public float ForceImpulse = 350;
 
     public bl_GunPickUp LastTrigger { get; set; }
@@ -117,12 +116,6 @@ public class bl_GunPickUpManager : bl_PhotonHelper
 
         bl_PhotonNetwork.Instance.SendDataOverNetwork(PropertiesKeys.WeaponPickUpEvent, data);
     }
-
-    public void Teleport()
-    {
-
-    }
-
 
     /// <summary>
     /// Called on all clients when a player pick up a weapon from the map

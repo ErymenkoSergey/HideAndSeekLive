@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8210195725213503520}
   - component: {fileID: 114511636994355088}
   - component: {fileID: 7601427748142088200}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: JumpMine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GunID: 8
-  m_DetectMode: 1
+  m_DetectMode: 0
   PickupOnCollide: 1
   AutoDestroy: 0
   DestroyIn: 5.4

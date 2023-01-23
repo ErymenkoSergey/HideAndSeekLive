@@ -8708,15 +8708,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AllGuns:
-  - {fileID: 1258465065685960755}
-  - {fileID: 1258277895440377139}
-  - {fileID: 114875926521526232}
-  - {fileID: 1258589254507281449}
   - {fileID: 1259215209573810079}
   - {fileID: 1259267623258293241}
   - {fileID: 1257769847379490355}
-  - {fileID: 4086758028003341298}
-  - {fileID: 0}
+  - {fileID: 5306163007659292256}
   PlayerEquip:
   - {fileID: 0}
   - {fileID: 0}
@@ -19808,7 +19803,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4375527284844988
 Transform:
   m_ObjectHideFlags: 0

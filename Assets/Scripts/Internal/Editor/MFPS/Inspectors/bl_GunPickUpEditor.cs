@@ -57,7 +57,7 @@ public class bl_GunPickUpEditor : Editor
         }
         EditorGUILayout.EndVertical();
 
-        if (info.Type != GunType.Knife && info.Type != GunType.Grenade)
+        if (info.Type != GunType.Knife && info.Type != GunType.Grenade && info.Type != GunType.JumpMine && info.Type != GunType.Interact)
         {
             EditorGUILayout.BeginHorizontal("box");
             float dw = EditorGUIUtility.labelWidth;
@@ -69,7 +69,7 @@ public class bl_GunPickUpEditor : Editor
             EditorGUIUtility.labelWidth = dw;
             EditorGUILayout.EndHorizontal();
         }
-        else if (info.Type == GunType.Grenade)
+        else if (info.Type == GunType.Grenade || info.Type == GunType.JumpMine || info.Type == GunType.Interact)
         {
 
         }

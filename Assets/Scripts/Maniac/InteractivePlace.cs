@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class InteractivePlace : bl_MonoBehaviour
+public class InteractivePlace : MonoBehaviour
 {
     [SerializeField] private AudioClip _teleportSound;
     [SerializeField] private bool _isTeleporting;
@@ -26,17 +26,31 @@ public class InteractivePlace : bl_MonoBehaviour
         if (!_isTeleporting)
             return;
 
-        if (other.CompareTag(bl_PlayerSettings.RemoteTag)) // bl_PlayerSettings - этот есть 
+        if (_teleportSound != null)
+        {
+            Debug.Log("OnTriggerStay _teleportSound");
+            AudioSource.PlayClipAtPoint(_teleportSound, transform.position);
+        }
+
+        if (other.CompareTag(bl_PlayerSettings.RemoteTag))
         {
             var fpc = other.GetComponent<bl_PlayerNetwork>();
             Debug.Log($"OnTriggerStay {other.gameObject.name} 3 ");
             fpc.SetNewPosition(_spawnPoint);
 
-            if (_teleportSound != null)
-            {
-                Debug.Log("OnTriggerStay _teleportSound");
-                AudioSource.PlayClipAtPoint(_teleportSound, transform.position);
-            } 
+             
+        }
+        if (other.CompareTag(bl_PlayerSettings.LocalTag))
+        {
+            var fpc = other.GetComponent<bl_PlayerNetwork>();
+            Debug.Log($"OnTriggerStay {other.gameObject.name} 3.1 ");
+            fpc.SetNewPosition(_spawnPoint);
+
+            //if (_teleportSound != null)
+            //{
+            //    Debug.Log("OnTriggerStay _teleportSound");
+            //    AudioSource.PlayClipAtPoint(_teleportSound, transform.position);
+            //}
         }
     }
 }

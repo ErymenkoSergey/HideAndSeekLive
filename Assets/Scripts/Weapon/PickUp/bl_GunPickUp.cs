@@ -17,6 +17,7 @@ public class bl_GunPickUp : bl_MonoBehaviour
 
     private bool Into = false;
     private bl_GunPickUpManager pickupManager;
+    private bl_ItemManager _itemManager;
 
     //Cache info
     [Serializable]
@@ -53,6 +54,7 @@ public class bl_GunPickUp : bl_MonoBehaviour
         if (!PhotonNetwork.IsConnected) return;
         base.Awake();
         pickupManager = FindObjectOfType<bl_GunPickUpManager>();
+        _itemManager = FindObjectOfType<bl_ItemManager>();
         CacheGun = bl_GameData.Instance.GetWeapon(GunID);
         uniqueLocal = (byte)UnityEngine.Random.Range(0, 9998);
     }
@@ -185,7 +187,8 @@ public class bl_GunPickUp : bl_MonoBehaviour
     {
         if (CacheGun.Type == GunType.Interact)
         {
-            GetComponent<Interactive>().UseObject();
+            var index = GetComponent<Interactive>().GetIndex();
+            _itemManager.OnNetworkTeleports(index);
             return;
         }
 #if GR
