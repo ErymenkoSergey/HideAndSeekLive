@@ -26,31 +26,51 @@ public class InteractivePlace : MonoBehaviour
         if (!_isTeleporting)
             return;
 
-        if (_teleportSound != null)
-        {
-            Debug.Log("OnTriggerStay _teleportSound");
-            AudioSource.PlayClipAtPoint(_teleportSound, transform.position);
-        }
+        //if (_teleportSound != null)
+        //{
+        //    Debug.Log("OnTriggerStay _teleportSound");
+        //    AudioSource.PlayClipAtPoint(_teleportSound, transform.position);
+        //}
 
-        if (other.CompareTag(bl_PlayerSettings.RemoteTag))
-        {
-            var fpc = other.GetComponent<bl_PlayerNetwork>();
-            Debug.Log($"OnTriggerStay {other.gameObject.name} 3 ");
-            fpc.SetNewPosition(_spawnPoint);
-
-             
-        }
         if (other.CompareTag(bl_PlayerSettings.LocalTag))
         {
-            var fpc = other.GetComponent<bl_PlayerNetwork>();
-            Debug.Log($"OnTriggerStay {other.gameObject.name} 3.1 ");
-            fpc.SetNewPosition(_spawnPoint);
+            bl_FirstPersonController fpc = other.GetComponent<bl_FirstPersonController>();
 
-            //if (_teleportSound != null)
+            //if (_isRandomPoint)
             //{
-            //    Debug.Log("OnTriggerStay _teleportSound");
-            //    AudioSource.PlayClipAtPoint(_teleportSound, transform.position);
+            //    var randomPoint = Random.Range(0, _spawnPoints.Length);
+            //    fpc.SetPosition(_spawnPoints[randomPoint]);
             //}
+            //else
+            {
+                fpc.SetPosition(_spawnPoint);
+            }
+
+            //_source = GetComponent<AudioSource>();
+            //_source.PlayOneShot(_teleportSound, 0.5f);
+            if (_teleportSound != null)
+                AudioSource.PlayClipAtPoint(_teleportSound, transform.position);
         }
+
+        //if (other.CompareTag(bl_PlayerSettings.RemoteTag))
+        //{
+        //    var fpc = other.GetComponent<bl_PlayerNetwork>();
+        //    Debug.Log($"OnTriggerStay {other.gameObject.name} 3 ");
+        //    fpc.SetNewPosition(_spawnPoint);
+
+
+        //}
+        //if (other.CompareTag(bl_PlayerSettings.LocalTag))
+        //{
+        //    var fpc = other.GetComponent<bl_PlayerNetwork>();
+        //    Debug.Log($"OnTriggerStay {other.gameObject.name} 3.1 ");
+        //    fpc.SetNewPosition(_spawnPoint);
+
+        //    //if (_teleportSound != null)
+        //    //{
+        //    //    Debug.Log("OnTriggerStay _teleportSound");
+        //    //    AudioSource.PlayClipAtPoint(_teleportSound, transform.position);
+        //    //}
+        //}
     }
 }
