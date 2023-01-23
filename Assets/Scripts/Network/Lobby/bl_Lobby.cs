@@ -151,9 +151,6 @@ public class bl_Lobby : bl_PhotonHelper, IConnectionCallbacks, ILobbyCallbacks, 
     }
     void DelayDisconnect() { PhotonNetwork.Disconnect(); }
 
-    /// <summary>
-    /// 
-    /// </summary>
     private void OnApplicationQuit()
     {
         AppQuit = true;
@@ -161,17 +158,16 @@ public class bl_Lobby : bl_PhotonHelper, IConnectionCallbacks, ILobbyCallbacks, 
         Disconect();
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void ServerList(List<RoomInfo> roomList)
     {
         bl_LobbyUI.Instance.SetRoomList(roomList);
     }
+    
+    public string GetNickName()
+    {
+        return playerName;
+    }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void SetPlayerName(string InputName)
     {
         CachePlayerName = InputName;       

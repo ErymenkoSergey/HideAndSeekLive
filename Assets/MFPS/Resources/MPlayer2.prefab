@@ -9430,7 +9430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d5588cc794522e42b421a679950ae07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerTeam: 0
+  PlayerTeam: 2
   RemoteOnlyScripts:
   - {fileID: 114571006801900830}
   LocalOnlyScripts:

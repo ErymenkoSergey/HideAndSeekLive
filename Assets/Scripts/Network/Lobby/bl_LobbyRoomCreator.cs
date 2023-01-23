@@ -25,7 +25,6 @@ public class bl_LobbyRoomCreator : MonoBehaviour, IConnectionCallbacks, ILobbyCa
         room.autoTeamSelection = AutoTeamSelection;
         room.withBots = BotsActive;
         room.roundStyle = PerRoundGame;
-        Debug.Log($"BuildRoomInfo {AutoTeamSelection}");
         return room;
     }
 

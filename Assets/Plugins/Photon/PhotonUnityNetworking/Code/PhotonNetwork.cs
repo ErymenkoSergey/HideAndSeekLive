@@ -407,7 +407,7 @@ namespace Photon.Pun
         /// In best case, a game would implement this "disconnect others" independently from PUN in game-code
         /// with some security checks.
         /// </remarks>
-        public static bool EnableCloseConnection = false;
+        public static bool EnableCloseConnection = true; // TODO я включил кик
 
         /// <summary>
         /// The minimum difference that a Vector2 or Vector3(e.g. a transforms rotation) needs to change before we send it via a PhotonView's OnSerialize/ObservingComponent.
@@ -1507,7 +1507,7 @@ namespace Photon.Pun
 
             if (!PhotonNetwork.EnableCloseConnection)
             {
-                Debug.LogError("CloseConnection is disabled. No need to call it.");
+                Debug.LogError("CloseConnection is disabled. No need to call it."); //Ошибка при кике  
                 return false;
             }
 

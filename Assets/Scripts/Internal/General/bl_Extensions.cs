@@ -1,12 +1,4 @@
-﻿//////////////////////////////////////////////////////////////////////////////
-// bl_Extensions.cs
-//
-// this facilitates access to properties 
-// more authoritatively for each photon player, ex: PhotonNetwork.player.GetKills();
-//
-//                       Lovatto Studio
-//////////////////////////////////////////////////////////////////////////////
-using UnityEngine;
+﻿using UnityEngine;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 using System.Collections.Generic;
 using Photon.Pun;
@@ -133,7 +125,8 @@ static class bl_Extensions
     /// </summary>
     public static void SetTeamScore(this Room r, Team t, int scoreToAdd = 1)
     {
-        if (t == Team.None) return;
+        if (t == Team.None) 
+            return;
 
         int score = 0;
         score = r.GetRoomScore(t);

@@ -186,8 +186,8 @@ MonoBehaviour:
     onRoundStartedSpawn: 0
     onPlayerDie: 1
     GoalName: Rounds
-    maxPlayers: 08000000020000000400000008000000
-    GameGoalsOptions: 3c00000078000000b40000002c010000
+    maxPlayers: 08000000
+    GameGoalsOptions: 3c00000078000000b40000002c0100000a000000
     timeLimits: 8403000058020000b00400002c010000
   - ModeName: Team Death Match
     gameMode: 0
