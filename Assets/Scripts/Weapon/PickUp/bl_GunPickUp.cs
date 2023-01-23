@@ -38,6 +38,7 @@ public class bl_GunPickUp : bl_MonoBehaviour
             }
         }
     }
+
     public m_Info Info;
     private bl_GunInfo CacheGun;
     private bool Equiped = false;

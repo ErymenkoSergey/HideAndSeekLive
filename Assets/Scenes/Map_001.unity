@@ -3135,7 +3135,12 @@ PrefabInstance:
     - target: {fileID: 1921614796812142014, guid: beff8688b2c230f49a542e767cc7a9ce,
         type: 3}
       propertyPath: m_Name
-      value: TrollingSpace (1)
+      value: New Item [xCHwZyI]
+      objectReference: {fileID: 0}
+    - target: {fileID: 1921614796812142015, guid: beff8688b2c230f49a542e767cc7a9ce,
+        type: 3}
+      propertyPath: m_itemName
+      value: New Item [xCHwZyI]
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: beff8688b2c230f49a542e767cc7a9ce, type: 3}
@@ -3376,7 +3381,12 @@ PrefabInstance:
     - target: {fileID: 1921614796812142014, guid: beff8688b2c230f49a542e767cc7a9ce,
         type: 3}
       propertyPath: m_Name
-      value: TrollingSpace (2)
+      value: New Item [TuWmQt8]
+      objectReference: {fileID: 0}
+    - target: {fileID: 1921614796812142015, guid: beff8688b2c230f49a542e767cc7a9ce,
+        type: 3}
+      propertyPath: m_itemName
+      value: New Item [TuWmQt8]
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: beff8688b2c230f49a542e767cc7a9ce, type: 3}
@@ -7199,15 +7209,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4735345918154862, guid: d537af36ed22be84faa601876ab96857, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -24.553
+      value: -20.82
       objectReference: {fileID: 0}
     - target: {fileID: 4735345918154862, guid: d537af36ed22be84faa601876ab96857, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.8970928
+      value: 0.88
       objectReference: {fileID: 0}
     - target: {fileID: 4735345918154862, guid: d537af36ed22be84faa601876ab96857, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.5489998
+      value: -9.7
       objectReference: {fileID: 0}
     - target: {fileID: 4735345918154862, guid: d537af36ed22be84faa601876ab96857, type: 3}
       propertyPath: m_LocalRotation.w
@@ -9327,9 +9337,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 798745226456052919, guid: 8c9415de818551f4cbba4b4989738151,
         type: 3}
+      propertyPath: m_itemName
+      value: TrollingButton [HMxyy6F] [prnLKeV]
+      objectReference: {fileID: 0}
+    - target: {fileID: 798745226456052919, guid: 8c9415de818551f4cbba4b4989738151,
+        type: 3}
       propertyPath: _pointSpawn
       value: 
       objectReference: {fileID: 2086879491}
+    - target: {fileID: 798745226456052919, guid: 8c9415de818551f4cbba4b4989738151,
+        type: 3}
+      propertyPath: isSceneItem
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 798745226456052919, guid: 8c9415de818551f4cbba4b4989738151,
+        type: 3}
+      propertyPath: isInitializated
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 798745226456052919, guid: 8c9415de818551f4cbba4b4989738151,
         type: 3}
       propertyPath: _placeInteraction
@@ -9338,7 +9363,7 @@ PrefabInstance:
     - target: {fileID: 798745226456052922, guid: 8c9415de818551f4cbba4b4989738151,
         type: 3}
       propertyPath: m_Name
-      value: TrollingButton
+      value: TrollingButton [HMxyy6F] [prnLKeV]
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c9415de818551f4cbba4b4989738151, type: 3}
@@ -9477,11 +9502,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1921614796812142011, guid: beff8688b2c230f49a542e767cc7a9ce,
         type: 3}
-      propertyPath: m_LocalScale.z
-      value: 6.4965644
-      objectReference: {fileID: 0}
-    - target: {fileID: 1921614796812142011, guid: beff8688b2c230f49a542e767cc7a9ce,
-        type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.31
       objectReference: {fileID: 0}
@@ -9528,16 +9548,6 @@ PrefabInstance:
     - target: {fileID: 1921614796812142011, guid: beff8688b2c230f49a542e767cc7a9ce,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1921614796812142012, guid: beff8688b2c230f49a542e767cc7a9ce,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1921614796812142013, guid: beff8688b2c230f49a542e767cc7a9ce,
-        type: 3}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1921614796812142014, guid: beff8688b2c230f49a542e767cc7a9ce,

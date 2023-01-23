@@ -197,8 +197,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   Info:
-    Bullets: 0
-    Clips: 0
+    Bullets: 100
+    Clips: 1
 --- !u!1 &8098974489989083039
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.Serialization;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
+using System.Collections;
 
 [RequireComponent(typeof(PhotonView))]
 public class bl_PlayerNetwork : bl_MonoBehaviour, IPunObservable
@@ -96,29 +97,41 @@ public class bl_PlayerNetwork : bl_MonoBehaviour, IPunObservable
 #endif
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     private void Start()
     {
         InvokeRepeating(nameof(SlowLoop), 0, 1);
     }
-    //private bool _isNewProcessPosition;
-    //private Transform _newpos;
+    private bool _isNewProcessPosition;
+    private Transform _newpos;
+    private IEnumerator TimerTeleport()
+    {
+        yield return new WaitForSeconds(1.2f);
+        _isNewProcessPosition = false;
+        //m_PositionModel.SynchronizeEnabled = true;
+        //m_RotationModel.SynchronizeEnabled = true;
+        m_PositionControl.UpdatePosition(_newpos.position);
+        Debug.Log("SetNewPosition 6.2 ");
+    }
 
     public void SetNewPosition(Transform newPosition)
     {
-        //_newpos = newPosition;
-        //if (_isNewProcessPosition)
-        //    return;
-        //_isNewProcessPosition = true;
-        //Debug.Log($"SetNewPosition 6 {transform.position} / new/ {newPosition.position} ");
-        ////m_CharacterController.enabled = false;
-        //m_Transform.position = newPosition.position; 
-        //Debug.Log("SetNewPosition 6.1 ");
-        //m_Transform.localPosition = m_PositionControl.UpdatePosition(newPosition.localPosition);
+        if (_isNewProcessPosition)
+            return;
+        _newpos = newPosition;
+        _isNewProcessPosition = true;
+        StartCoroutine(TimerTeleport());
+        //m_PositionModel.SynchronizeEnabled = false;
+        //m_RotationModel.SynchronizeEnabled = false;
+        Debug.Log($"SetNewPosition 6 {transform.position} / new/ {newPosition.position} ");
+        //m_CharacterController.enabled = false;
+        m_Transform.position = _newpos.position;
+        Debug.Log("SetNewPosition 6.1 ");
+        m_PositionControl.UpdatePosition(_newpos.position); 
+        //m_Transform.position = _newpos.position;
         //Debug.Log($"SetNewPosition 6.2  {transform.position} / new/ {newPosition.position} ");
         //m_CharacterController.enabled = true;
+
+        //_isNewProcessPosition = false;
         //m_PositionControl.SetSynchronizedValues(m_Transform.localPosition, 1f);
     }
 
@@ -551,10 +564,6 @@ public class bl_PlayerNetwork : bl_MonoBehaviour, IPunObservable
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
     private Vector3 GetHeadLookPosition()
     {
         if (PlayerReferences == null || PlayerReferences.playerIK == null)

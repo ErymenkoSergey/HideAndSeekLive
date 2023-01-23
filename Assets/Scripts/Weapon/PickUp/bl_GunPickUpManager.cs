@@ -118,6 +118,11 @@ public class bl_GunPickUpManager : bl_PhotonHelper
         bl_PhotonNetwork.Instance.SendDataOverNetwork(PropertiesKeys.WeaponPickUpEvent, data);
     }
 
+    public void Teleport()
+    {
+
+    }
+
 
     /// <summary>
     /// Called on all clients when a player pick up a weapon from the map

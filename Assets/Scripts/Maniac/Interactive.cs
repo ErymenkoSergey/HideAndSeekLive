@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Interactive : MonoBehaviour
+public class Interactive : bl_MonoBehaviour
 {
     [SerializeField] private InteractivePlace _placeInteraction;
     [SerializeField] private Transform _pointSpawn;

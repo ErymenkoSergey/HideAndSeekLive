@@ -300,11 +300,19 @@ namespace Photon.Pun
             {
                 if (Vector3.Distance(currentPosition, GetNetworkPosition()) > m_Model.TeleportIfDistanceGreaterThan)
                 {
-                    currentPosition = GetNetworkPosition();
+                    Debug.Log("TeleportEnabled TeleportEnabled ");
+                    Teleportation(currentPosition);
+                    //currentPosition = GetNetworkPosition();
                 }
             }
 
             return currentPosition;
+        }
+
+        private void Teleportation(Vector3 newPosition)
+        {
+            m_OldNetworkPositions.Clear();
+            m_NetworkPosition = newPosition;
         }
 
         /// <summary>

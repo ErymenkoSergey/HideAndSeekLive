@@ -1722,7 +1722,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4248083001657886
 Transform:
   m_ObjectHideFlags: 0
@@ -8716,7 +8716,7 @@ MonoBehaviour:
   - {fileID: 1259267623258293241}
   - {fileID: 1257769847379490355}
   - {fileID: 4086758028003341298}
-  - {fileID: 7310585297052851186}
+  - {fileID: 0}
   PlayerEquip:
   - {fileID: 0}
   - {fileID: 0}
@@ -9394,22 +9394,18 @@ MonoBehaviour:
   HeadTarget: {fileID: 4662577801940100}
   SmoothingDelay: 8
   NetworkGuns:
-  - {fileID: 114486481957545150}
-  - {fileID: 114148877894902126}
-  - {fileID: 114185343274926952}
-  - {fileID: 114008251112202384}
   - {fileID: 114587821545669848}
   - {fileID: 114022312832970738}
   - {fileID: 114540253218494720}
-  - {fileID: 2950982919577702989}
+  - {fileID: 1213311490137029771}
   m_PositionModel:
     SynchronizeEnabled: 1
     TeleportEnabled: 1
-    TeleportIfDistanceGreaterThan: 5
+    TeleportIfDistanceGreaterThan: 3
     InterpolateOption: 4
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 10
-    ExtrapolateOption: 0
+    ExtrapolateOption: 1
     ExtrapolateSpeed: 1
     ExtrapolateIncludingRoundTripTime: 1
     ExtrapolateNumberOfStoredPositions: 1
@@ -63486,7 +63482,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1220598596633682973
 Transform:
   m_ObjectHideFlags: 0
@@ -80861,7 +80857,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1220363789028149977
 Transform:
   m_ObjectHideFlags: 0
@@ -126831,7 +126827,7 @@ GameObject:
   - component: {fileID: 4733234827451454886}
   - component: {fileID: 1213311490137029771}
   m_Layer: 9
-  m_Name: Jump Mine
+  m_Name: Grenade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -126961,7 +126957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 746c285d4e3988c408f5bd5c8c39275f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LocalGun: {fileID: 7310585297052851186}
+  LocalGun: {fileID: 5306163007659292256}
   Bullet: {fileID: 2050802007649737262, guid: e4131778911d046498a3368648c52989, type: 3}
   MuzzleFlash: {fileID: 3528765519357677400}
   DesactiveOnOffAmmo: {fileID: 2358596090080941586}
@@ -127072,7 +127068,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7952414252078721100}
   - component: {fileID: 1182313488087165004}
-  - component: {fileID: 7310585297052851186}
+  - component: {fileID: 5306163007659292256}
   m_Layer: 8
   m_Name: Jumper
   m_TagString: Untagged
@@ -127193,7 +127189,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &7310585297052851186
+--- !u!114 &5306163007659292256
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127207,7 +127203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Info:
     Name: 
-    Type: 8
+    Type: 5
     Damage: 0
     FireRate: 0.1
     ReloadTime: 2.5
@@ -127217,7 +127213,7 @@ MonoBehaviour:
     Price: 0
     PickUpPrefab: {fileID: 0}
     GunIcon: {fileID: 0}
-  GunID: 8
+  GunID: 3
   WeaponBinding: {fileID: 0}
   CrossHairScale: 15
   bulletInstanceMethod: 0
@@ -127225,7 +127221,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 0}
   grenade: {fileID: 2050802007649737262, guid: e4131778911d046498a3368648c52989, type: 3}
   muzzleFlash: {fileID: 0}
-  muzzlePoint: {fileID: 9046426687656051116}
+  muzzlePoint: {fileID: 1220228755730526991}
   shell: {fileID: 0}
   impactEffect: {fileID: 0}
   AimPosition: {x: 0, y: 0, z: 0}

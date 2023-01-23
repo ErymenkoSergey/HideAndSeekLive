@@ -9,15 +9,11 @@ using ExitGames.Client.Photon;
 [DefaultExecutionOrder(-1002)]
 public class bl_PhotonNetwork : bl_PhotonHelper
 {
-
     [HideInInspector] public bool hasPingKick = false;
     public bool hasAFKKick { get; set; }
     static readonly RaiseEventOptions EventsAll = new RaiseEventOptions();
     private List<PhotonEventsCallbacks> callbackList = new List<PhotonEventsCallbacks>();
 
-    /// <summary>
-    /// 
-    /// </summary>
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -25,34 +21,22 @@ public class bl_PhotonNetwork : bl_PhotonHelper
         PhotonNetwork.NetworkingClient.EventReceived += OnEventCustom;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     private void OnDisable()
     {
         PhotonNetwork.NetworkingClient.EventReceived -= OnEventCustom;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void AddCallback(byte code, Action<Hashtable> callback)
     {
         callbackList.Add(new PhotonEventsCallbacks() { Code = code, Callback = callback });
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void RemoveCallback(Action<Hashtable> callback)
     {
         PhotonEventsCallbacks e = callbackList.Find(x => x.Callback == callback);
         if (e != null) { callbackList.Remove(e); }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void OnEventCustom(EventData data)
     {
         if (data.CustomData == null) return;
@@ -91,26 +75,20 @@ public class bl_PhotonNetwork : bl_PhotonHelper
         PhotonNetwork.RaiseEvent(code, data, EventsAll, so);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void OnPingKick()
     {
         hasPingKick = true;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void KickPlayer(Player p)
     {
         SendOptions so = new SendOptions();
-        PhotonNetwork.RaiseEvent(PropertiesKeys.KickPlayerEvent, null, new RaiseEventOptions() { TargetActors = new int[] { p.ActorNumber } }, so);
+        PhotonNetwork.RaiseEvent(PropertiesKeys.KickPlayerEvent, null, new RaiseEventOptions() 
+        {
+            TargetActors = new int[] { p.ActorNumber }
+        }, so);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     void OnKick()
     {
         if (PhotonNetwork.InRoom)
@@ -125,9 +103,6 @@ public class bl_PhotonNetwork : bl_PhotonHelper
     public static bool IsConnectedInRoom { get { return PhotonNetwork.IsConnected && PhotonNetwork.InRoom; } }
     public static bool IsMasterClient => PhotonNetwork.IsMasterClient;
 
-    /// <summary>
-    /// 
-    /// </summary>
     private void OnApplicationQuit()
     {
         bl_GameData.Instance.ResetInstance();
