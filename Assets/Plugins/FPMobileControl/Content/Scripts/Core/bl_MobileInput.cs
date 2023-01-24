@@ -13,9 +13,6 @@ public static class bl_MobileInput
     private static List<int> touchesList;
     private static Dictionary<string, bl_MobileButton> mobileButtons = new Dictionary<string, bl_MobileButton>();
 
-    /// <summary>
-    /// 
-    /// </summary>
     public static void Initialize()
     {
         touchesList = new List<int>();
@@ -24,19 +21,16 @@ public static class bl_MobileInput
         Interactable = true;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public static void AddMobileButton(bl_MobileButton button)
     {
-        if (mobileButtons.ContainsKey(button.ButtonName)) { Debug.LogWarning($"A button with the name '{button.ButtonName}' is already registered, buttons with the same name are not allowed."); return; }
+        if (mobileButtons.ContainsKey(button.ButtonName))
+        { Debug.LogWarning($"A button with the name '{button.ButtonName}' is already registered, buttons with the same name are not allowed."); 
+            return; 
+        }
 
         mobileButtons.Add(button.ButtonName, button);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public static void RemoveMobileButton(bl_MobileButton button)
     {
         if (!mobileButtons.ContainsKey(button.ButtonName)) { return; }
@@ -44,14 +38,11 @@ public static class bl_MobileInput
         mobileButtons.Remove(button.ButtonName);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="buttonName"></param>
-    /// <returns></returns>
     public static bl_MobileButton Button(string buttonName)
     {
-        if (!mobileButtons.ContainsKey(buttonName)) { /*Debug.LogWarning($"The button '{buttonName}' is not registered in the mobile input buttons.");*/ return null; }
+        if (!mobileButtons.ContainsKey(buttonName)) 
+        { /*Debug.LogWarning($"The button '{buttonName}' is not registered in the mobile input buttons.");*/
+            return null; }
         return mobileButtons[buttonName];
     }
 
@@ -62,7 +53,8 @@ public static class bl_MobileInput
     /// <returns></returns>
     public static bool GetButton(string buttonName)
     {
-        if (!Interactable) return false;
+        if (!Interactable) 
+            return false;
 
         if (!mobileButtons.ContainsKey(buttonName)) { Debug.LogWarning($"The button '{buttonName}' is not registered in the mobile input buttons."); return false; }
 #if UNITY_EDITOR
@@ -74,14 +66,10 @@ public static class bl_MobileInput
         return mobileButtons[buttonName].isButton();
     }
 
-    /// <summary>
-    /// is the button Click
-    /// </summary>
-    /// <param name="buttonName"></param>
-    /// <returns></returns>
     public static bool GetButtonDown(string buttonName)
     {
-        if (!Interactable) return false;
+        if (!Interactable) 
+            return false;
 
         if (!mobileButtons.ContainsKey(buttonName)) { Debug.LogWarning($"The button '{buttonName}' is not registered in the mobile input buttons."); return false; }
 #if UNITY_EDITOR
@@ -93,14 +81,10 @@ public static class bl_MobileInput
         return mobileButtons[buttonName].isButtonDown();
     }
 
-    /// <summary>
-    /// is the button Up
-    /// </summary>
-    /// <param name="buttonName"></param>
-    /// <returns></returns>
     public static bool GetButtonUp(string buttonName)
     {
-        if (!Interactable) return false;
+        if (!Interactable) 
+            return false;
 
         if (!mobileButtons.ContainsKey(buttonName)) { Debug.LogWarning($"The button '{buttonName}' is not registered in the mobile input buttons."); return false; }
 #if UNITY_EDITOR
@@ -118,16 +102,15 @@ public static class bl_MobileInput
     /// <returns></returns>
     public static bool AutoFireTriggered()
     {
-        if (!Interactable) return false;
+        if (!Interactable) 
+            return false;
 
-        if (bl_AutoFire.Instance == null) return false;
+        if (bl_AutoFire.Instance == null)
+            return false;
+
         return bl_AutoFire.Instance.isTriggered();
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
     public static int GetUsableTouch()
     {
         if (Input.touches.Length <= 0)
@@ -148,10 +131,6 @@ public static class bl_MobileInput
         return m_Touch;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
     public static List<int> GetValuesFromTouches(Touch[] touches)
     {
         if (touchesList == null)

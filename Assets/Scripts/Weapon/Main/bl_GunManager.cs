@@ -7,7 +7,6 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using Photon.Pun;
 
 public class bl_GunManager : bl_MonoBehaviour
 {
@@ -59,9 +58,6 @@ public class bl_GunManager : bl_MonoBehaviour
 #endif
     #endregion
 
-    /// <summary>
-    /// 
-    /// </summary>
     protected override void Awake()
     {
         base.Awake();
@@ -80,9 +76,6 @@ public class bl_GunManager : bl_MonoBehaviour
         SetupLoadout();
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     private void Start()
     {
         //Disable all weapons in children and take the first
@@ -159,9 +152,6 @@ public class bl_GunManager : bl_MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -170,9 +160,6 @@ public class bl_GunManager : bl_MonoBehaviour
         bl_EventHandler.onGameSettingsChange += OnGameSettingsChanged;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     protected override void OnDisable()
     {
         base.OnDisable();
@@ -181,9 +168,6 @@ public class bl_GunManager : bl_MonoBehaviour
         bl_EventHandler.onGameSettingsChange -= OnGameSettingsChanged;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public override void OnUpdate()
     {
         if (!bl_RoomMenu.Instance.isCursorLocked)
@@ -193,10 +177,7 @@ public class bl_GunManager : bl_MonoBehaviour
         CurrentGun = PlayerEquip[currentWeaponIndex];
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    void InputControl()
+    private void InputControl()
     {
         if (!CanSwich || bl_GameData.Instance.isChating)
             return;
@@ -239,6 +220,7 @@ public class bl_GunManager : bl_MonoBehaviour
 #endif
         if (PlayerEquip.Count <= 0 || PlayerEquip == null)
             return;
+
         //change gun with Scroll mouse
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
@@ -250,9 +232,6 @@ public class bl_GunManager : bl_MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public int SwitchNext()
     {
         if (PlayerEquip.Count <= 0 || PlayerEquip == null)

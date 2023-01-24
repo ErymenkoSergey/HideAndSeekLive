@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -26,17 +24,11 @@ public class bl_JoystickArea : bl_JoystickBase, IPointerDownHandler, IPointerUpH
     private Vector2 stickPosition = Vector2.zero;
     public override float StickHeight { get => joystickRoot.sizeDelta.y * stickArea; }
 
-    /// <summary>
-    /// 
-    /// </summary>
     void Awake()
     {
         bl_MobileInput.Initialize();
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     void Start()
     {
         if (StickRect == null)

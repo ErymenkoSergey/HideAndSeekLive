@@ -72,7 +72,7 @@ public class bl_GameInput
 #endif
     }
 
-    public static bool WeaponSlot(int slotID, GameInputType inputType = GameInputType.Down)
+    public static bool WeaponSlot(int slotID, GameInputType inputType = GameInputType.Down) // смена оружия 
     {
 #if INPUT_MANAGER
         return GetInputManager($"Weapon{slotID}", inputType);
@@ -186,7 +186,8 @@ public class bl_GameInput
     {
         get
         {
-            if (!bl_RoomMenu.Instance.isCursorLocked || bl_GameData.Instance.isChating) return 0;
+            if (!bl_RoomMenu.Instance.isCursorLocked || bl_GameData.Instance.isChating)
+                return 0;
 
             return Input.GetAxis("Mouse Y");
         }
@@ -194,7 +195,8 @@ public class bl_GameInput
 
     public static bool GetButton(KeyCode key, GameInputType inputType)
     {
-        if (!bl_RoomMenu.Instance.isCursorLocked || bl_GameData.Instance.isChating) return false;
+        if (!bl_RoomMenu.Instance.isCursorLocked || bl_GameData.Instance.isChating) 
+            return false;
 
             if (inputType == GameInputType.Hold) { return Input.GetKey(key); }
         else if(inputType == GameInputType.Down) { return Input.GetKeyDown(key); }

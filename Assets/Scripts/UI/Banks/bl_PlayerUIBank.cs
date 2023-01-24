@@ -18,11 +18,14 @@ public class bl_PlayerUIBank : MonoBehaviour
     public Image SniperScope;
     public Image HealthBar;
 
+    [Space(10)]
     public Text AmmoText;
     public Text ClipText;
+    public Text FireTypeText;
+    [Space(10)]
     public Text HealthText;
     public Text TimeText;
-    public Text FireTypeText;
+    
     public CanvasGroup DamageAlpha;
     public bl_WeaponLoadoutUI LoadoutUI;
     public Gradient AmmoTextColorGradient;
