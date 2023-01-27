@@ -19,7 +19,7 @@ MonoBehaviour:
   DropGunOnDeath: 1
   SelfGrenadeDamage: 1
   CanFireWhileRunning: 1
-  HealthRegeneration: 1
+  HealthRegeneration: 0
   ShowTeamMateHealthBar: 1
   CanChangeTeam: 1
   ShowBlood: 1

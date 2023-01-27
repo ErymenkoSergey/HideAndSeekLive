@@ -19,7 +19,7 @@ public class GameModeSettings
     [Header("Options")]
     public int[] maxPlayers = new int[] { 6, 2, 4, 8 };
     public int[] GameGoalsOptions = new int[] { 50, 100, 150, 200 };
-    public int[] timeLimits = new int[] { 900, 600, 1200, 300 };
+    public int[] timeLimits = new int[] { 300, 420, 480, 600, 900, 1200 };
 
     public string GetGoalFullName(int goalID) { return string.Format("{0} {1}", GameGoalsOptions[goalID], GoalName); }
 

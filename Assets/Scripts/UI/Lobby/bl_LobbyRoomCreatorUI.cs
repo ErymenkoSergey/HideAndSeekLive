@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using MFPS.Runtime.Settings;
 using System.Linq;
@@ -28,9 +26,6 @@ public class bl_LobbyRoomCreatorUI : MonoBehaviour
         "Players","Minute"
     };
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void SetupSelectors()
     {
         endPoints[0] = endPoints[0].Localized("player", true);
@@ -44,9 +39,6 @@ public class bl_LobbyRoomCreatorUI : MonoBehaviour
         SetupGameModeDependentsSelectors();
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     void SetupGameModeDependentsSelectors()
     {
         var gameMode = bl_Lobby.Instance.GameModes[GameMode];

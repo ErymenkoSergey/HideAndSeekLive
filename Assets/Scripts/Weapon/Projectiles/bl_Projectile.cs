@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using Photon.Pun;
-using Photon.Realtime;
+using System;
 
 [RequireComponent(typeof(AudioSource))]
 public class bl_Projectile : MonoBehaviour
@@ -8,12 +8,10 @@ public class bl_Projectile : MonoBehaviour
     public ProjectileType m_Type = ProjectileType.Grenade;
     public bool OnHit = false;
     public int TimeToExploit = 10;
-
     public int ID { get; set; }
     public string mName { get; set; }
     [HideInInspector]
     public bool isNetwork = false;
-    //Private
     private float speed = 75.0f;              // bullet speed
     private Vector3 velocity = Vector3.zero; // bullet velocity    
     private Vector3 direction;               // direction bullet is travelling
@@ -25,10 +23,6 @@ public class bl_Projectile : MonoBehaviour
     public GameObject explosion;   // instanced explosion
     private float damage;
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="s"></param>
     public void SetUp(BulletData s)
     {
         damage = s.Damage;
@@ -56,19 +50,16 @@ public class bl_Projectile : MonoBehaviour
         BotName = botName;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    void OnCollisionEnter(Collision enterObject)
+    private void OnCollisionEnter(Collision enterObject)
     {
         if (!OnHit)
             return;
 
         switch (enterObject.transform.tag)
         {
-            case "Projectile":
-                //return;                
+            case "Projectile":            
                 break;
+
             default:
                 Destroy(gameObject, 0);//GetComponent<Rigidbody>().useGravity = false;
                 ContactPoint contact = enterObject.contacts[0];
@@ -94,15 +85,16 @@ public class bl_Projectile : MonoBehaviour
                 {
                     enterObject.rigidbody.AddForce(transform.forward * impactForce, ForceMode.Impulse);
                 }
+                else if (m_Type == ProjectileType.Jumper)
+                {
+
+                }
+
                 break;
         }
-
     }
 
-    /// <summary>
-    /// Rotate grenade
-    /// </summary>
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         if (GetComponent<Rigidbody>() != null)
         {
@@ -110,11 +102,11 @@ public class bl_Projectile : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    void Counter()
+    private void Counter()
     {
+        if (m_Type == ProjectileType.Jumper)
+            return;
+
         TimeToExploit--;
 
         if (TimeToExploit <= 0)
@@ -142,7 +134,7 @@ public class bl_Projectile : MonoBehaviour
         }
     }
 
-    [System.Serializable]
+    [Serializable]
     public enum ProjectileType
     {
         Grenade,

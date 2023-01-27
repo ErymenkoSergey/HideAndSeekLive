@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2049247058311422515}
   - component: {fileID: 2049247058311422518}
   - component: {fileID: 2049247058311422517}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b5b46fa2f6c181b4f8f6a9cd1c3d193b, type: 2}
+  - {fileID: 2100000, guid: 7b7ab74fe749edf4eaf28b34967b08b1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 2049247059159878516}
   - component: {fileID: 2049247059159878515}
   - component: {fileID: 2049247059159878514}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f2ab30921eb191146b41c0d293d8cd24, type: 2}
+  - {fileID: 2100000, guid: 5916906c2824a7042a9a4354a6a95ea8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -195,7 +195,8 @@ GameObject:
   - component: {fileID: 2154604006907524543}
   - component: {fileID: 7890336047725365775}
   - component: {fileID: 8577926427261059024}
-  - component: {fileID: 4618022259765879797}
+  - component: {fileID: 3368864400152119909}
+  - component: {fileID: 3835674814873483670}
   m_Layer: 0
   m_Name: JumpMine
   m_TagString: Untagged
@@ -210,15 +211,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2050802007649737262}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.70710677}
-  m_LocalPosition: {x: -10.3, y: 0.614, z: -0.1}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2049247058311422515}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90.00001, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!82 &2113979123082887184
 AudioSource:
   m_ObjectHideFlags: 0
@@ -342,7 +343,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.23
+  m_Radius: 0.4
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &8577926427261059024
 BoxCollider:
@@ -355,9 +356,25 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.28, y: 0.28, z: 0.28}
-  m_Center: {x: 0, y: 0, z: -0.03}
---- !u!114 &4618022259765879797
+  m_Size: {x: 1, y: 1, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0.04}
+--- !u!114 &3368864400152119909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050802007649737262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 012a3a54c78f2f64db6b2eb8a5fc8247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Type: 3
+  JumpForce: 50
+  JumpSound: {fileID: 8300000, guid: 17315bf74d083ba47bae88057aacfc95, type: 3}
+  explosion: {fileID: 0}
+--- !u!114 &3835674814873483670
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -370,7 +387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Type: 3
-  OnHit: 1
-  TimeToExploit: 3
+  OnHit: 0
+  TimeToExploit: 10
   isNetwork: 0
-  explosion: {fileID: 1583883678385836, guid: 34f8ee36757911044a0735a1dad1c40f, type: 3}
+  explosion: {fileID: 0}

@@ -10,8 +10,8 @@ public class bl_PlayerHealthManager : bl_MonoBehaviour
 {
     #region Public members
     [Header("Settings")]
-    [Range(0, 100)] public float health = 100;
-    [Range(1, 100)] public float maxHealth = 100;
+    [Range(0, 10000)] public float health = 100;
+    [Range(1, 10000)] public float maxHealth = 100;
     [Range(1, 10)] public float StartRegenerateIn = 4f;
     [Range(1, 5)] public float RegenerationSpeed = 3f;
     [Range(10, 100)] public int RegenerateUpTo = 100;
@@ -65,9 +65,6 @@ public class bl_PlayerHealthManager : bl_MonoBehaviour
     #endregion
 
     #region Unity Callbacks
-    /// <summary>
-    /// 
-    /// </summary>
     protected override void Awake()
     {
         if (!PhotonNetwork.IsConnected) return;
@@ -84,10 +81,7 @@ public class bl_PlayerHealthManager : bl_MonoBehaviour
         showIndicator = bl_GameData.Instance.showDamageIndicator;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    void Start()
+    private void Start()
     {
         if (!isConnected)
             return;
@@ -105,9 +99,6 @@ public class bl_PlayerHealthManager : bl_MonoBehaviour
         if (protecTime > 0) { InvokeRepeating(nameof(OnProtectCount), 1, 1); }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -121,9 +112,6 @@ public class bl_PlayerHealthManager : bl_MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     protected override void OnDisable()
     {
         base.OnDisable();
@@ -135,9 +123,6 @@ public class bl_PlayerHealthManager : bl_MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public override void OnUpdate()
     {
         if (isMine)
@@ -187,7 +172,7 @@ public class bl_PlayerHealthManager : bl_MonoBehaviour
     /// Sync the Health of player
     /// </summary>
     [PunRPC]
-    void SyncDamage(int damage, string killer, DamageCause cause, Vector3 m_direction, bool isHeatShot, int weaponID, Player m_sender)
+    private void SyncDamage(int damage, string killer, DamageCause cause, Vector3 m_direction, bool isHeatShot, int weaponID, Player m_sender)
     {
         if (isDead || isProtectionEnable)
             return;
@@ -255,7 +240,7 @@ public class bl_PlayerHealthManager : bl_MonoBehaviour
     /// <summary>
     /// Called This when player Die Logic
     /// </summary>
-	void Die(string killer, bool isHeadshot, DamageCause cause, int gunID, Vector3 hitPos, Player sender)
+	private void Die(string killer, bool isHeadshot, DamageCause cause, int gunID, Vector3 hitPos, Player sender)
     {
        // Debug.Log($"{gameObject.name} die cause {cause.ToString()} from {killer} and GunID {gunID}");
         isDead = true;
@@ -420,7 +405,7 @@ public class bl_PlayerHealthManager : bl_MonoBehaviour
     /// <summary>
     /// Apply damage from a custom loop
     /// </summary>
-    void MakeDamageRepeting()
+    private void MakeDamageRepeting()
     {
         DamageData info = new DamageData();
         info.Damage = m_RepetingDamage;
@@ -437,9 +422,6 @@ public class bl_PlayerHealthManager : bl_MonoBehaviour
         GetDamage(info);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void CancelRepetingDamage()
     {
         CancelInvoke(nameof(MakeDamageRepeting));
@@ -448,7 +430,7 @@ public class bl_PlayerHealthManager : bl_MonoBehaviour
     /// <summary>
     /// Update the player health UI with this player stats
     /// </summary>
-    void UpdateUI()
+    private void UpdateUI()
     {
         float h = Mathf.Max(health, 0);
         float deci = h * 0.01f;
@@ -461,10 +443,7 @@ public class bl_PlayerHealthManager : bl_MonoBehaviour
         if (HealthBar != null) { HealthBar.fillAmount = deci; HealthBar.color = CurColor; }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    void DamageUI()
+    private void DamageUI()
     {
         if(damageAlphaValue <= 0)
         {
@@ -476,12 +455,10 @@ public class bl_PlayerHealthManager : bl_MonoBehaviour
         damageAlphaValue -= Time.deltaTime;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    void RegenerateHealth()
+    private void RegenerateHealth()
     {
-        if (!m_HealthRegeneration) return;
+        if (!m_HealthRegeneration)
+            return;
 
         if (health < RegenerateUpTo)
         {
@@ -507,8 +484,10 @@ public class bl_PlayerHealthManager : bl_MonoBehaviour
     /// </summary>
     public bool Suicide()
     {
-        if (!isMine || !bl_GameManager.isLocalAlive) return false;
-        if (isProtectionEnable) return false;
+        if (!isMine || !bl_GameManager.isLocalAlive) 
+            return false;
+        if (isProtectionEnable)
+            return false;
 
         DamageData e = new DamageData();
         e.Damage = 500;
@@ -519,10 +498,7 @@ public class bl_PlayerHealthManager : bl_MonoBehaviour
         return true;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    void OnProtectCount()
+    private void OnProtectCount()
     {
         protecTime--;
         if (isMine)
@@ -536,7 +512,7 @@ public class bl_PlayerHealthManager : bl_MonoBehaviour
     }
     private bool isProtectionEnable { get { return (protecTime > 0); } }
 
-    IEnumerator DestroyThis()
+    private IEnumerator DestroyThis()
     {
         yield return new WaitForSeconds(0.3f);
         PhotonNetwork.Destroy(this.gameObject);
@@ -546,7 +522,7 @@ public class bl_PlayerHealthManager : bl_MonoBehaviour
     /// This event is called when player pick up a med kit
     /// </summary>
     /// <param name="amount"> amount for sum at current health</param>
-    void OnPickUp(int amount)
+    private void OnPickUp(int amount)
     {
         if (photonView.IsMine)
         {
@@ -563,7 +539,7 @@ public class bl_PlayerHealthManager : bl_MonoBehaviour
     }
 
     [PunRPC]
-    void RpcSyncHealth(float _h, PhotonMessageInfo info)
+    private void RpcSyncHealth(float _h, PhotonMessageInfo info)
     {
         if (info.photonView.ViewID == photonView.ViewID)
         {
@@ -575,7 +551,7 @@ public class bl_PlayerHealthManager : bl_MonoBehaviour
     /// Sync Health when pick up a med kit.
     /// </summary>
     [PunRPC]
-    void PickUpHealth(float t_amount)
+    private void PickUpHealth(float t_amount)
     {
         this.health = t_amount;
         if (health > maxHealth)
@@ -596,7 +572,7 @@ public class bl_PlayerHealthManager : bl_MonoBehaviour
     /// When round is end 
     /// desactive some functions
     /// </summary>
-    void OnRoundEnd()
+    private void OnRoundEnd()
     {
         DamageEnabled = false;
     }

@@ -939,13 +939,13 @@ public class bl_FirstPersonController : bl_MonoBehaviour
     {
         if (m_Transform == null)
             m_Transform = transform;
-
+        Debug.Log($"bl_Ladder MoveTo");
         MoveToStarted = true;
         float t = 0;
         Vector3 from = m_Transform.position;
         while (t < 1)
         {
-            t += Time.deltaTime / 0.4f;
+            t += Time.deltaTime / 0.1f; //0.4f;
             m_Transform.position = Vector3.Lerp(from, pos, t);
             yield return null;
         }
@@ -977,11 +977,13 @@ public class bl_FirstPersonController : bl_MonoBehaviour
                     JumpInmune = true;
                     m_Ladder.ToBottom();
                     ToggleClimbing();
+                    Debug.Log($"bl_Ladder !isClimbing");
                 }
                 else
                 {
                     ToggleClimbing();
                     m_Ladder.HasPending = false;
+                    Debug.Log($"bl_Ladder isClimbing");
                 }
             }
             else if (other.transform.name == bl_Ladder.TopColName)
