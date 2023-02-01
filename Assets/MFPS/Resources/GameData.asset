@@ -302,8 +302,8 @@ MonoBehaviour:
   Team1Color: {r: 0.1813281, g: 0.6981132, b: 0.1745283, a: 1}
   Team2Name: Maniac
   Team2Color: {r: 1, g: 0.2723468, b: 0, a: 1}
-  Player1: {fileID: 114038687236655164, guid: 353d635db0698974b963c4153ac19a5d, type: 3}
-  Player2: {fileID: 114797454524261884, guid: 8b43b97c50cac1d43a7c27ca8b6a6cdf, type: 3}
+  Player1: {fileID: 114797454524261884, guid: 8b43b97c50cac1d43a7c27ca8b6a6cdf, type: 3}
+  Player2: {fileID: 114038687236655164, guid: 353d635db0698974b963c4153ac19a5d, type: 3}
   BotTeam1: {fileID: 114101145339246268, guid: 424e7da58c2e1de49aef138757fca69a, type: 3}
   BotTeam2: {fileID: 114261272593433460, guid: e8aa4daeae861cd4d98c01198ff31061, type: 3}
   weaponSlotRuler: {fileID: 11400000, guid: 08554bfc9f078a24088357ad2e7b0050, type: 2}

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Recon Loadout
   m_EditorClassIdentifier: 
   Primary: 5
-  Secondary: 5
-  Perks: 5
-  Letal: 5
+  Secondary: 3
+  Perks: 6
+  Letal: 8
