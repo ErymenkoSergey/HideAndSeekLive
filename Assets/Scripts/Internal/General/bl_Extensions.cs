@@ -24,6 +24,7 @@ static class bl_Extensions
         player.SetCustomProperties(score);  // this locally sets the score and will sync it in-game asap.
     }
 
+
     /// <summary>
     /// Get the score of the given player
     /// </summary>

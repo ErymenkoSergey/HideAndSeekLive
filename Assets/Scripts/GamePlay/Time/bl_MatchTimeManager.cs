@@ -15,13 +15,13 @@ public class bl_MatchTimeManager : bl_MonoBehaviour
         set => m_timeState = value;
     }
 
-    public RoundStyle roundStyle { get; set; }
-    public int RoundDuration { get; set; }
-    public float CurrentTime { get; set; }
-    public bool isFinish { get; set; }
-    public Text TimeText { get; set; }
-    public bool Initialized { get; set; }
-    public bool Pause { get; set; }
+    public RoundStyle roundStyle;// { get; set; }
+    public int RoundDuration;// { get; set; }
+    public float CurrentTime;// { get; set; }
+    public bool isFinish;// { get; set; }
+    public Text TimeText;// { get; set; }
+    public bool Initialized;// { get; set; }
+    public bool Pause;// { get; set; }
     #endregion
 
     #region Private members
@@ -297,8 +297,8 @@ public class bl_MatchTimeManager : bl_MonoBehaviour
                 roomClose = true;
                 if (roundStyle == RoundStyle.OneMacht)
                 {
-                   // PhotonNetwork.CurrentRoom.IsOpen = false;
-                   // PhotonNetwork.CurrentRoom.IsVisible = false;
+                    PhotonNetwork.CurrentRoom.IsOpen = false; // i open this 
+                    PhotonNetwork.CurrentRoom.IsVisible = false;
                 }
             }
         }
@@ -350,9 +350,6 @@ public class bl_MatchTimeManager : bl_MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void FinishRound()
     {
         if (!PhotonNetwork.IsConnected || OverrideTimeManagment)

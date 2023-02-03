@@ -3089,6 +3089,10 @@ PrefabInstance:
       propertyPath: far clip plane
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 200ae869d77e6bb4a9810ac16b29549f, type: 3}
+      propertyPath: m_timeState
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 11400006, guid: 200ae869d77e6bb4a9810ac16b29549f, type: 3}
       propertyPath: sceneViewId
       value: 11
@@ -3099,7 +3103,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1652236083, guid: 200ae869d77e6bb4a9810ac16b29549f, type: 3}
       propertyPath: gameMode
-      value: 1
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1652236083, guid: 200ae869d77e6bb4a9810ac16b29549f, type: 3}
       propertyPath: withBots
@@ -10313,9 +10317,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1115664380111754, guid: 01fe187ca5ce7c246a737201ff3e6f42, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1594083299827518, guid: 01fe187ca5ce7c246a737201ff3e6f42, type: 3}
       propertyPath: m_Name
       value: GameModes
+      objectReference: {fileID: 0}
+    - target: {fileID: 1681094435809074, guid: 01fe187ca5ce7c246a737201ff3e6f42, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1837119641614968, guid: 01fe187ca5ce7c246a737201ff3e6f42, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4162927205361240, guid: 01fe187ca5ce7c246a737201ff3e6f42, type: 3}
       propertyPath: m_RootOrder
