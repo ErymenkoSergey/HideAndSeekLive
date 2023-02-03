@@ -20,10 +20,8 @@ public class bl_Footstep : MonoBehaviour
     private string surfaceTag;
     private float nextRate = 0;
     private float lastStepTime = 0;
+    public bool IsCrouch;
 
-    /// <summary>
-    /// 
-    /// </summary>
     private void Awake()
     {
         m_Transform = transform;
@@ -33,11 +31,10 @@ public class bl_Footstep : MonoBehaviour
         audioSource.playOnAwake = false;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void UpdateStep(float speed)
     {
+        
+
         if (Time.time - lastStepTime <= nextRate) return;
 
         DetectAndPlaySurface();
@@ -49,9 +46,6 @@ public class bl_Footstep : MonoBehaviour
         lastStepTime = Time.time;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void DetectAndPlaySurface()
     {
         if (Physics.Raycast(m_Transform.position, -Vector3.up, out m_raycastHit, 5, surfaceLayers, QueryTriggerInteraction.Ignore))
@@ -66,21 +60,17 @@ public class bl_Footstep : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void PlayStepForTag(string tag)
     {
         AudioClip step = GetStepSoundFor(tag);
         PlayStepSound(step);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void PlayStepSound(AudioClip clip)
     {
-        if(footStepsLibrary != null)
+        if (IsCrouch)
+            return;
+        if (footStepsLibrary != null)
         audioSource.pitch = Random.Range(footStepsLibrary.pitchRange.x, footStepsLibrary.pitchRange.y);
         audioSource.clip = clip;
         audioSource.volume = stepsVolume;

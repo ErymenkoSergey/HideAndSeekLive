@@ -8639,6 +8639,7 @@ MonoBehaviour:
   walkStepRate: 0.44
   runStepRate: 0.34
   crouchStepRate: 0.54
+  IsCrouch: 0
 --- !u!1 &1469966383314448
 GameObject:
   m_ObjectHideFlags: 0

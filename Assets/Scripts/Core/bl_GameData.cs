@@ -20,13 +20,13 @@ public class bl_GameData : ScriptableObject
     public bool CanFireWhileRunning = true;
     public bool HealthRegeneration = true;
     public bool ShowTeamMateHealthBar = true;
-    public bool CanChangeTeam = false;
+    public bool CanChangeTeam = true;
     public bool ShowBlood = true;
     public bool DetectAFK = false;
     public bool MasterCanKickPlayers = true;
     public bool ArriveKitsCauseDamage = true;
-    public bool CalculateNetworkFootSteps = false;
-    public bool ShowNetworkStats = false;
+    public bool CalculateNetworkFootSteps = true;
+    public bool ShowNetworkStats = true;
     public bool RememberPlayerName = true;
     public bool ShowWeaponLoadout = true;
     public bool useCountDownOnStart = true;

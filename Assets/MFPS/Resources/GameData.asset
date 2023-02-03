@@ -40,7 +40,7 @@ MonoBehaviour:
   lobbyJoinMethod: 2
   killCameraType: 0
   localKillsShowMode: 0
-  switchToPickupWeapon: 1
+  switchToPickupWeapon: 0
   ScoreReward:
     ScorePerKill: 100
     ScorePerHeadShot: 25
@@ -188,10 +188,10 @@ MonoBehaviour:
     GoalName: Rounds
     maxPlayers: 08000000
     GameGoalsOptions: 3c00000078000000b40000002c0100000a000000
-    timeLimits: 8403000058020000b00400002c010000
+    timeLimits: 2c010000a4010000e00100005802000084030000b0040000
   - ModeName: Team Death Match
     gameMode: 0
-    isEnabled: 1
+    isEnabled: 0
     supportBots: 1
     AutoTeamSelection: 0
     RequiredPlayersToStart: 1
@@ -285,7 +285,7 @@ MonoBehaviour:
     maxPlayers: 06000000020000000400000008000000
     GameGoalsOptions: 
     timeLimits: 8403000058020000b00400002c010000
-  GameVersion: 1.8.2
+  GameVersion: 0.1.1
   guestNameFormat: Guest {0}
   SpawnProtectedTime: 5
   CountDownTime: 7
@@ -311,7 +311,7 @@ MonoBehaviour:
   - UserName: ESV
     m_Role: 0
     Password: SnickerS2020AmS
-    m_Color: {r: 0, g: 1, b: 0.016897917, a: 1}
+    m_Color: {r: 0.07355818, g: 0.7563904, b: 0.8207547, a: 1}
   isChating: 0
   _MFPSLicense: 
   _MFPSFromStore: 0

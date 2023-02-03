@@ -230,7 +230,8 @@ public class bl_FirstPersonController : bl_MonoBehaviour
 
         if (State != PlayerState.Jumping && State != PlayerState.Climbing)
         {
-            if (forcedCrouch) return;
+            if (forcedCrouch) 
+                return;
             if (KeepToCrouch)
             {
                 Crounching = bl_GameInput.Crouch();
@@ -238,6 +239,7 @@ public class bl_FirstPersonController : bl_MonoBehaviour
                 {
                     OnCrouchChanged();
                     lastCrouchState = Crounching;
+                    footstep.IsCrouch = Crounching;
                 }
             }
             else
@@ -945,7 +947,7 @@ public class bl_FirstPersonController : bl_MonoBehaviour
         Vector3 from = m_Transform.position;
         while (t < 1)
         {
-            t += Time.deltaTime / 0.1f; //0.4f;
+            t += Time.deltaTime / 0.8f; //0.4f;
             m_Transform.position = Vector3.Lerp(from, pos, t);
             yield return null;
         }
