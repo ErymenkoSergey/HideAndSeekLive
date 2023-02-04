@@ -101,7 +101,7 @@ public class bl_Maniac : bl_PhotonHelper, IGameMode
             }
 
             yield return new WaitForSeconds(_loopTime);
-            ClearTeams();
+            //ClearTeams();
         }
     }
 
