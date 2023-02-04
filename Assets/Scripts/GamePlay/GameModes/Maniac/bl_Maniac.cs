@@ -26,7 +26,6 @@ public class bl_Maniac : bl_PhotonHelper, IGameMode
 
     public Team GetWinnerTeam()
     {
-        Debug.Log($"BL_Maniac: GetWinnerTeam ");
         int team1 = PhotonNetwork.CurrentRoom.GetRoomScore(Team.Team1);
         int team2 = PhotonNetwork.CurrentRoom.GetRoomScore(Team.Team2);
 
@@ -40,8 +39,8 @@ public class bl_Maniac : bl_PhotonHelper, IGameMode
         return winner;
     }
 
-    [SerializeField] private List<Player> _teamOne = new List<Player>(); //Hidings
-    [SerializeField] private List<Player> _teamTwo = new List<Player>(); // Maniac
+    [SerializeField] private List<Player> _teamOne = new List<Player>();
+    [SerializeField] private List<Player> _teamTwo = new List<Player>();
 
     private int SetDeathsTeamOne;
     private int SetDeathsTeamTwo;
@@ -57,11 +56,11 @@ public class bl_Maniac : bl_PhotonHelper, IGameMode
         StartCoroutine(CheckPlayerCounts());
     }
 
-    private IEnumerator CheckPlayerCounts() // чекать нужно кол-во живых игроков...
+    private IEnumerator CheckPlayerCounts()
     {
-        var teeamms = PhotonNetwork.PlayerList; // общее кол-во игроков
+        var teeamms = PhotonNetwork.PlayerList;
 
-        for (int i = 0; i < teeamms.Length; i++) // разделили на комманды 
+        for (int i = 0; i < teeamms.Length; i++)
         {
             if (teeamms[i].GetPlayerTeam() == Team.Team1)
             {
@@ -74,50 +73,22 @@ public class bl_Maniac : bl_PhotonHelper, IGameMode
             }
         }
 
-        SetDeathsTeamOne = _teamOne.Count; // записали кол-во игроков в каждой команде
+        SetDeathsTeamOne = _teamOne.Count;
         SetDeathsTeamTwo = _teamTwo.Count;
 
-        while (_isLoopCheckWinner) // теперь проверяем 
+        while (_isLoopCheckWinner)
         {
             foreach (var player in _teamOne)
             {
                 countDeathsTeam1 += player.GetDeaths();
-                Debug.Log($"player.NickName {player.NickName} / {player.GetDeaths()} / count1: {countDeathsTeam1}");
             }
 
             foreach (var player in _teamTwo)
             {
                 countDeathsTeam2 += player.GetDeaths();
-                Debug.Log($"player.NickName {player.NickName} / {player.GetDeaths()} / count2: {countDeathsTeam2}");
             }
 
-
-            ////Debug.Log($"CheckPlayerCounts {_isLoopCheckWinner}");
-            //ClearTeams();
-            //var countTeam = bl_GameManager.Instance.OthersActorsInScene;
-
-
-
-
-            ////Debug.Log($"CheckPlayerCounts All countTeam {countTeam.Count}");
-
-
-            //for (int i = 0; i < countTeam.Count; i++)
-            //{
-            //    if (countTeam[i].Team == Team.Team1 && countTeam[i].isAlive == true)
-            //    {
-            //        _teamOne.Add(countTeam[i]);
-            //    }
-            //    if (countTeam[i].Team == Team.Team2 && countTeam[i].isAlive == true)
-            //    {
-            //        _teamTwo.Add(countTeam[i]);
-            //    }
-            //}
-
-            //Debug.Log($"CheckPlayerCounts All _teamOne.Count {_teamOne.Count }/ _teamTwo.Count {_teamTwo.Count} ");
             Team winner = Team.None;
-            Debug.Log($"CheckPlayerCounts First {SetDeathsTeamOne} == {countDeathsTeam1} ");
-            Debug.Log($"CheckPlayerCounts Seconds {SetDeathsTeamTwo} == {countDeathsTeam2} ");
             if (SetDeathsTeamOne == countDeathsTeam1)
             {
                 winner = Team.Team2;
@@ -130,10 +101,8 @@ public class bl_Maniac : bl_PhotonHelper, IGameMode
             }
 
             yield return new WaitForSeconds(_loopTime);
-           // ClearTeams();
-            Debug.Log($"CheckPlayerCounts Stop Corut !!! ");
+            ClearTeams();
         }
-        
     }
 
     private void ClearTeams()
@@ -146,14 +115,12 @@ public class bl_Maniac : bl_PhotonHelper, IGameMode
     private void SetUIWinner(Team winner)
     {
         _isLoopCheckWinner = false;
-        Debug.LogError($"GetWinnerTeam  WWWinnner dsasaddsadas  : {winner}");
         GameOver(winner);
     }
 
 
     public void Initialize()
     {
-        Debug.Log($"BL_Maniac: Initialize ");
         //check if this is the game mode of this room
         if (bl_GameManager.Instance.IsGameMode(GameMode.TDM, this))
         {
@@ -170,7 +137,6 @@ public class bl_Maniac : bl_PhotonHelper, IGameMode
 
     public void OnFinishTime(bool gameOver)
     {
-        Debug.Log($"BL_Maniac: OnFinishTime {gameOver}");
         //determine the winner
         string finalText = "";
         if (!PhotonNetwork.OfflineMode && GetWinnerTeam() != Team.None)
@@ -186,37 +152,31 @@ public class bl_Maniac : bl_PhotonHelper, IGameMode
 
     public void OnLocalPlayerDeath()
     {
-        Debug.Log($"BL_Maniac: OnLocalPlayerDeath ");
         //? check count Players two Teams..
     }
 
     public void OnLocalPlayerKill()
     {
-        Debug.Log($"BL_Maniac: OnLocalPlayerKill ");
         PhotonNetwork.CurrentRoom.SetTeamScore(PhotonNetwork.LocalPlayer.GetPlayerTeam());
     }
 
     public void OnLocalPoint(int points, Team teamToAddPoint)
     {
-        Debug.Log($"BL_Maniac: OnLocalPoint {points} / {teamToAddPoint} ");
         PhotonNetwork.CurrentRoom.SetTeamScore(teamToAddPoint);
     }
 
     public void OnOtherPlayerEnter(Player newPlayer)
     {
-        Debug.Log($"BL_Maniac: OnOtherPlayerEnter {newPlayer}");
     }
 
     public void OnOtherPlayerLeave(Player otherPlayer)
     {
-        Debug.Log($"BL_Maniac: OnOtherPlayerLeave {otherPlayer}");
     }
 
     public void OnRoomPropertiesUpdate(ExitGames.Client.Photon.Hashtable propertiesThatChanged)
     {
         if (propertiesThatChanged.ContainsKey(PropertiesKeys.Team1Score) || propertiesThatChanged.ContainsKey(PropertiesKeys.Team2Score))
         {
-            Debug.Log($"BL_Maniac: OnRoomPropertiesUpdate ");
             int team1 = PhotonNetwork.CurrentRoom.GetRoomScore(Team.Team1);
             int team2 = PhotonNetwork.CurrentRoom.GetRoomScore(Team.Team2);
             bl_TeamDeathMatchUI.Instance.SetScores(team1, team2);
@@ -228,8 +188,6 @@ public class bl_Maniac : bl_PhotonHelper, IGameMode
     {
         if (PhotonNetwork.OfflineMode || !bl_RoomSettings.Instance.RoomInfoFetched)
             return;
-        Debug.Log($"BL_Maniac: CheckScores {team1} / {team2} ");
-
         //check if any of the team reach the max kills
         if (team1 >= bl_RoomSettings.Instance.GameGoal)
         {
@@ -246,9 +204,7 @@ public class bl_Maniac : bl_PhotonHelper, IGameMode
     private void GameOver(Team winner)
     {
         string finalText = $"{winner}";
-        //finalText = GetWinnerTeam().GetTeamName();
         bl_UIReferences.Instance.SetFinalText(finalText);
-
         bl_MatchTimeManager.Instance.FinishRound();
     }
 }
