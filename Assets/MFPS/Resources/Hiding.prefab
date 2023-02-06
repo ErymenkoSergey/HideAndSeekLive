@@ -9349,9 +9349,9 @@ MonoBehaviour:
   dropTiltSpeedRange: {x: 20, y: 50}
   mouseLook:
     clampVerticalRotation: 1
-    MinimumX: -65
-    MaximumX: 70
-    useSmoothing: 1
+    MinimumX: -89.379234
+    MaximumX: 89.50338
+    useSmoothing: 0
     lerpMovement: 0
     smoothTime: 5
     framesOfSmoothing: 5

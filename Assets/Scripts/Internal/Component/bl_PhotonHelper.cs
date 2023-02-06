@@ -5,13 +5,10 @@ using Photon.Realtime;
 
 public class bl_PhotonHelper : MonoBehaviourPun {
 
-    protected GameMode mGameMode = GameMode.FFA;
+    protected GameMode mGameMode = GameMode.Maniac;
     private List<Player> PlayerList = new List<Player>();
     private bool GameModeDownloaded = false;
 
-    /// <summary>
-    /// 
-    /// </summary>
     public string myTeam
     {
         get

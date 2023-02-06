@@ -36,7 +36,7 @@ public class bl_UIReferences : bl_PhotonHelper, IInRoomCallbacks
     [SerializeField] private GameObject AutoTeamUI = null;
     [SerializeField] private GameObject SpectatorButton = null;
     [SerializeField] private GameObject PingUI = null;
-    public GameObject JumpLadder;
+    [SerializeField] private GameObject JumpLadder;
     [SerializeField] private GameObject ChangeTeamButton = null;
     public GameObject pauseMenuRoot;
     [SerializeField] private Text RoomNameText = null;
@@ -130,7 +130,7 @@ public class bl_UIReferences : bl_PhotonHelper, IInRoomCallbacks
 #if LOCALIZATION
                 MaxKillsText.text = string.Format("{0} {1}", MaxKills, LocaleStrings[0]);
 #else
-            MaxKillsText.text = string.Format("{0} KILLS", MaxKills);
+                MaxKillsText.text = string.Format("{0} KILLS", MaxKills);
 #endif
             }
         }
@@ -176,28 +176,19 @@ public class bl_UIReferences : bl_PhotonHelper, IInRoomCallbacks
         PhotonNetwork.RemoveCallbackTarget(this);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    void OnLocalPlayerDeath()
+    private void OnLocalPlayerDeath()
     {
         JumpLadder.SetActive(false);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    void OnRoundFinish()
+    private void OnRoundFinish()
     {
         playerScoreboards.SetActiveByTeamMode();
         StopAllCoroutines();
         blackScreen.SetAlpha(0);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    void CheckPing()
+    private void CheckPing()
     {
         int ping = PhotonNetwork.GetPing();
         if (ping >= MaxRoomPing)
@@ -212,10 +203,7 @@ public class bl_UIReferences : bl_PhotonHelper, IInRoomCallbacks
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    void GetRoomInfo()
+    private void GetRoomInfo()
     {
         GameMode mode = GetGameMode;
         RoomNameText.text = PhotonNetwork.CurrentRoom.Name.ToUpper();
@@ -701,6 +689,12 @@ public class bl_UIReferences : bl_PhotonHelper, IInRoomCallbacks
 
     public void OnRoomPropertiesUpdate(ExitGames.Client.Photon.Hashtable propertiesThatChanged)
     {
+    }
+
+    public void SetJumpLadder(string name, bool isOn)
+    {
+        if (LocalPlayer.NickName == name)
+            JumpLadder.SetActive(isOn);
     }
 
     #region Classes

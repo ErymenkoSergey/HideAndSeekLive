@@ -7,6 +7,12 @@ using MFPS.Runtime.Level;
 [RequireComponent(typeof(CharacterController))]
 public class bl_FirstPersonController : bl_MonoBehaviour
 {
+    #region My custom settings
+    private bool _isFlyControl = true;
+    private float _angleLimit = 78f;
+    private bool _isOnForceOnRigidbodys = true;
+    #endregion
+
     #region Public members
     [Header("Settings")]
     public PlayerState State;
@@ -230,7 +236,7 @@ public class bl_FirstPersonController : bl_MonoBehaviour
 
         if (State != PlayerState.Jumping && State != PlayerState.Climbing)
         {
-            if (forcedCrouch) 
+            if (forcedCrouch)
                 return;
             if (KeepToCrouch)
             {
@@ -256,7 +262,7 @@ public class bl_FirstPersonController : bl_MonoBehaviour
     /// <summary>
     /// Check when the player is in a surface (not jumping or falling)
     /// </summary>
-    void GroundDetection()
+    private void GroundDetection()
     {
         //if the player has touch the ground after falling
         if (!m_PreviouslyGrounded && m_CharacterController.isGrounded)
@@ -298,9 +304,6 @@ public class bl_FirstPersonController : bl_MonoBehaviour
         m_PreviouslyGrounded = m_CharacterController.isGrounded;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public override void OnFixedUpdate()
     {
         if (_isTeleportation)
@@ -338,7 +341,7 @@ public class bl_FirstPersonController : bl_MonoBehaviour
     /// <summary>
     /// Apply the movement direction to the CharacterController
     /// </summary>
-    void Move()
+    private void Move()
     {
         //if the player is touching the surface
         if (m_CharacterController.isGrounded)
@@ -370,6 +373,9 @@ public class bl_FirstPersonController : bl_MonoBehaviour
             }
 
             OnAir();
+
+            if (_isFlyControl)
+                OnSurface(); // сделал, что бы в полете управлять игроком.
         }
         //apply the movement direction in the character controller
         m_CollisionFlags = m_CharacterController.Move(m_MoveDir * Time.fixedDeltaTime);
@@ -378,7 +384,7 @@ public class bl_FirstPersonController : bl_MonoBehaviour
     /// <summary>
     /// Control the player when is in a surface
     /// </summary>
-    void OnSurface()
+    private void OnSurface()
     {
         // always move along the camera forward as it is the direction that it being aimed at
         desiredMove = (m_Transform.forward * m_Input.y) + (m_Transform.right * m_Input.x);
@@ -397,7 +403,7 @@ public class bl_FirstPersonController : bl_MonoBehaviour
     /// <summary>
     /// Control the player when is in air (not dropping nor gliding)
     /// </summary>
-    void OnAir()
+    private void OnAir()
     {
         //how much can the player control the player when is in air.
         float airControlMult = AirControlMultiplier;
@@ -412,7 +418,7 @@ public class bl_FirstPersonController : bl_MonoBehaviour
     /// <summary>
     /// Called when the player hit a surface after falling/jumping
     /// </summary>
-    void OnLand()
+    private void OnLand()
     {
         //land camera effect
         StartCoroutine(m_JumpBob.DoBobCycle());
@@ -459,20 +465,13 @@ public class bl_FirstPersonController : bl_MonoBehaviour
         bl_UCrosshair.Instance.OnCrouch(Crounching);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void DoCrouchTransition()
     {
         StopCoroutine(nameof(CrouchTransition));
         StartCoroutine(nameof(CrouchTransition));
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
-    IEnumerator CrouchTransition()
+    private IEnumerator CrouchTransition()
     {
         bool isCrouch = Crounching || State == PlayerState.Sliding;
         float height = isCrouch ? 1.4f : 2f;
@@ -498,7 +497,7 @@ public class bl_FirstPersonController : bl_MonoBehaviour
     /// <summary>
     /// Make the player jump
     /// </summary>
-    void DoJump()
+    private void DoJump()
     {
         m_MoveDir.y = (hasPlatformJump) ? PlatformJumpForce : jumpSpeed;
         PlayJumpSound();
@@ -512,7 +511,7 @@ public class bl_FirstPersonController : bl_MonoBehaviour
     /// <summary>
     /// Make the player slide
     /// </summary>
-    void DoSlide()
+    private void DoSlide()
     {
         if ((Time.time - lastSlideTime) < slideTime * slideCoolDown)
             return;//wait the equivalent of one extra slide before be able to slide again
@@ -546,13 +545,14 @@ public class bl_FirstPersonController : bl_MonoBehaviour
     }
 
     /// <summary>
-    /// Detect slope limit and apply slide physics.
+    /// Detect slope _angleLimit and apply slide physics.
     /// </summary>
-    void SlopeControl()
+    private void SlopeControl()
     {
         float angle = Vector3.Angle(Vector3.up, surfaceNormal);
 
-        if (angle <= m_CharacterController.slopeLimit || angle >= 75) return;
+        if (angle <= m_CharacterController.slopeLimit || angle >= _angleLimit)
+            return;
 
         m_MoveDir.x += ((1f - surfaceNormal.y) * surfaceNormal.x) * (-Physics.gravity.y - slopeFriction);
         m_MoveDir.z += ((1f - surfaceNormal.y) * surfaceNormal.z) * (-Physics.gravity.y - slopeFriction);
@@ -574,7 +574,7 @@ public class bl_FirstPersonController : bl_MonoBehaviour
     /// <summary>
     /// Called each frame when the player is dropping (fall control is On)
     /// </summary>
-    void OnDropping()
+    private void OnDropping()
     {
         //get the camera upside down angle
         float tilt = Mathf.InverseLerp(0, 90, mouseLook.VerticalAngle);
@@ -608,7 +608,7 @@ public class bl_FirstPersonController : bl_MonoBehaviour
         State = PlayerState.Gliding;
     }
 
-    void OnGliding()
+    private void OnGliding()
     {
         desiredMove = (m_Transform.forward * m_Input.y) + (m_Transform.right * m_Input.x);
         //how much can the player control the player when is in air.
@@ -623,7 +623,7 @@ public class bl_FirstPersonController : bl_MonoBehaviour
         m_CollisionFlags = m_CharacterController.Move(m_MoveDir * Time.fixedDeltaTime);
     }
 
-    void OnClimbing()
+    private void OnClimbing()
     {
         if (m_Ladder.HasPending)
         {
@@ -653,7 +653,7 @@ public class bl_FirstPersonController : bl_MonoBehaviour
     /// <summary>
     /// Math behind the fall damage calculation
     /// </summary>
-    void CalculateFall()
+    private void CalculateFall()
     {
         if (JumpInmune) { JumpInmune = false; return; }
         if ((Time.time - fallingTime) <= 0.4f) return;
@@ -910,13 +910,13 @@ public class bl_FirstPersonController : bl_MonoBehaviour
         m_AudioSource.Play();
     }
 
-    void OnChangeWeapon(int id)
+    private void OnChangeWeapon(int id)
     {
         WeaponWeight = bl_GameData.Instance.GetWeapon(id).Weight;
     }
-    void OnMatchStart() { isControlable = true; }
-    void OnGameSettingsChanged() => mouseLook.FetchSettings();
-    void OnAimChange(bool aim) => mouseLook.OnAimChange(aim);
+    private void OnMatchStart() { isControlable = true; }
+    private void OnGameSettingsChanged() => mouseLook.FetchSettings();
+    private void OnAimChange(bool aim) => mouseLook.OnAimChange(aim);
 
     public bool IsHeadHampered()
     {
@@ -925,7 +925,7 @@ public class bl_FirstPersonController : bl_MonoBehaviour
         return Physics.Raycast(origin, Vector3.up, dist);
     }
 
-    void OnRoundEnd()
+    private void OnRoundEnd()
     {
         Finish = true;
     }
@@ -934,20 +934,19 @@ public class bl_FirstPersonController : bl_MonoBehaviour
     {
         isClimbing = !isClimbing;
         State = (isClimbing) ? PlayerState.Climbing : PlayerState.Idle;
-        bl_UIReferences.Instance.JumpLadder.SetActive(isClimbing);
+        bl_UIReferences.Instance.SetJumpLadder(gameObject.name, isClimbing);
     }
 
     private IEnumerator MoveTo(Vector3 pos, bool down)
     {
         if (m_Transform == null)
             m_Transform = transform;
-        Debug.Log($"bl_Ladder MoveTo");
         MoveToStarted = true;
         float t = 0;
         Vector3 from = m_Transform.position;
         while (t < 1)
         {
-            t += Time.deltaTime / 0.8f; //0.4f;
+            t += Time.deltaTime / 0.4f;
             m_Transform.position = Vector3.Lerp(from, pos, t);
             yield return null;
         }
@@ -979,13 +978,11 @@ public class bl_FirstPersonController : bl_MonoBehaviour
                     JumpInmune = true;
                     m_Ladder.ToBottom();
                     ToggleClimbing();
-                    Debug.Log($"bl_Ladder !isClimbing");
                 }
                 else
                 {
                     ToggleClimbing();
                     m_Ladder.HasPending = false;
-                    Debug.Log($"bl_Ladder isClimbing");
                 }
             }
             else if (other.transform.name == bl_Ladder.TopColName)
@@ -1013,18 +1010,21 @@ public class bl_FirstPersonController : bl_MonoBehaviour
         surfaceNormal = hit.normal;
         /// Enable this if you want player controller apply force on contact to rigidbodys
         /// is commented by default for performance matters.
-        /* Rigidbody body = hit.collider.attachedRigidbody;
-         //dont move the rigidbody if the character is on top of it
-         if (m_CollisionFlags == CollisionFlags.Below)
-         {
-             return;
-         }
 
-         if (body == null || body.isKinematic)
-         {
-             return;
-         }
-         body.AddForceAtPosition(m_CharacterController.velocity * 0.1f, hit.point, ForceMode.Impulse);*/
+        if (!_isOnForceOnRigidbodys)
+            return;
+        Rigidbody body = hit.collider.attachedRigidbody;
+        //dont move the rigidbody if the character is on top of it
+        if (m_CollisionFlags == CollisionFlags.Below)
+        {
+            return;
+        }
+
+        if (body == null || body.isKinematic)
+        {
+            return;
+        }
+        body.AddForceAtPosition(m_CharacterController.velocity * 0.1f, hit.point, ForceMode.Impulse);
     }
 
     internal float _speed = 0;
