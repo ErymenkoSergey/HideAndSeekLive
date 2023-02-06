@@ -72,14 +72,14 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EmissionScaleUI: 0
-    - _Exposure: 0.4
+    - _Exposure: 0.3
     - _Glossiness: 0.5
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RotSpeed: 10
-    - _Rotation: 0
+    - _RotSpeed: 20
+    - _Rotation: 180
     - _SrcBlend: 1
     - _SunSize: 0.04
     - _UVSec: 0
