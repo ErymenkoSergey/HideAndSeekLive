@@ -679,7 +679,6 @@ public class bl_Lobby : bl_PhotonHelper, IConnectionCallbacks, ILobbyCallbacks, 
 
     public void OnRoomListUpdate(List<RoomInfo> roomList)
     {
-        Debug.Log("Room list updated, total rooms: " + roomList.Count);
         ServerList(roomList);
     }
 

@@ -26,14 +26,14 @@ public class bl_Maniac : bl_PhotonHelper, IGameMode
 
     public Team GetWinnerTeam()
     {
-        int team1 = PhotonNetwork.CurrentRoom.GetRoomScore(Team.Team1);
-        int team2 = PhotonNetwork.CurrentRoom.GetRoomScore(Team.Team2);
+        int team1 = PhotonNetwork.CurrentRoom.GetRoomScore(Team.Hiding);
+        int team2 = PhotonNetwork.CurrentRoom.GetRoomScore(Team.Maniac);
 
         Team winner = Team.None;
         if (team1 > team2)
-        { winner = Team.Team1; }
+        { winner = Team.Hiding; }
         else if (team1 < team2)
-        { winner = Team.Team2; }
+        { winner = Team.Maniac; }
         else
         { winner = Team.None; }
         return winner;
@@ -62,12 +62,12 @@ public class bl_Maniac : bl_PhotonHelper, IGameMode
 
         for (int i = 0; i < teeamms.Length; i++)
         {
-            if (teeamms[i].GetPlayerTeam() == Team.Team1)
+            if (teeamms[i].GetPlayerTeam() == Team.Hiding)
             {
                 _teamOne.Add(teeamms[i]);
             }
 
-            if (teeamms[i].GetPlayerTeam() == Team.Team2)
+            if (teeamms[i].GetPlayerTeam() == Team.Maniac)
             {
                 _teamTwo.Add(teeamms[i]);
             }
@@ -91,12 +91,12 @@ public class bl_Maniac : bl_PhotonHelper, IGameMode
             Team winner = Team.None;
             if (SetDeathsTeamOne == countDeathsTeam1)
             {
-                winner = Team.Team2;
+                winner = Team.Maniac;
                 SetUIWinner(winner);
             }
             if (SetDeathsTeamTwo == countDeathsTeam2)
             {
-                winner = Team.Team1;
+                winner = Team.Hiding;
                 SetUIWinner(winner);
             }
 
@@ -177,8 +177,8 @@ public class bl_Maniac : bl_PhotonHelper, IGameMode
     {
         if (propertiesThatChanged.ContainsKey(PropertiesKeys.Team1Score) || propertiesThatChanged.ContainsKey(PropertiesKeys.Team2Score))
         {
-            int team1 = PhotonNetwork.CurrentRoom.GetRoomScore(Team.Team1);
-            int team2 = PhotonNetwork.CurrentRoom.GetRoomScore(Team.Team2);
+            int team1 = PhotonNetwork.CurrentRoom.GetRoomScore(Team.Hiding);
+            int team2 = PhotonNetwork.CurrentRoom.GetRoomScore(Team.Maniac);
             bl_TeamDeathMatchUI.Instance.SetScores(team1, team2);
             CheckScores(team1, team2);
         }

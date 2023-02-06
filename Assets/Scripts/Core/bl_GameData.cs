@@ -74,10 +74,10 @@ public class bl_GameData : ScriptableObject
     public Color highLightColor = Color.green;
 
     [Header("Teams")]
-    public string Team1Name = "Team1";
+    public string Team1Name = "Hiding";
     public Color Team1Color = Color.blue;
     [Space(5)]
-    public string Team2Name = "Team2";
+    public string Team2Name = "Maniac";
     public Color Team2Color = Color.green;
 
     [Header("Players")]

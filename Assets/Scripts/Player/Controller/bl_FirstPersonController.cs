@@ -703,7 +703,7 @@ public class bl_FirstPersonController : bl_MonoBehaviour
         }
         else//if the player was falling without jumping
         {
-            Debug.Log("Урон от падения ");
+            //Debug.Log("Урон от падения ");
         }
     }
 

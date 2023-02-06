@@ -221,23 +221,8 @@ public class bl_PlayerNetwork : bl_MonoBehaviour, IPunObservable
     /// </summary>
     void OnRemotePlayer()
     {
-        
-        //Debug.Log($"OnRemotePlayer 0");
-        //if (_isNewProcessPosition)
-        //{
-        //    Debug.Log($"OnRemotePlayer 1");
-        //    if (_newpos.position == m_Transform.position)
-        //    {
-        //        Debug.Log($"OnRemotePlayer 1.1 ");
-        //        _isNewProcessPosition = false;
-        //    }
-        //    return;
-        //}
-            
-        Debug.Log($"OnRemotePlayer 1.2 ");
         if (m_Transform.parent == null)
         {
-            Debug.Log($"OnRemotePlayer m_Transform.parent == null 2");
             UpdatePosition();
             UpdateRotation();
         }

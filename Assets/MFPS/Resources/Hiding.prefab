@@ -8543,7 +8543,7 @@ AudioSource:
   Priority: 170
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 50
+  MaxDistance: 500
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -9426,7 +9426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d5588cc794522e42b421a679950ae07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerTeam: 2
+  PlayerTeam: 1
   RemoteOnlyScripts:
   - {fileID: 114571006801900830}
   LocalOnlyScripts:
@@ -86471,7 +86471,7 @@ MonoBehaviour:
   bulletSpeed: 300
   AutoReload: 1
   m_AllowQuickFire: 1
-  reloadPer: 0
+  reloadPer: 1
   bulletsPerClip: 15
   numberOfClips: 5
   maxNumberOfClips: 10
@@ -117770,7 +117770,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f2ab30921eb191146b41c0d293d8cd24, type: 2}
+  - {fileID: 2100000, guid: ba3bddb608259184783916ac7915d5a2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -126219,7 +126219,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b5b46fa2f6c181b4f8f6a9cd1c3d193b, type: 2}
+  - {fileID: 2100000, guid: 7d1bed27130ab714cb0d0776aca180f3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
