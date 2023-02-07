@@ -101,16 +101,8 @@ public class bl_Maniac : bl_PhotonHelper, IGameMode
             }
 
             yield return new WaitForSeconds(_loopTime);
-            //ClearTeams();
         }
     }
-
-    private void ClearTeams()
-    {
-        _teamOne.Clear(); 
-        _teamTwo.Clear();
-    }
-
 
     private void SetUIWinner(Team winner)
     {
