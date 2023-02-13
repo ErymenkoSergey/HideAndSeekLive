@@ -13,7 +13,7 @@ namespace MFPS.Runtime.Level
             if (other.CompareTag(bl_PlayerSettings.LocalTag))
             {
                 bl_FirstPersonController fpc = other.GetComponent<bl_FirstPersonController>();
-                fpc.PlatformJump(JumpForce);
+                fpc.PlatformJump(JumpForce, 90f);
                 if (JumpSound != null) { AudioSource.PlayClipAtPoint(JumpSound, transform.position); }
             }
         }

@@ -394,7 +394,12 @@ public class bl_FirstPersonController : bl_MonoBehaviour
 
         //determine the movement angle based in the normal of the current player surface
         desiredMove = Vector3.ProjectOnPlane(desiredMove, SurfaceRay[0].normal);
-        m_MoveDir.x = desiredMove.x * speed;
+
+        if (hasPlatformJump)
+            m_MoveDir.x = _angleJump * speed;
+        else
+            m_MoveDir.x = desiredMove.x * speed;
+
         m_MoveDir.z = desiredMove.z * speed;
 
         SlopeControl();
@@ -828,9 +833,10 @@ public class bl_FirstPersonController : bl_MonoBehaviour
             footstep?.PlayStepForTag("Generic");
         }
     }
-
-    public void PlatformJump(float force)
+    private float _angleJump;
+    public void PlatformJump(float force, float angle)
     {
+        _angleJump = angle;
         hasPlatformJump = true;
         PlatformJumpForce = force;
         JumpInmune = true;
@@ -838,7 +844,6 @@ public class bl_FirstPersonController : bl_MonoBehaviour
 
     public void SetPosition(Transform transform)
     {
-        Debug.Log($"OnTriggerStay 4 ");
         _isTeleportation = true;
         m_CharacterController.enabled = false;
         m_Transform.position = transform.position;
@@ -848,7 +853,6 @@ public class bl_FirstPersonController : bl_MonoBehaviour
 
     public void SetPositionNet(Transform transform)
     {
-        Debug.Log($"OnTriggerStay 4 ");
         _isTeleportation = true;
         m_CharacterController.enabled = false;
         m_Transform.position = transform.position;
