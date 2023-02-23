@@ -17489,9 +17489,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AllGuns:
   - {fileID: 1985468705662814593}
-  - {fileID: 496925075263816149}
-  - {fileID: 8386245879827401890}
-  - {fileID: 5910511151725827127}
   PlayerEquip:
   - {fileID: 0}
   - {fileID: 0}
