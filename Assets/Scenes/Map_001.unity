@@ -15880,9 +15880,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 280581984}
     m_Modifications:
+    - target: {fileID: 117378, guid: 62ee11b92543e8c4998d91298a81ac36, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 136470, guid: 62ee11b92543e8c4998d91298a81ac36, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 149302, guid: 62ee11b92543e8c4998d91298a81ac36, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 160238, guid: 62ee11b92543e8c4998d91298a81ac36, type: 3}
       propertyPath: m_Name
       value: Prop_Boat_A_Bobbing
+      objectReference: {fileID: 0}
+    - target: {fileID: 160238, guid: 62ee11b92543e8c4998d91298a81ac36, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 169008, guid: 62ee11b92543e8c4998d91298a81ac36, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 436708, guid: 62ee11b92543e8c4998d91298a81ac36, type: 3}
       propertyPath: m_RootOrder
@@ -16478,6 +16498,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Prop_Ship_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 8383558534252846935, guid: ef8ebfa13a0eef449bd9e93892bdfb1e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8383558534252861131, guid: ef8ebfa13a0eef449bd9e93892bdfb1e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8383558534252873679, guid: ef8ebfa13a0eef449bd9e93892bdfb1e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8383558534252891041, guid: ef8ebfa13a0eef449bd9e93892bdfb1e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8383558534252900869, guid: ef8ebfa13a0eef449bd9e93892bdfb1e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef8ebfa13a0eef449bd9e93892bdfb1e, type: 3}
