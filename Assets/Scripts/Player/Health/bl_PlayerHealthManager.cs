@@ -86,8 +86,11 @@ public class bl_PlayerHealthManager : bl_MonoBehaviour
         if (!isConnected)
             return;
 
-        health = maxHealth;
         thisPlayerTeam = (Team)photonView.InstantiationData[0];
+
+        if (thisPlayerTeam == Team.Hiding) { health = maxHealth = 100f; }
+        if (thisPlayerTeam == Team.Maniac) { health = maxHealth = 10000f; }
+
         if (isMine)
         {
             bl_GameManager.isLocalAlive = true;
