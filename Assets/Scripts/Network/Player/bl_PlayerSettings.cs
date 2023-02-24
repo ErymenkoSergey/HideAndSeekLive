@@ -25,16 +25,11 @@ public class bl_PlayerSettings : bl_PhotonHelper
     public bl_FPArmsMaterial armsMaterial;
     private List<bl_FPArmsMaterial.MaterialColor> currentWeaponMaterials = new List<bl_FPArmsMaterial.MaterialColor>();
 
-    //public CharacterController m_CharacterController; 
-    //private bl_PlayerReferences playerReferences;
-
     private void Awake()
     {
-        if (!PhotonNetwork.IsConnected || !PhotonNetwork.InRoom) return;
+        if (!PhotonNetwork.IsConnected || !PhotonNetwork.InRoom)
+            return;
         PlayerTeam = (Team)photonView.InstantiationData[0];
-
-        //playerReferences = GetComponent<bl_PlayerReferences>();
-        //m_CharacterController = playerReferences.characterController;
 
         if (isMine)
         {
@@ -62,7 +57,6 @@ public class bl_PlayerSettings : bl_PhotonHelper
         gameObject.tag = RemoteTag;
         gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
 
-        //Build Player Data
         MFPSPlayer playerData = new MFPSPlayer()
         {
             Name = photonView.Owner.NickName,
@@ -137,9 +131,6 @@ public class bl_PlayerSettings : bl_PhotonHelper
     }
 #endif
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void DoSpawnWeaponRenderEffect(Renderer[] renderers)
     {
         if (!bl_GameData.Instance.doSpawnHandMeshEffect) return;
@@ -166,10 +157,6 @@ public class bl_PlayerSettings : bl_PhotonHelper
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
     IEnumerator DoSpawnLoop()
     {
         float d = 0;
@@ -207,14 +194,4 @@ public class bl_PlayerSettings : bl_PhotonHelper
     public bool isLocal { get { return photonView.IsMine; } }
     public PhotonView View { get { return photonView; } }
     public bool isTeamMate { get { return (PlayerTeam == PhotonNetwork.LocalPlayer.GetPlayerTeam() && !isOneTeamMode); } }
-
-    //public void SetPositionNet(Transform transform)
-    //{
-    //    Debug.Log($"OnTriggerStay 5 ");
-    //    //_isTeleportation = true;
-    //    m_CharacterController.enabled = false;
-    //    transform.position = transform.position;
-    //    m_CharacterController.enabled = true;
-    //    //_isTeleportation = false;
-    //}
 }

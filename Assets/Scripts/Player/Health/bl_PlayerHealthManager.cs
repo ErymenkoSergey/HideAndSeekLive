@@ -67,7 +67,8 @@ public class bl_PlayerHealthManager : bl_MonoBehaviour
     #region Unity Callbacks
     protected override void Awake()
     {
-        if (!PhotonNetwork.IsConnected) return;
+        if (!PhotonNetwork.IsConnected) 
+            return;
 
         base.Awake();
         playerReferences = GetComponent<bl_PlayerReferences>();

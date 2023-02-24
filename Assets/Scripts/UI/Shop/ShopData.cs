@@ -25,7 +25,6 @@ public class ShopData : ScriptableObject
 
     public void SetSkinPlayer(int index)
     {
-        Debug.Log($"SetSkinPlayer {index}");
         bl_GameData.Instance.Player1 = SkinShopItems[index].Prefab.GetComponent<bl_PlayerNetwork>();
         bl_GameData.Instance.Player2 = SkinShopItems[index].Prefab.GetComponent<bl_PlayerNetwork>();
     }

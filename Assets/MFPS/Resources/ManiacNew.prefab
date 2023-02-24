@@ -41839,7 +41839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d5588cc794522e42b421a679950ae07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerTeam: 2
+  PlayerTeam: 0
   RemoteOnlyScripts:
   - {fileID: 3995055414408353784}
   LocalOnlyScripts:
