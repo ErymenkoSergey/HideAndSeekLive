@@ -57,7 +57,7 @@ public class bl_SpawnPoint : MonoBehaviour {
         _gizmo.Draw(transform, c, SpawnSpace);
         if (bl_SpawnPointManager.Instance.SpawnPointPlayerGizmo != null)
         {
-            Gizmos.DrawWireMesh(bl_SpawnPointManager.Instance.SpawnPointPlayerGizmo, transform.position, transform.rotation, Vector3.one * 2.75f);
+            //Gizmos.DrawWireMesh(bl_SpawnPointManager.Instance.SpawnPointPlayerGizmo, transform.position, transform.rotation, Vector3.one * 2.75f);
         }
         Gizmos.DrawLine(base.transform.position + ((base.transform.forward * this.SpawnSpace)), base.transform.position + (((base.transform.forward * 2f) * this.SpawnSpace)));
     }

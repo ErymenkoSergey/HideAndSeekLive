@@ -438,9 +438,6 @@ public class bl_Lobby : bl_PhotonHelper, IConnectionCallbacks, ILobbyCallbacks, 
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void LoadLocalLevel(string level)
     {
         bl_LobbyUI.Instance.blackScreenFader.FadeIn(0.75f, () =>
@@ -450,7 +447,7 @@ public class bl_Lobby : bl_PhotonHelper, IConnectionCallbacks, ILobbyCallbacks, 
     }
     #endregion
 
-    void GetPlayerName()
+    private void GetPlayerName()
     {
         bool isNameEmpty = string.IsNullOrEmpty(PhotonNetwork.NickName);
         if (isNameEmpty)

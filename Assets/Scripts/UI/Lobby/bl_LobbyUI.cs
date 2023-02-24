@@ -46,9 +46,6 @@ public class bl_LobbyUI : MonoBehaviour
     private string currentWindow = "";
     #endregion
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void InitialSetup()
     {
         cachedRoomList = new Dictionary<string, RoomInfo>();
@@ -62,9 +59,6 @@ public class bl_LobbyUI : MonoBehaviour
         blackScreenFader.SetAlpha(1);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     private void OnEnable()
     {
 #if ULSP
@@ -72,10 +66,7 @@ public class bl_LobbyUI : MonoBehaviour
 #endif
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    void OnDisable()
+    private void OnDisable()
     {
         bl_EventHandler.onGameSettingsChange -= ApplyRuntimeSettings;
 #if LOCALIZATION
@@ -101,10 +92,7 @@ public class bl_LobbyUI : MonoBehaviour
         InstanceRoomList();
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    void InstanceRoomList()
+    private void InstanceRoomList()
     {
         if (cachedRoomList.Count > 0)
         {
@@ -132,9 +120,6 @@ public class bl_LobbyUI : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     private void UpdateCachedRoomList(List<RoomInfo> roomList)
     {
         foreach (RoomInfo info in roomList)
@@ -162,39 +147,35 @@ public class bl_LobbyUI : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void ChangeWindow(string window)
     {
-        if (window == currentWindow) return;//return if we are trying to open the opened window
+        if (window == currentWindow)
+            return;//return if we are trying to open the opened window
         WindowUI w = windows.Find(x => x.Name == window);
-        if (w == null) return;//the window with that windowName doesn't exist
+        if (w == null)
+            return;//the window with that windowName doesn't exist
 
-        StopCoroutine("DoChangeWindow");
-        StartCoroutine("DoChangeWindow", w);
+        StopCoroutine(DoChangeWindow(w));
+        //StopCoroutine("DoChangeWindow");
+        StartCoroutine(DoChangeWindow(w));
         currentWindow = window;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void SetEnableWindow(string windowName, bool active)
     {
         WindowUI w = windows.Find(x => x.Name == windowName);
-        if (w == null || w.UIRoot == null) return;//the window with that windowName doesn't exist
+        if (w == null || w.UIRoot == null)
+            return;//the window with that windowName doesn't exist
 
         w.UIRoot.SetActive(active);
-        if (w.MenuButton != null) w.MenuButton.interactable = !active;
+        if (w.MenuButton != null)
+            w.MenuButton.interactable = !active;
     }
 
     public void Home() { ChangeWindow(MainWindowName); bl_Lobby.Instance.onShowMenu?.Invoke(); }
     public void HideAll() { currentWindow = ""; windows.ForEach(x => { if (x.UIRoot != null) { x.UIRoot.SetActive(false); } }); }//disable all windows 
 
-    /// <summary>
-    /// 
-    /// </summary>
-    IEnumerator DoChangeWindow(WindowUI window)
+    private IEnumerator DoChangeWindow(WindowUI window)
     {
         //now change the windows
         for (int i = 0; i < windows.Count; i++)
@@ -231,18 +212,12 @@ public class bl_LobbyUI : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void ChangeOptionsWindow(int id)
     {
         foreach (GameObject g in OptionsWindows) { g.SetActive(false); }
         OptionsWindows[id].SetActive(true);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void ShowPopUpWindow(string popUpName)
     {
         PopUpWindows w = popUpWindows.Find(x => x.Name == popUpName);
@@ -251,9 +226,6 @@ public class bl_LobbyUI : MonoBehaviour
         w.Window.SetActive(true);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     private void Update()
     {
         if (PhotonNetwork.IsConnected && bl_GameData.isDataCached)
@@ -268,9 +240,6 @@ public class bl_LobbyUI : MonoBehaviour
     }
 
     #region Settings
-    /// <summary>
-    /// 
-    /// </summary>
     public void LoadSettings()
     {
         ApplyRuntimeSettings();
@@ -308,10 +277,7 @@ public class bl_LobbyUI : MonoBehaviour
 #endif
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    void ApplyRuntimeSettings()
+    private void ApplyRuntimeSettings()
     {
         if (bl_MFPS.Settings != null)
         {
@@ -324,9 +290,6 @@ public class bl_LobbyUI : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void FullSetUp()
     {
         List<Dropdown.OptionData> od = new List<Dropdown.OptionData>();
@@ -362,10 +325,7 @@ public class bl_LobbyUI : MonoBehaviour
         SetRegionDropdown();
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    void OnLanguageChange(Dictionary<string, string> lang)
+    private void OnLanguageChange(Dictionary<string, string> lang)
     {
 #if LOCALIZATION
         NoRoomText.text = bl_Localization.Instance.GetText("norooms");
@@ -373,19 +333,13 @@ public class bl_LobbyUI : MonoBehaviour
 #endif
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void ResetSettings()
     {
         LoadSettings();
         FullSetUp();
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    void SetRegionDropdown()
+    private void SetRegionDropdown()
     {
         //when Photon Server is used
         if (!PhotonNetwork.PhotonServerSettings.AppSettings.UseNameServer)
@@ -411,9 +365,6 @@ public class bl_LobbyUI : MonoBehaviour
     #endregion
 
     #region UI Callbacks
-    /// <summary>
-    /// 
-    /// </summary>
     public void EnterName(InputField field = null)
     {
         if (field == null || string.IsNullOrEmpty(field.text))
@@ -437,9 +388,6 @@ public class bl_LobbyUI : MonoBehaviour
 #endif
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void EnterPassword(InputField field = null)
     {
         if (field == null || string.IsNullOrEmpty(field.text))
@@ -452,18 +400,12 @@ public class bl_LobbyUI : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void CheckRoomPassword(RoomInfo room)
     {
         EnterPasswordUI.SetActive(true);
         bl_Lobby.Instance.CheckRoomPassword(room);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void OnEnterPassworld(InputField pass)
     {
         if (!bl_Lobby.Instance.SetRoomPassworld(pass.text))
@@ -495,9 +437,6 @@ public class bl_LobbyUI : MonoBehaviour
 #endif
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void ShowBuyCoins()
     {
 #if SHOP
@@ -515,9 +454,6 @@ public class bl_LobbyUI : MonoBehaviour
     }
 #endif
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void Quit()
     {
         confirmationWindow.AskConfirmation(bl_GameTexts.QuitGameConfirmation, () =>
@@ -533,7 +469,7 @@ public class bl_LobbyUI : MonoBehaviour
     #endregion
 
     #region Classes
-    [System.Serializable]
+    [Serializable]
     public class WindowUI
     {
         public string Name;
@@ -546,14 +482,14 @@ public class bl_LobbyUI : MonoBehaviour
         public bool showTopMenu = true;
     }
 
-    [System.Serializable]
+    [Serializable]
     public class PopUpWindows
     {
         public string Name;
         public GameObject Window;
     }
 
-    [System.Serializable]
+    [Serializable]
     public class LevelUI
     {
         public GameObject Root;
