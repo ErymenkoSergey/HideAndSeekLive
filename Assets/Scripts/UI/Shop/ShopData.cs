@@ -27,11 +27,11 @@ public class ShopData : ScriptableObject
     {
         var skinHiding = SkinShopItems[index].Prefab.GetComponent<bl_PlayerNetwork>();
         skinHiding.GetComponent<bl_PlayerSettings>().PlayerTeam = Team.Hiding;
-        bl_GameData.Instance.Player1 = skinHiding;// SkinShopItems[index].Prefab.GetComponent<bl_PlayerNetwork>();
+        bl_GameData.Instance.Player1 = skinHiding;
 
         var skinManiac = SkinShopItems[index].Prefab.GetComponent<bl_PlayerNetwork>();
         skinManiac.GetComponent<bl_PlayerSettings>().PlayerTeam = Team.Maniac;
-        bl_GameData.Instance.Player2 = skinManiac;// SkinShopItems[index].Prefab.GetComponent<bl_PlayerNetwork>();
+        bl_GameData.Instance.Player2 = skinManiac;
     }
 
     [Serializable]
