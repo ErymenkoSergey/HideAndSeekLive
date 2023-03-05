@@ -176,6 +176,10 @@ MonoBehaviour:
     m_Scene: {fileID: 102900000, guid: 4cc1f2b5a62fb4f4c8d17ba1caa662b4, type: 3}
     RealSceneName: Map_001
     Preview: {fileID: 21300000, guid: ca37e507e47f9f148b92dd984e3137f3, type: 3}
+  - ShowName: Funny Maniac
+    m_Scene: {fileID: 102900000, guid: 08ee7acc66b874749a553a78e0372178, type: 3}
+    RealSceneName: Map_002
+    Preview: {fileID: 21300000, guid: bb6c5a532f76ed742a1d82e1ccf1c62d, type: 3}
   gameModes:
   - ModeName: Maniac
     gameMode: 9
