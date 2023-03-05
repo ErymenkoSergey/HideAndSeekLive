@@ -31,6 +31,11 @@ MonoBehaviour:
     Prefab: {fileID: 8639082208406035709, guid: b4640019724fd9f438a076d1c79d2c06,
       type: 3}
     _isAcquired: 1
+  - Name: Mishelle
+    Icon: {fileID: 21300000, guid: 6be4c268ac431e24fb9dae6574bf65ed, type: 3}
+    Prefab: {fileID: 4190774471646930293, guid: 20316ef762cd8b242a96e66c4034c844,
+      type: 3}
+    _isAcquired: 1
   _weaponShopItem: []
   CurrentIndexSkin: 0
   CurrentIndexWeapon: 0
