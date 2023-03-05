@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2e4b222eac9c5640865e9bf38ee98db, type: 3}
   m_Name: Weapon Slot Ruler
   m_EditorClassIdentifier: 
-  primarySlots: 08000000
+  primarySlots: 06000000
   secondarySlots: 05000000
-  perksSlots: 06000000
-  letalSlots: 02000000
+  perksSlots: 05000000
+  letalSlots: 06000000

@@ -41526,6 +41526,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AllGuns:
   - {fileID: 3272793904745684351}
+  - {fileID: 3459872043310535979}
+  - {fileID: 4793923206718412892}
   PlayerEquip:
   - {fileID: 0}
   - {fileID: 0}
@@ -41804,8 +41806,8 @@ MonoBehaviour:
   HeadTarget: {fileID: 3956520332216817482}
   SmoothingDelay: 8
   NetworkGuns:
-  - {fileID: 3995649375439485624}
   - {fileID: 3995635924035363800}
+  - {fileID: 3995649375439485624}
   - {fileID: 3994703429747509940}
   m_PositionModel:
     SynchronizeEnabled: 1
@@ -41839,7 +41841,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d5588cc794522e42b421a679950ae07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerTeam: 0
+  PlayerTeam: 2
   RemoteOnlyScripts:
   - {fileID: 3995055414408353784}
   LocalOnlyScripts:

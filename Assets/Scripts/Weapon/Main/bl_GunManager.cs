@@ -621,9 +621,6 @@ public class bl_GunManager : bl_MonoBehaviour
         pickupManager.ThrowGun(actualID, throwPosition, info, AutoDestroy);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public bl_Gun GetGunOnListById(int id)
     {
         bl_Gun gun = null;
