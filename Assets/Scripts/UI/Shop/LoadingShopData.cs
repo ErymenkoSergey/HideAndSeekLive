@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using static ShopData;
 
 public class LoadingShopData : MonoBehaviour
@@ -8,9 +7,11 @@ public class LoadingShopData : MonoBehaviour
     [SerializeField] private ShopData _shopData;
     [SerializeField] private GameObject _uiPrefabContent;
     [SerializeField] private Transform _contentSkins, _contentWeapon;
+    [SerializeField] private Image _iconSkin;
 
     private void Start()
     {
+        OnVisualCharacter(_shopData.CurrentIndexSkin);
         LoadUIContent(_shopData.SkinShopItems, _contentSkins);
     }
 
@@ -22,8 +23,14 @@ public class LoadingShopData : MonoBehaviour
         }
     }
 
+    private void OnVisualCharacter(int index)
+    {
+        _iconSkin.sprite = _shopData.SkinShopItems[index].Icon;
+    }
+
     public void SelectSkin(int id)
     {
         _shopData.SetSkinPlayer(id);
+        OnVisualCharacter(id);
     }
 }

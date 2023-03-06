@@ -10,8 +10,8 @@ public class ShopData : ScriptableObject
     [SerializeField] private ShopItem[] _weaponShopItem;
     public ShopItem[] WeaponShopItem => _weaponShopItem;
 
-    public int CurrentIndexSkin = 0;
-    public int CurrentIndexWeapon = 0;
+    public int CurrentIndexSkin;
+    public int CurrentIndexWeapon;
 
     public bl_PlayerNetwork GetSkinHiding()
     {
