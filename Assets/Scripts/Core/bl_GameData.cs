@@ -328,12 +328,18 @@ public class bl_GameData : ScriptableObject
         public int ScorePerKill = 50;
         public int ScorePerHeadShot = 25;
         public int ScoreForWinMatch = 100;
+        public int CoeficientWin = 7;
         [Tooltip("Per minute played")]
         public int ScorePerTimePlayed = 3;
 
+        [Header("maximum time out to leave")]
+        public float MaxTimeOutLobby = 60f;
+
         public int GetScorePerTimePlayed(int time)
         {
-            if (ScorePerTimePlayed <= 0) return 0;
+            if (ScorePerTimePlayed <= 0) 
+                return 0;
+
             return time * ScorePerTimePlayed;
         }
     }
@@ -345,11 +351,13 @@ public class bl_GameData : ScriptableObject
         [Tooltip("how much score/xp worth one coin")]
         public int CoinScoreValue = 1000;//how much score/xp worth one coin
 
-        public int UserCoins { get; set; }
+        public int UserCoins;// { get; private set; }
+        [SerializeField] private int _totalCoins;
 
         public void LoadCoins(string userName)
         {
             UserCoins = PlayerPrefs.GetInt(string.Format("{0}.{1}", userName, PropertiesKeys.UserCoins), InitialCoins);
+            _totalCoins = UserCoins;
         }
 
         public void SetCoins(int coins, string userName)

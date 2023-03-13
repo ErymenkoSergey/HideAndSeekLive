@@ -16,11 +16,6 @@ namespace MFPS.Runtime.UI
         private Action callback;
         private Action cancelCallback;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="description"></param>
-        /// <param name="onAccept"></param>
         public void AskConfirmation(string description, Action onAccept, Action onCancel = null)
         {
             callback = onAccept;
@@ -31,9 +26,6 @@ namespace MFPS.Runtime.UI
             content.SetActive(true);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         public void Confirm()
         {
             callback?.Invoke();
@@ -41,9 +33,6 @@ namespace MFPS.Runtime.UI
             content.SetActive(false);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         public void Cancel()
         {
             callback = null;

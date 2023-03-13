@@ -60,7 +60,9 @@ public class bl_Lobby : bl_PhotonHelper, IConnectionCallbacks, ILobbyCallbacks, 
 
         StartCoroutine(StartFade());//show loading screen
 
-        if(bl_AudioController.Instance != null) { bl_AudioController.Instance.PlayBackground(); }
+        if (bl_AudioController.Instance != null)
+            bl_AudioController.Instance.PlayBackground();
+
         if (bl_GameData.isDataCached)
         {
             SetUpGameModes();
@@ -68,6 +70,7 @@ public class bl_Lobby : bl_PhotonHelper, IConnectionCallbacks, ILobbyCallbacks, 
             bl_LobbyUI.Instance.FullSetUp();
         }
         bl_LobbyUI.Instance.InitialSetup();
+        //bl_LobbyUI.Instance.UpdateCoinsText();
     }
 
     /// <summary>
@@ -688,7 +691,10 @@ public class bl_Lobby : bl_PhotonHelper, IConnectionCallbacks, ILobbyCallbacks, 
     {
         Debug.Log($"Player <b>{PhotonNetwork.LocalPlayer.UserId}</b> joined to the lobby");
         bl_LobbyUI.Instance.Home();
-        if (PendingRegion != -1) { }
+        bl_LobbyUI.Instance.UpdateCoinsText();
+
+        if (PendingRegion != -1) 
+        { }
         StartCoroutine(ShowLoadingScreen(true, 2));
 
         SetLobbyChat(true);

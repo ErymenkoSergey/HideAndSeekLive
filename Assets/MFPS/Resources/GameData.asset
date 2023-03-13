@@ -45,10 +45,14 @@ MonoBehaviour:
     ScorePerKill: 100
     ScorePerHeadShot: 25
     ScoreForWinMatch: 500
+    CoeficientWin: 7
     ScorePerTimePlayed: 3
+    MaxTimeOutLobby: 60
   VirtualCoins:
     InitialCoins: 1000
     CoinScoreValue: 100
+    UserCoins: 1374
+    _totalCoins: 1374
   AllWeapons:
   - Name: Rifle
     Type: 1
@@ -190,8 +194,8 @@ MonoBehaviour:
     onRoundStartedSpawn: 0
     onPlayerDie: 1
     GoalName: Rounds
-    maxPlayers: 08000000
-    GameGoalsOptions: 3c00000078000000b40000002c0100000a000000
+    maxPlayers: 64000000
+    GameGoalsOptions: 3c00000078000000b40000002c010000f4010000
     timeLimits: 2c010000a4010000e00100005802000084030000b0040000
   - ModeName: Team Death Match
     gameMode: 0

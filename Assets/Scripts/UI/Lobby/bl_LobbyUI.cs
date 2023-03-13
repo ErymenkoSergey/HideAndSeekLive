@@ -456,11 +456,13 @@ public class bl_LobbyUI : MonoBehaviour
 
     public void Quit()
     {
-        confirmationWindow.AskConfirmation(bl_GameTexts.QuitGameConfirmation, () =>
-         {
-             Application.Quit();
-             Debug.Log("Game quit only work on the game build.");
-         });
+        Debug.Log("Game quit only work on the game build.");
+        Application.Quit();
+        //confirmationWindow.AskConfirmation(bl_GameTexts.QuitGameConfirmation, () =>
+        // {
+        //     Application.Quit();
+        //     Debug.Log("Game quit only work on the game build.");
+        // });
     }
 
     public void AutoMatch() { bl_Lobby.Instance.AutoMatch(); }

@@ -1,12 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
-using Photon.Realtime;
 using MFPS.Internal.Interfaces;
 
 public class bl_GameFinish : bl_PhotonHelper, IMFPSResumeScreen
 {
-
     [SerializeField] private Text PlayerNameText;
     [SerializeField] private Text KillsText;
     [SerializeField] private Text DeathsText;
@@ -22,17 +20,11 @@ public class bl_GameFinish : bl_PhotonHelper, IMFPSResumeScreen
     private bl_DataBase DataBase;
 #endif
 
-    /// <summary>
-    /// 
-    /// </summary>
-    void OnEnable()
+    private void OnEnable()
     {
         bl_UIReferences.Instance.ResumeScreen = this;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void CollectData()
     {
         int kills = PhotonNetwork.LocalPlayer.GetKills();
@@ -44,15 +36,23 @@ public class bl_GameFinish : bl_PhotonHelper, IMFPSResumeScreen
         int timePlayed = Mathf.RoundToInt(bl_GameManager.Instance.PlayedTime);
         int scorePerTime = timePlayed * bl_GameData.Instance.ScoreReward.ScorePerTimePlayed;
         int hsscore = bl_GameManager.Instance.Headshots * bl_GameData.Instance.ScoreReward.ScorePerHeadShot;
-        bool winner = bl_GameManager.Instance.isLocalPlayerWinner();
-        int winScore = (winner) ? bl_GameData.Instance.ScoreReward.ScoreForWinMatch : 0;
+        bool isWinner = bl_GameManager.Instance.isLocalPlayerWinner();
+        int winScore = (isWinner) ? bl_GameData.Instance.ScoreReward.ScoreForWinMatch : 0;
         PlayerNameText.text = PhotonNetwork.NickName;
         int tscore = score + winScore + scorePerTime;
+
+        
 
         int coins = 0;
         if (tscore > 0 && bl_GameData.Instance.VirtualCoins.CoinScoreValue > 0 && tscore > bl_GameData.Instance.VirtualCoins.CoinScoreValue)
         {
-            coins = tscore / bl_GameData.Instance.VirtualCoins.CoinScoreValue;
+            coins = tscore;// / bl_GameData.Instance.VirtualCoins.CoinScoreValue;
+
+            if (isWinner)
+            {
+               var coinss = tscore * bl_GameData.Instance.ScoreReward.CoeficientWin;
+               coins = coinss;
+            }
         }
 #if LOCALIZATION
         KillsText.text = string.Format("{0}: <b>{1}</b>", bl_Localization.Instance.GetText(126).ToUpper(), kills);
@@ -99,18 +99,12 @@ public class bl_GameFinish : bl_PhotonHelper, IMFPSResumeScreen
 #endif
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void Show()
     {
         Content.SetActive(true);
-        Invoke(nameof(GoToLobby), 60);//maximum time out to leave.
+        Invoke(nameof(GoToLobby), bl_GameData.Instance.ScoreReward.MaxTimeOutLobby);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void GoToLobby()
     {
         CancelInvoke();
@@ -123,5 +117,4 @@ public class bl_GameFinish : bl_PhotonHelper, IMFPSResumeScreen
             bl_UtilityHelper.LoadLevel(bl_GameData.Instance.MainMenuScene);
         }
     }
-
 }
