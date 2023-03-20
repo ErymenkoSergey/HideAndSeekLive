@@ -432,8 +432,8 @@ public class bl_LobbyUI : MonoBehaviour
             PlayerCoinsText.text = bl_DataBase.Instance.LocalUser.Coins.ToString();
         }
 #else
-            bl_GameData.Instance.VirtualCoins.LoadCoins(PhotonNetwork.NickName);
-            PlayerCoinsText.text = bl_GameData.Instance.VirtualCoins.UserCoins.ToString();
+        bl_GameData.Instance.VirtualCoins.LoadCoins(PhotonNetwork.NickName);
+        PlayerCoinsText.text = bl_GameData.Instance.VirtualCoins.UserCoins.ToString();
 #endif
     }
 

@@ -41,7 +41,7 @@ public class bl_GameFinish : bl_PhotonHelper, IMFPSResumeScreen
         PlayerNameText.text = PhotonNetwork.NickName;
         int tscore = score + winScore + scorePerTime;
 
-        
+
 
         int coins = 0;
         if (tscore > 0 && bl_GameData.Instance.VirtualCoins.CoinScoreValue > 0 && tscore > bl_GameData.Instance.VirtualCoins.CoinScoreValue)
@@ -50,8 +50,8 @@ public class bl_GameFinish : bl_PhotonHelper, IMFPSResumeScreen
 
             if (isWinner)
             {
-               var coinss = tscore * bl_GameData.Instance.ScoreReward.CoeficientWin;
-               coins = coinss;
+                var coinss = tscore * bl_GameData.Instance.ScoreReward.CoeficientWin;
+                coins = coinss;
             }
         }
 #if LOCALIZATION

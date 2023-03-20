@@ -179,9 +179,9 @@ public class bl_GameData : ScriptableObject
         return false;
     }
 
-//#if CLANS
-//    private string _role = string.Empty;
-//#endif
+    //#if CLANS
+    //    private string _role = string.Empty;
+    //#endif
     public string RolePrefix
     {
         get
@@ -287,7 +287,7 @@ public class bl_GameData : ScriptableObject
     {
         for (int i = 0; i < AllScenes.Count; i++)
         {
-            if (AllScenes[i].m_Scene == null) 
+            if (AllScenes[i].m_Scene == null)
                 continue;
             AllScenes[i].RealSceneName = AllScenes[i].m_Scene.name;
         }
@@ -337,7 +337,7 @@ public class bl_GameData : ScriptableObject
 
         public int GetScorePerTimePlayed(int time)
         {
-            if (ScorePerTimePlayed <= 0) 
+            if (ScorePerTimePlayed <= 0)
                 return 0;
 
             return time * ScorePerTimePlayed;
