@@ -101,6 +101,7 @@ public class bl_GameInput
 
     public static bool Pause(GameInputType inputType = GameInputType.Down)
     {
+        //Debug.LogError($"Pause Pause ");
 #if INPUT_MANAGER
         if (bl_Input.isGamePad)
         {

@@ -13,6 +13,9 @@ public class bl_Maniac : bl_PhotonHelper, IGameMode
         if (!PhotonNetwork.IsConnected)
             return;
 
+        if (bl_GameData.Instance.singleMode)
+            return;
+
         Initialize();
     }
 

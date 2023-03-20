@@ -45,10 +45,14 @@ MonoBehaviour:
     ScorePerKill: 100
     ScorePerHeadShot: 25
     ScoreForWinMatch: 500
+    CoeficientWin: 7
     ScorePerTimePlayed: 3
+    MaxTimeOutLobby: 60
   VirtualCoins:
     InitialCoins: 1000
     CoinScoreValue: 100
+    UserCoins: 0
+    _totalCoins: 0
   AllWeapons:
   - Name: Rifle
     Type: 1
@@ -186,7 +190,7 @@ MonoBehaviour:
     isEnabled: 1
     supportBots: 0
     AutoTeamSelection: 0
-    RequiredPlayersToStart: 2
+    RequiredPlayersToStart: 1
     onRoundStartedSpawn: 0
     onPlayerDie: 1
     GoalName: Rounds

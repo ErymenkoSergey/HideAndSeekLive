@@ -11,6 +11,7 @@ using MFPS.Internal.Structures;
 public class bl_GameData : ScriptableObject
 {
     [Header("Game Settings")]
+    public bool singleMode = true;
     public bool offlineMode = false;
     public bool UseLobbyChat = true;
     public bool UseVoiceChat = true;
