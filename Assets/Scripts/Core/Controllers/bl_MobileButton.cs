@@ -112,8 +112,9 @@ public class bl_MobileButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     /// <summary>
     /// 
     /// </summary>
-    public void OnPointerDown(PointerEventData eventData)
+    public void OnPointerDown(PointerEventData eventData) // нажатия теперь работают
     {
+        Debug.Log($"OnPointerDown  ButtonName {ButtonName}");
         buttonState = ButtonState.Click;
         onClick?.Invoke();
         for (int i = 0; i < buttonGraphics.Length; i++)

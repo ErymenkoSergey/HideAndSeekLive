@@ -219,7 +219,7 @@ public class bl_FirstPersonController : bl_MonoBehaviour
         {
             slideForce -= Time.deltaTime * slideFriction;
             speed = slideForce;
-            if (bl_GameInput.Jump())
+            if (bl_MobileInput.Jump())
             {
                 State = PlayerState.Jumping;
                 m_Jump = true;
@@ -231,7 +231,7 @@ public class bl_FirstPersonController : bl_MonoBehaviour
 
         if (!m_Jump && State != PlayerState.Crouching && (Time.time - lastJumpTime) > JumpMinRate)
         {
-            m_Jump = bl_GameInput.Jump();
+            m_Jump = bl_MobileInput.Jump();
         }
 
         if (State != PlayerState.Jumping && State != PlayerState.Climbing)
@@ -240,7 +240,7 @@ public class bl_FirstPersonController : bl_MonoBehaviour
                 return;
             if (KeepToCrouch)
             {
-                Crounching = bl_GameInput.Crouch();
+                Crounching = bl_MobileInput.Crouch();
                 if (Crounching != lastCrouchState)
                 {
                     OnCrouchChanged();
@@ -250,7 +250,7 @@ public class bl_FirstPersonController : bl_MonoBehaviour
             }
             else
             {
-                if (bl_GameInput.Crouch(GameInputType.Down))
+                if (bl_MobileInput.Crouch(GameInputType.Down))
                 {
                     Crounching = !Crounching;
                     OnCrouchChanged();
@@ -643,7 +643,7 @@ public class bl_FirstPersonController : bl_MonoBehaviour
             m_MoveDir.y = desiredMove.y * climbSpeed;
             m_MoveDir.x = desiredMove.x * climbSpeed;
             m_MoveDir.z = desiredMove.z * climbSpeed;
-            if (bl_GameInput.Jump())
+            if (bl_MobileInput.Jump())
             {
                 ToggleClimbing();
                 m_Ladder.JumpOut();
@@ -721,8 +721,16 @@ public class bl_FirstPersonController : bl_MonoBehaviour
         { speed = 0; return; }
 
         // Read input
-        HorizontalInput = bl_GameInput.Horizontal;
-        VerticalInput = bl_GameInput.Vertical;
+        if (bl_GameData.Instance.MobileInput == false)
+        {
+            HorizontalInput = bl_MobileInput.Horizontal;
+            VerticalInput = bl_MobileInput.Vertical;
+        }
+        else
+        {
+            HorizontalInput = bl_MobileInput.MobileHorizontal;
+            VerticalInput = bl_MobileInput.MobileVertical;
+        }
 
 #if MFPSM
         if (bl_UtilityHelper.isMobile)
@@ -750,11 +758,11 @@ public class bl_FirstPersonController : bl_MonoBehaviour
                 {
                     // On standalone builds, walk/run speed is modified by a key press.
                     // keep track of whether or not the character is walking or running
-                    if (bl_GameInput.Run() && State != PlayerState.Crouching && VelocityMagnitude > 0)
+                    if (bl_MobileInput.Run() && State != PlayerState.Crouching && VelocityMagnitude > 0)
                     {
                         State = PlayerState.Running;
                     }
-                    else if (bl_GameInput.Run(GameInputType.Up) && State != PlayerState.Crouching && VelocityMagnitude > 0)
+                    else if (bl_MobileInput.Run(GameInputType.Up) && State != PlayerState.Crouching && VelocityMagnitude > 0)
                     {
                         State = PlayerState.Walking;
                     }

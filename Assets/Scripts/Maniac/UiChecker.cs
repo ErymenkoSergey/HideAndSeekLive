@@ -8,26 +8,31 @@ public class UiChecker : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log($"Application {Application.platform}");
-        CheckPlatform();
+        //Debug.Log($"Application {Application.platform}");
+        ////CheckPlatform();
+
+        SetControl(true);
     }
 
-    private void CheckPlatform()
-    {
-        if (Application.platform == RuntimePlatform.Android)
-        {
-            SetControl(true);
-        }
-        if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
-        {
-            SetControl(false);
-        }
-    }
+    //private void CheckPlatform()
+    //{
+    //    if (bl_GameData.Instance.MobileInput)
+    //    {
+    //        bl_GameData.Instance.MobileInput = true;
+    //        SetControl(true);
+    //    }
+    //    else
+    //    if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
+    //    {
+    //        bl_GameData.Instance.MobileInput = false;
+    //        SetControl(false);
+    //    }
+    //}
 
     private void SetControl(bool isTach)
     {
         _mobileControler.SetActive(isTach);
-        _pcControlerWeapons.SetActive(!isTach);
-        _pcControlerBullets.SetActive(!isTach);
+        //_pcControlerWeapons.SetActive(!isTach);
+        //_pcControlerBullets.SetActive(!isTach);
     }
 }

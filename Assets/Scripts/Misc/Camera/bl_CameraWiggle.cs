@@ -38,9 +38,9 @@ public class bl_CameraWiggle : bl_MonoBehaviour
 
         if (bl_RoomMenu.Instance.isCursorLocked)
         {
-            float t_amount = -bl_GameInput.MouseX * this.tiltAngle;
+            float t_amount = -bl_MobileInput.MouseX * this.tiltAngle;
             t_amount = Mathf.Clamp(t_amount, -this.tiltAngle, this.tiltAngle);
-            if (!bl_GameInput.Aim())
+            if (!bl_MobileInput.Aim())
             {
                 m_transform.localRotation = Quaternion.Lerp(this.m_transform.localRotation, Quaternion.Euler(0, 0, t_amount), Time.deltaTime * this.smooth);
             }

@@ -66,7 +66,7 @@ namespace MFPS.PlayerController
 
             if (ladder == null)
             {
-                horizontalRotation = bl_GameInput.MouseX * CurrentSensitivity;
+                horizontalRotation = bl_MobileInput.MouseX * CurrentSensitivity;
                 horizontalRotation = (InvertHorizontal) ? (horizontalRotation * -1f) : horizontalRotation;
 
                 if (useSmoothing)
@@ -94,7 +94,7 @@ namespace MFPS.PlayerController
                 m_CharacterTargetRot = Quaternion.Slerp(m_CharacterTargetRot, lookRotation, Time.deltaTime * 5);
             }
 
-            verticalRotation = bl_GameInput.MouseY * CurrentSensitivity;
+            verticalRotation = bl_MobileInput.MouseY * CurrentSensitivity;
             verticalRotation = (InvertVertical) ? (verticalRotation * -1f) : verticalRotation;
             if (useSmoothing)
             {

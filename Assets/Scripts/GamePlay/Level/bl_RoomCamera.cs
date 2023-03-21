@@ -73,8 +73,8 @@ public class bl_RoomCamera : bl_MonoBehaviour
     {
         if (!cameraControl) return;
 
-        rotationX += bl_GameInput.MouseX * cameraSensitivity * Time.deltaTime;
-        rotationY += bl_GameInput.MouseY * cameraSensitivity * Time.deltaTime;
+        rotationX += bl_MobileInput.MouseX * cameraSensitivity * Time.deltaTime;
+        rotationY += bl_MobileInput.MouseY * cameraSensitivity * Time.deltaTime;
         rotationY = Mathf.Clamp(rotationY, -90, 90);
 
         transform.localRotation = Quaternion.AngleAxis(rotationX, Vector3.up);
@@ -82,25 +82,25 @@ public class bl_RoomCamera : bl_MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
-            transform.position += transform.forward * (normalMoveSpeed * fastMoveFactor) * bl_GameInput.Vertical * Time.deltaTime;
-            transform.position += transform.right * (normalMoveSpeed * fastMoveFactor) * bl_GameInput.Horizontal * Time.deltaTime;
+            transform.position += transform.forward * (normalMoveSpeed * fastMoveFactor) * bl_MobileInput.Vertical * Time.deltaTime;
+            transform.position += transform.right * (normalMoveSpeed * fastMoveFactor) * bl_MobileInput.Horizontal * Time.deltaTime;
         }
         else if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
         {
-            transform.position += transform.forward * (normalMoveSpeed * slowMoveFactor) * bl_GameInput.Vertical * Time.deltaTime;
-            transform.position += transform.right * (normalMoveSpeed * slowMoveFactor) * bl_GameInput.Horizontal * Time.deltaTime;
+            transform.position += transform.forward * (normalMoveSpeed * slowMoveFactor) * bl_MobileInput.Vertical * Time.deltaTime;
+            transform.position += transform.right * (normalMoveSpeed * slowMoveFactor) * bl_MobileInput.Horizontal * Time.deltaTime;
         }
         else
         {
-            transform.position += transform.forward * normalMoveSpeed * bl_GameInput.Vertical * Time.deltaTime;
-            transform.position += transform.right * normalMoveSpeed * bl_GameInput.Horizontal * Time.deltaTime;
+            transform.position += transform.forward * normalMoveSpeed * bl_MobileInput.Vertical * Time.deltaTime;
+            transform.position += transform.right * normalMoveSpeed * bl_MobileInput.Horizontal * Time.deltaTime;
         }
 
 
         if (Input.GetKey(KeyCode.Q)) { transform.position += transform.up * climbSpeed * Time.deltaTime; }
         if (Input.GetKey(KeyCode.E)) { transform.position -= transform.up * climbSpeed * Time.deltaTime; }
 
-        if (bl_GameInput.Jump())
+        if (bl_MobileInput.Jump())
         {
             bl_UtilityHelper.LockCursor((bl_RoomMenu.Instance.isCursorLocked == false) ? true : false);
         }

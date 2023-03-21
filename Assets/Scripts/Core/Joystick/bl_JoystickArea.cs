@@ -91,9 +91,16 @@ public class bl_JoystickArea : bl_JoystickBase, IPointerDownHandler, IPointerUpH
 
                 stickPosition.x = inputVector.x * (joystickRoot.sizeDelta.x * stickArea);
                 stickPosition.y = inputVector.z * (joystickRoot.sizeDelta.y * stickArea);
+                SetMoved(inputVector.x, inputVector.z);
                 StickRect.anchoredPosition = stickPosition;
             }
         }
+    }
+
+    public void SetMoved(float vectorX, float vectorZ)
+    {
+        bl_MobileInput.MobileHorizontal = vectorX;
+        bl_MobileInput.MobileVertical = vectorZ;
     }
 
     /// <summary>
@@ -109,6 +116,7 @@ public class bl_JoystickArea : bl_JoystickBase, IPointerDownHandler, IPointerUpH
             lastId = -2;
             StickRect.anchoredPosition = Vector3.zero;
             inputVector = Vector3.zero;
+            SetMoved(0, 0);
             if (backImage != null)
             {
                 backImage.CrossFadeColor(idleColor, Duration, true, true);

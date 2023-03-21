@@ -282,7 +282,9 @@ public class bl_Gun : bl_GunBase
     {
         if (bl_GameData.Instance.isChating || !gunManager.isGameStarted || !bl_RoomMenu.Instance.isCursorLocked) return;
 
-        bool fireDown = bl_GameInput.Fire(GameInputType.Down);
+       // bool fireDown = bl_MobileInput.Fire(GameInputType.Down);
+        bool fireDown = bl_MobileInput.GetButtonDown("Fire");
+        Debug.Log($"InputUpdate fireDown {fireDown}");
         // Did the user press fire.... and what kind of weapon are they using ?  ===============
         if (bl_UtilityHelper.isMobile)
         {
@@ -314,7 +316,7 @@ public class bl_Gun : bl_GunBase
                 {
                     SingleFire();
                 }
-                if (bl_GameInput.Fire())//if keep pressed
+                if (bl_MobileInput.Fire())//if keep pressed
                 {
                     LoopFire();
                 }
@@ -347,7 +349,7 @@ public class bl_Gun : bl_GunBase
         }
         else
         {
-            isAiming = bl_GameInput.Aim() && CanAiming;
+            isAiming = bl_MobileInput.Aim() && CanAiming;
         }
 
         if (bl_RoomMenu.Instance.isCursorLocked)
@@ -355,7 +357,7 @@ public class bl_Gun : bl_GunBase
             Crosshair.OnAim(isAiming);
         }
 
-        if (bl_GameInput.Reload() && CanReload)
+        if (bl_MobileInput.Reload() && CanReload)
         {
             Reload();
         }
@@ -381,7 +383,7 @@ public class bl_Gun : bl_GunBase
             {
                 if (WeaponType == GunType.Machinegun)
                 {
-                    isFiring = (bl_GameInput.Fire() && CanFire); // fire is down, gun is firing
+                    isFiring = (bl_MobileInput.Fire() && CanFire); // fire is down, gun is firing
                 }
                 else
                 {
@@ -401,7 +403,7 @@ public class bl_Gun : bl_GunBase
     /// </summary>
     void ChangeTypeFire()
     {
-        bool inp = bl_GameInput.SwitchFireMode();
+        bool inp = bl_MobileInput.SwitchFireMode();
         if (inp)
         {
             switch (WeaponType)

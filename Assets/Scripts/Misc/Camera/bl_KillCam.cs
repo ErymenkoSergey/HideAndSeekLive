@@ -99,8 +99,8 @@ public class bl_KillCam : bl_MonoBehaviour
 
         if (target != null)
         {
-            x += ((bl_GameInput.Horizontal * this.xSpeed) * this.distance) * 0.02f;
-            y -= (bl_GameInput.Vertical * this.ySpeed) * 0.02f;
+            x += ((bl_MobileInput.Horizontal * this.xSpeed) * this.distance) * 0.02f;
+            y -= (bl_MobileInput.Vertical * this.ySpeed) * 0.02f;
             y = bl_UtilityHelper.ClampAngle(this.y, this.yMinLimit, this.yMaxLimit);
             Quaternion quaternion = Quaternion.Euler(this.y, this.x, 0f);
             this.distance = Mathf.Clamp(this.distance - (Input.GetAxis("Mouse ScrollWheel") * 5f), distanceMin, distanceMax);

@@ -93,7 +93,7 @@ public class bl_RoomMenu : bl_MonoBehaviour
     /// </summary>
     void PauseControll()
     {
-        if (bl_GameInput.Pause()) TogglePause();
+        if (bl_MobileInput.Pause()) TogglePause();
     }
 
     /// <summary>
@@ -118,13 +118,13 @@ public class bl_RoomMenu : bl_MonoBehaviour
     {
         if (bl_UIReferences.Instance.isOnlyMenuActive || isFinish) return;
 
-        if (bl_GameInput.Scoreboard())
+        if (bl_MobileInput.Scoreboard())
         {
             bool asb = bl_UIReferences.Instance.isScoreboardActive;
             asb = !asb;
             bl_UIReferences.Instance.ShowScoreboard(asb);
         }
-        else if (bl_GameInput.Scoreboard(GameInputType.Up))
+        else if (bl_MobileInput.Scoreboard(GameInputType.Up))
         {
             bool asb = bl_UIReferences.Instance.isScoreboardActive;
             asb = !asb;

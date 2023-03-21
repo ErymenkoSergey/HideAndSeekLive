@@ -35,6 +35,9 @@ EditorUserSettings:
     RecentlyUsedSceneGuid-9:
       value: 5752575703070b0e0c585e2412775944154f1c7b7b2a27612e281c65b4b2366c
       flags: 0
+    UnityRemoteDevice:
+      value: 225f4d46245b0d4902070862342649191512
+      flags: 0
     lightmappingBakingProfile:
       value: 51
       flags: 0

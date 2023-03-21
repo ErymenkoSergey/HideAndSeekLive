@@ -66,9 +66,9 @@ public class bl_WeaponSway : bl_MonoBehaviour
     {
         if (bl_UtilityHelper.isMobile) return;
 
-        factorX = -bl_GameInput.MouseX * deltaTime * Amount;
-        factorY = -bl_GameInput.MouseY * deltaTime * Amount;
-        factorZ = -bl_GameInput.Vertical * (isAiming ? pushAmplutide * 0.1f : pushAmplutide);
+        factorX = -bl_MobileInput.MouseX * deltaTime * Amount;
+        factorY = -bl_MobileInput.MouseY * deltaTime * Amount;
+        factorZ = -bl_MobileInput.Vertical * (isAiming ? pushAmplutide * 0.1f : pushAmplutide);
         factorX = Mathf.Clamp(factorX, -maxAmount, maxAmount);
         factorY = Mathf.Clamp(factorY, -maxAmount, maxAmount);
         targetVector = new Vector3(defaultPosition.x + factorX, defaultPosition.y + factorY, factorZ);
@@ -80,7 +80,7 @@ public class bl_WeaponSway : bl_MonoBehaviour
     /// </summary>
     void SideMovement()
     {
-        factorX = bl_GameInput.Horizontal;
+        factorX = bl_MobileInput.Horizontal;
         defaultEuler.z = factorX * sideAngleAmplitude;
         defaultEuler.z = -defaultEuler.z;
         defaultRotation = Quaternion.Euler(defaultEuler);

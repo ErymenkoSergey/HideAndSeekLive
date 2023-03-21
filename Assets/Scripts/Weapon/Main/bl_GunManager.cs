@@ -186,31 +186,31 @@ public class bl_GunManager : bl_MonoBehaviour
 #endif
 
 #if !INPUT_MANAGER
-        if (bl_GameInput.WeaponSlot(1))
+        if (bl_MobileInput.WeaponSlot(1))
         {
             ChangeCurrentWeaponTo(0);
         }
-        else if (bl_GameInput.WeaponSlot(2))
+        else if (bl_MobileInput.WeaponSlot(2))
         {
             ChangeCurrentWeaponTo(1);
         }
-        else if (bl_GameInput.WeaponSlot(3))
+        else if (bl_MobileInput.WeaponSlot(3))
         {
             ChangeCurrentWeaponTo(2);
         }
-        else if (bl_GameInput.WeaponSlot(4))
+        else if (bl_MobileInput.WeaponSlot(4))
         {
             ChangeCurrentWeaponTo(3);
         }
 
         //fast fire knife
-        if (bl_GameInput.QuickMelee() && PlayerEquip[3] != null && PlayerEquip[3].m_AllowQuickFire && currentWeaponIndex != 3 && !isFastFire)
+        if (bl_MobileInput.QuickMelee() && PlayerEquip[3] != null && PlayerEquip[3].m_AllowQuickFire && currentWeaponIndex != 3 && !isFastFire)
         {
             DoFastKnifeShot();
         }
 
         //fast throw grenade
-        if (bl_GameInput.QuickNade() && PlayerEquip[2] != null && PlayerEquip[2].AllowQuickFire() && currentWeaponIndex != 2 && !isFastFire)
+        if (bl_MobileInput.QuickNade() && PlayerEquip[2] != null && PlayerEquip[2].AllowQuickFire() && currentWeaponIndex != 2 && !isFastFire)
         {
             DoSingleGrenadeThrow();
         }

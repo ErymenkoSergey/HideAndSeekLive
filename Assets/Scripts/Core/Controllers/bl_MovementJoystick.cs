@@ -11,20 +11,27 @@ public class bl_MovementJoystick : MonoBehaviour
     public bl_JoystickBase sourceJoystick;
     public RectTransform runningIndicator;
     public RectTransform stickTransform;
-   [HideInInspector]public CanvasGroup runningAlpha;
+    [HideInInspector]public CanvasGroup runningAlpha;
 
     public float Vertical
     {
         get
         {
-            if (!bl_MobileInput.Interactable) return 0;
+            Debug.Log($"bl_MovementJoystick Vertical 0 {sourceJoystick.Vertical}");
+
+            if (!bl_MobileInput.Interactable)
+                return 0;
 #if UNITY_EDITOR
             if (bl_MobileInputSettings.Instance.UseKeyboardOnEditor)
             {
+                Debug.Log($"bl_MovementJoystick Vertical {sourceJoystick.Vertical}");
+
                 return Input.GetAxis("Vertical");
             }
 #endif
-            if (Cursor.lockState == CursorLockMode.Locked) { Cursor.lockState = CursorLockMode.None; }
+            if (Cursor.lockState == CursorLockMode.Locked)
+                Cursor.lockState = CursorLockMode.None;
+
             UpdateRunningAlpha(sourceJoystick.Vertical);
             return sourceJoystick.Vertical;
         }
@@ -34,14 +41,17 @@ public class bl_MovementJoystick : MonoBehaviour
     {
         get
         {
-            if (!bl_MobileInput.Interactable) return 0;
+            if (!bl_MobileInput.Interactable)
+                return 0;
 #if UNITY_EDITOR
             if (bl_MobileInputSettings.Instance.UseKeyboardOnEditor)
             {
                 return Input.GetAxis("Horizontal");
             }
 #endif
-            if (Cursor.lockState == CursorLockMode.Locked) { Cursor.lockState = CursorLockMode.None; }
+            if (Cursor.lockState == CursorLockMode.Locked)
+                Cursor.lockState = CursorLockMode.None;
+            bl_MobileInput.MobileHorizontal = sourceJoystick.Horizontal;
             return sourceJoystick.Horizontal;
         }
     }
@@ -65,8 +75,15 @@ public class bl_MovementJoystick : MonoBehaviour
     /// </summary>
     void UpdateRunningAlpha(float vertical)
     {
-        if (runningAlpha == null) return;
-        if (RunningOnMagnitudeOf <= 0 || vertical <= 0) { runningAlpha.alpha = 0; return; }
+        if (runningAlpha == null) 
+            return;
+
+        if (RunningOnMagnitudeOf <= 0 || vertical <= 0) 
+        {
+            runningAlpha.alpha = 0; 
+            return; 
+        }
+        Debug.Log($"UpdateRunningAlpha vertical {vertical}");
 
         float percentage = Mathf.Clamp01(vertical / RunningOnMagnitudeOf);
         runningAlpha.alpha = percentage;
