@@ -69,12 +69,14 @@ public class bl_ChatRoom : bl_MonoBehaviour
 
         if (!bl_GameData.Instance.isChating)
         {
-            if (bl_MobileInput.GeneralChat())
+            //if (bl_MobileInput.GeneralChat())
+            if (bl_MobileInput.GetButtonDown("GeneralChat"))
             {
                 messageTarget = MessageTarget.All;
                 OnSubmit();
             }
-            if (bl_MobileInput.TeamChat())
+            //if (bl_MobileInput.TeamChat())
+            if (bl_MobileInput.GetButtonDown("TeamChat"))
             {
                 messageTarget = MessageTarget.Team;
                 OnSubmit();

@@ -15,7 +15,7 @@ MonoBehaviour:
   m_UseKeyboardOnEditor: 1
   touchPadVerticalSensitivity: 6
   touchPadHorizontalSensitivity: 6
-  useAutoFire: 1
+  useAutoFire: 0
   waitBeforeFire: 0.7
   viewDetectionRange: 50
   detectRate: 10

@@ -316,7 +316,8 @@ public class bl_Gun : bl_GunBase
                 {
                     SingleFire();
                 }
-                if (bl_MobileInput.Fire())//if keep pressed
+               // if (bl_MobileInput.Fire())//if keep pressed
+                if (bl_MobileInput.GetButtonDown("Fire"))//if keep pressed
                 {
                     LoopFire();
                 }
@@ -349,7 +350,8 @@ public class bl_Gun : bl_GunBase
         }
         else
         {
-            isAiming = bl_MobileInput.Aim() && CanAiming;
+            //isAiming = bl_MobileInput.Aim() && CanAiming;
+            isAiming = bl_MobileInput.GetButtonDown("Aim") && CanAiming;
         }
 
         if (bl_RoomMenu.Instance.isCursorLocked)
@@ -357,7 +359,8 @@ public class bl_Gun : bl_GunBase
             Crosshair.OnAim(isAiming);
         }
 
-        if (bl_MobileInput.Reload() && CanReload)
+        //if (bl_MobileInput.Reload() && CanReload)
+        if (bl_MobileInput.GetButtonDown("Reload") && CanReload)
         {
             Reload();
         }
@@ -383,7 +386,8 @@ public class bl_Gun : bl_GunBase
             {
                 if (WeaponType == GunType.Machinegun)
                 {
-                    isFiring = (bl_MobileInput.Fire() && CanFire); // fire is down, gun is firing
+                    //isFiring = (bl_MobileInput.Fire() && CanFire); // fire is down, gun is firing
+                    isFiring = (bl_MobileInput.GetButtonDown("Fire") && CanFire); // fire is down, gun is firing
                 }
                 else
                 {
@@ -401,9 +405,10 @@ public class bl_Gun : bl_GunBase
     /// <summary>
     /// change the type of gun gust
     /// </summary>
-    void ChangeTypeFire()
+    private void ChangeTypeFire()
     {
-        bool inp = bl_MobileInput.SwitchFireMode();
+        //bool inp = bl_MobileInput.SwitchFireMode();
+        bool inp = bl_MobileInput.GetButtonDown("SwitchFireMode");
         if (inp)
         {
             switch (WeaponType)

@@ -88,12 +88,28 @@ public class bl_MobileButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     /// <returns></returns>
     public bool isButtonDown()
     {
-        if (buttonState == ButtonState.Idle || buttonState == ButtonState.Up) return false;
+        Debug.Log($"isButtonDown 0 {ButtonName}");
+        if (buttonState == ButtonState.Idle || buttonState == ButtonState.Up)
+            return false;
+        Debug.Log($"isButtonDown 1 {ButtonName}");
         hasDispatchUp = false;
-        if (buttonState == ButtonState.Down) return false;
 
-        if (hasDispatchClick) { buttonState = ButtonState.Down; hasDispatchClick = false; return false; }
-        else { hasDispatchClick = true; return true; }
+        if (buttonState == ButtonState.Down)
+            return false;
+        Debug.Log($"isButtonDown 2 {ButtonName}");
+        if (hasDispatchClick)
+        {
+            Debug.Log($"isButtonDown 3 {ButtonName}");
+            buttonState = ButtonState.Down;
+            hasDispatchClick = false;
+            return false;
+        }
+        else
+        {
+            Debug.Log($"isButtonDown 4 {ButtonName}");
+            hasDispatchClick = true;
+            return true;
+        }
     }
 
     /// <summary>
@@ -102,6 +118,7 @@ public class bl_MobileButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     /// <returns></returns>
     public bool isButtonUp()
     {
+        Debug.Log($"isButtonDown 5 {ButtonName}");
         if (buttonState == ButtonState.Idle || buttonState != ButtonState.Up) return false;
         hasDispatchClick = false;
         if (hasDispatchUp) { buttonState = ButtonState.Idle; hasDispatchUp = false; return false; }
@@ -114,7 +131,7 @@ public class bl_MobileButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     /// </summary>
     public void OnPointerDown(PointerEventData eventData) // нажатия теперь работают
     {
-        Debug.Log($"OnPointerDown  ButtonName {ButtonName}");
+        Debug.Log($"OnPointerDown 0 ButtonName {ButtonName}");
         buttonState = ButtonState.Click;
         onClick?.Invoke();
         for (int i = 0; i < buttonGraphics.Length; i++)
@@ -124,6 +141,7 @@ public class bl_MobileButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
         if (blockTouchPad && !bl_MobileInput.ignoredTouches.Contains(eventData.pointerId))
         {
+            Debug.Log($"OnPointerDown 1 ButtonName {ButtonName}");
             bl_MobileInput.ignoredTouches.Add(eventData.pointerId);
         }
         if(animatedChild != null) { StopAllCoroutines();StartCoroutine(DoAnimation(true)); }

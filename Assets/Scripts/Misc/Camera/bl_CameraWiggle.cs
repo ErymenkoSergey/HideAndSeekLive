@@ -40,7 +40,8 @@ public class bl_CameraWiggle : bl_MonoBehaviour
         {
             float t_amount = -bl_MobileInput.MouseX * this.tiltAngle;
             t_amount = Mathf.Clamp(t_amount, -this.tiltAngle, this.tiltAngle);
-            if (!bl_MobileInput.Aim())
+            //if (!bl_MobileInput.Aim())
+            if (!bl_MobileInput.GetButtonDown("Aim"))
             {
                 m_transform.localRotation = Quaternion.Lerp(this.m_transform.localRotation, Quaternion.Euler(0, 0, t_amount), Time.deltaTime * this.smooth);
             }

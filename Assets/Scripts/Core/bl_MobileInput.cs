@@ -11,7 +11,7 @@ public class bl_MobileInput
 {
     // Set this to false to make the input unresponsive
     public static bool Interactable = true;
-    public static List<int> ignoredTouches { get; private set; } = new List<int>();
+    public static List<int> ignoredTouches = new List<int>(); //{ get; private set; }
 
     private static int m_Touch = -1;
     private static List<int> touchesList;
@@ -32,7 +32,7 @@ public class bl_MobileInput
             Debug.LogWarning($"A button with the name '{button.ButtonName}' is already registered, buttons with the same name are not allowed.");
             return;
         }
-        Debug.Log($"bl_MobileInput AddMobileButton button {button.ButtonName}");
+
         mobileButtons.Add(button.ButtonName, button);
     }
 
@@ -52,69 +52,79 @@ public class bl_MobileInput
         return mobileButtons[buttonName];
     }
 
-    /// <summary>
-    /// is the button pressed
-    /// </summary>
-    /// <param name="buttonName"></param>
-    /// <returns></returns>
-    public static bool GetButton(string buttonName)
+    //public static bool GetButton(string buttonName)
+    //{
+    //    if (!Interactable)
+    //        return false;
+
+    //    //if (!mobileButtons.ContainsKey(buttonName))
+    //    //{
+    //    //    Debug.LogWarning($"The button '{buttonName}' is not registered in the mobile input buttons."); return false;
+    //    //}
+    //    //Debug.Log($"MOBILE GetButton {buttonName}");
+
+    //    return mobileButtons[buttonName].isButton();
+    //}
+
+    public static bool GetButtonDown(string buttonName, GameInputType inputType = GameInputType.Hold, int gun = 0)
     {
         if (!Interactable)
             return false;
 
         if (!mobileButtons.ContainsKey(buttonName))
         {
-            Debug.LogWarning($"The button '{buttonName}' is not registered in the mobile input buttons."); return false;
-        }
-        Debug.Log($"MOBILE GetButton {buttonName}");
-#if UNITY_EDITOR
-        if (bl_MobileInputSettings.Instance.UseKeyboardOnEditor)
-        {
-            return Input.GetKey(mobileButtons[buttonName].fallBackKey);
-        }
-#endif
-        return mobileButtons[buttonName].isButton();
-    }
-
-    public static bool GetButtonDown(string buttonName)
-    {
-        if (!Interactable)
+            Debug.LogWarning($"The button '{buttonName}' is not registered in the mobile input buttons.");
             return false;
-
-        if (!mobileButtons.ContainsKey(buttonName)) { Debug.LogWarning($"The button '{buttonName}' is not registered in the mobile input buttons."); return false; }
-#if UNITY_EDITOR
-        if (bl_MobileInputSettings.Instance.UseKeyboardOnEditor)
-        {
-            return Input.GetKeyDown(mobileButtons[buttonName].fallBackKey);
         }
-#endif
+
         Debug.Log($"MOBILE GetButtonDown {buttonName}");
-        ActionButton(buttonName);
+        ActionButton(buttonName, inputType, gun);
 
         return mobileButtons[buttonName].isButtonDown();
     }
 
-    private static void ActionButton(string name)
+    private static void ActionButton(string name, GameInputType inputType, int gun)
     {
-        Debug.Log($"ActionButton {name}");
+        switch (name)
+        {
+            case "Fire": Fire(); break;
+            case "Run": Run(); break;
+            case "Aim": Aim(); break;
+            case "Crouch": Crouch(inputType); break;
+            case "Jump": Jump(); break;
 
-        if (name == "Fire") Fire();
-        if (name == "Aim") Aim();
-        if (name == "Crouch") Crouch();
-        if (name == "Jump") Jump();
+            case "Interact": Interact(); break;
+            case "Reload": Reload(); break;
+            case "WeaponSlot": WeaponSlot(gun); break;
+            case "QuickMelee": QuickMelee(); break;
 
-        if (name == "Interact") Interact();
-        if (name == "Reload") Reload();
-        if (name == "WeaponSlot") WeaponSlot(1);
-        if (name == "QuickMelee") QuickMelee();
+            case "QuickNade": QuickNade(); break;
+            case "Pause": Pause(); break;
+            case "Scoreboard": Scoreboard(); break;
+            case "SwitchFireMode": SwitchFireMode(); break;
 
-        if (name == "QuickNade") QuickNade();
-        if (name == "Pause") Pause();
-        if (name == "Scoreboard") Scoreboard();
-        if (name == "SwitchFireMode") SwitchFireMode();
+            case "GeneralChat": GeneralChat(); break;
+            case "TeamChat": TeamChat(); break;
+        }
 
-        if (name == "GeneralChat") GeneralChat();
-        if (name == "TeamChat") TeamChat();
+
+        //if (name == "Fire") Fire();
+        //if (name == "Aim") Aim();
+        //if (name == "Crouch") Crouch(inputType);
+        //if (name == "Jump") Jump();
+
+        //if (name == "Interact") Interact();
+        //if (name == "Reload") Reload();
+        //if (name == "WeaponSlot") WeaponSlot(1); //?
+        //if (name == "QuickMelee") QuickMelee();
+
+        //if (name == "QuickNade") QuickNade();
+        //if (name == "Pause") Pause();
+        //if (name == "Scoreboard") Scoreboard();
+        //if (name == "SwitchFireMode") SwitchFireMode();
+
+        //if (name == "GeneralChat") GeneralChat();
+        //if (name == "TeamChat") TeamChat();
     }
 
     public static bool GetButtonUp(string buttonName)
@@ -240,6 +250,8 @@ public class bl_MobileInput
 #endif
     }
 
+
+
     public static bool Interact(GameInputType inputType = GameInputType.Down)
     {
 #if INPUT_MANAGER
@@ -276,6 +288,8 @@ public class bl_MobileInput
 #endif
     }
 
+
+
     public static bool QuickNade(GameInputType inputType = GameInputType.Down)
     {
 #if INPUT_MANAGER
@@ -287,7 +301,6 @@ public class bl_MobileInput
 
     public static bool Pause(GameInputType inputType = GameInputType.Down)
     {
-        //Debug.LogError($"Pause Pause ");
 #if INPUT_MANAGER
         if (bl_Input.isGamePad)
         {
@@ -315,6 +328,8 @@ public class bl_MobileInput
 #endif
     }
 
+
+
     public static bool GeneralChat(GameInputType inputType = GameInputType.Down)
     {
 #if INPUT_MANAGER
@@ -332,6 +347,8 @@ public class bl_MobileInput
         return GetButton(KeyCode.Y, inputType);
 #endif
     }
+
+
 
     public static float MobileVertical;
     public static float MobileHorizontal;
@@ -402,18 +419,37 @@ public class bl_MobileInput
         if (!bl_RoomMenu.Instance.isCursorLocked || bl_GameData.Instance.isChating)
             return false;
 
-        if (inputType == GameInputType.Hold) { return Input.GetKey(key); }
-        else if (inputType == GameInputType.Down) { return Input.GetKeyDown(key); }
-        else { return Input.GetKeyUp(key); }
+        if (inputType == GameInputType.Hold) 
+        {
+            return Input.GetKey(key); 
+        }
+        else if (inputType == GameInputType.Down)
+        {
+            return Input.GetKeyDown(key); 
+        }
+        else 
+        {
+            return Input.GetKeyUp(key);
+        }
     }
 
     public static bool GetButton(string key, GameInputType inputType)
     {
-        if (!bl_RoomMenu.Instance.isCursorLocked || bl_GameData.Instance.isChating) return false;
+        if (!bl_RoomMenu.Instance.isCursorLocked || bl_GameData.Instance.isChating) 
+            return false;
 
-        if (inputType == GameInputType.Hold) { return Input.GetKey(key); }
-        else if (inputType == GameInputType.Down) { return Input.GetKeyDown(key); }
-        else { return Input.GetKeyUp(key); }
+        if (inputType == GameInputType.Hold)
+        {
+            return Input.GetKey(key); 
+        }
+        else if (inputType == GameInputType.Down)
+        {
+            return Input.GetKeyDown(key); 
+        }
+        else 
+        {
+            return Input.GetKeyUp(key); 
+        }
     }
 
 #if INPUT_MANAGER

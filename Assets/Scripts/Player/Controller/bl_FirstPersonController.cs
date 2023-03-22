@@ -219,7 +219,8 @@ public class bl_FirstPersonController : bl_MonoBehaviour
         {
             slideForce -= Time.deltaTime * slideFriction;
             speed = slideForce;
-            if (bl_MobileInput.Jump())
+            //if (bl_MobileInput.Jump())
+            if (bl_MobileInput.GetButtonDown("Jump"))
             {
                 State = PlayerState.Jumping;
                 m_Jump = true;
@@ -231,7 +232,8 @@ public class bl_FirstPersonController : bl_MonoBehaviour
 
         if (!m_Jump && State != PlayerState.Crouching && (Time.time - lastJumpTime) > JumpMinRate)
         {
-            m_Jump = bl_MobileInput.Jump();
+            //m_Jump = bl_MobileInput.Jump();
+            m_Jump = bl_MobileInput.GetButtonDown("Jump");
         }
 
         if (State != PlayerState.Jumping && State != PlayerState.Climbing)
@@ -240,7 +242,8 @@ public class bl_FirstPersonController : bl_MonoBehaviour
                 return;
             if (KeepToCrouch)
             {
-                Crounching = bl_MobileInput.Crouch();
+                //Crounching = bl_MobileInput.Crouch();
+                Crounching = bl_MobileInput.GetButtonDown("Crouch");
                 if (Crounching != lastCrouchState)
                 {
                     OnCrouchChanged();
@@ -250,7 +253,8 @@ public class bl_FirstPersonController : bl_MonoBehaviour
             }
             else
             {
-                if (bl_MobileInput.Crouch(GameInputType.Down))
+                //if (bl_MobileInput.Crouch(GameInputType.Down))
+                if (bl_MobileInput.GetButtonDown("Crouch", GameInputType.Down))
                 {
                     Crounching = !Crounching;
                     OnCrouchChanged();
@@ -643,7 +647,8 @@ public class bl_FirstPersonController : bl_MonoBehaviour
             m_MoveDir.y = desiredMove.y * climbSpeed;
             m_MoveDir.x = desiredMove.x * climbSpeed;
             m_MoveDir.z = desiredMove.z * climbSpeed;
-            if (bl_MobileInput.Jump())
+            //if (bl_MobileInput.Jump())
+            if (bl_MobileInput.GetButtonDown("Jump"))
             {
                 ToggleClimbing();
                 m_Ladder.JumpOut();
@@ -758,11 +763,13 @@ public class bl_FirstPersonController : bl_MonoBehaviour
                 {
                     // On standalone builds, walk/run speed is modified by a key press.
                     // keep track of whether or not the character is walking or running
-                    if (bl_MobileInput.Run() && State != PlayerState.Crouching && VelocityMagnitude > 0)
+                    //if (bl_MobileInput.Run() && State != PlayerState.Crouching && VelocityMagnitude > 0)
+                    if (bl_MobileInput.GetButtonDown("Run") && State != PlayerState.Crouching && VelocityMagnitude > 0)
                     {
                         State = PlayerState.Running;
                     }
-                    else if (bl_MobileInput.Run(GameInputType.Up) && State != PlayerState.Crouching && VelocityMagnitude > 0)
+                    //else if (bl_MobileInput.Run(GameInputType.Up) && State != PlayerState.Crouching && VelocityMagnitude > 0)
+                    else if (bl_MobileInput.GetButtonDown("Run", GameInputType.Up) && State != PlayerState.Crouching && VelocityMagnitude > 0)
                     {
                         State = PlayerState.Walking;
                     }

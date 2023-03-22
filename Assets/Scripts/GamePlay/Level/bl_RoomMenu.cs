@@ -1,6 +1,5 @@
 using UnityEngine;
 using Photon.Pun;
-using Photon.Realtime;
 using System;
 
 [DefaultExecutionOrder(-800)]
@@ -63,7 +62,7 @@ public class bl_RoomMenu : bl_MonoBehaviour
     /// <summary>
     /// 
     /// </summary>
-    void OnPlayerSpawn()
+    private void OnPlayerSpawn()
     {
         bl_UIReferences.Instance.PlayerUI.PlayerUICanvas.enabled = true;
         isPlaying = true;
@@ -72,7 +71,7 @@ public class bl_RoomMenu : bl_MonoBehaviour
     /// <summary>
     /// 
     /// </summary>
-    void OnPlayerLocalDeath()
+    private void OnPlayerLocalDeath()
     {
         bl_UIReferences.Instance.PlayerUI.PlayerUICanvas.enabled = false;
         isPlaying = false;
@@ -91,9 +90,10 @@ public class bl_RoomMenu : bl_MonoBehaviour
     /// <summary>
     /// Check the input for open/hide the pause menu
     /// </summary>
-    void PauseControll()
+    private void PauseControll()
     {
-        if (bl_MobileInput.Pause()) TogglePause();
+        if (bl_MobileInput.GetButtonDown("Pause"))
+            TogglePause();
     }
 
     /// <summary>
@@ -114,17 +114,19 @@ public class bl_RoomMenu : bl_MonoBehaviour
     /// <summary>
     /// 
     /// </summary>
-    void ScoreboardInput()
+    private void ScoreboardInput()
     {
         if (bl_UIReferences.Instance.isOnlyMenuActive || isFinish) return;
 
-        if (bl_MobileInput.Scoreboard())
+        //if (bl_MobileInput.Scoreboard())
+        if (bl_MobileInput.GetButtonDown("Scoreboard"))
         {
             bool asb = bl_UIReferences.Instance.isScoreboardActive;
             asb = !asb;
             bl_UIReferences.Instance.ShowScoreboard(asb);
         }
-        else if (bl_MobileInput.Scoreboard(GameInputType.Up))
+        //else if (bl_MobileInput.Scoreboard(GameInputType.Up))
+        else if (bl_MobileInput.GetButtonDown("Scoreboard", GameInputType.Up))
         {
             bool asb = bl_UIReferences.Instance.isScoreboardActive;
             asb = !asb;
@@ -179,7 +181,7 @@ public class bl_RoomMenu : bl_MonoBehaviour
             return;
         }
         //set the player to the selected team and spawn the player
-         bl_GameManager.Instance.SpawnPlayer(team);
+        bl_GameManager.Instance.SpawnPlayer(team);
     }
 
     /// <summary>
@@ -217,15 +219,14 @@ public class bl_RoomMenu : bl_MonoBehaviour
     /// </summary>
     public void OnLeftRoom()
     {
-        Debug.Log("Local client left the room");
         PhotonNetwork.IsMessageQueueRunning = false;
         bl_MatchTimeManager.Instance.enabled = false;
-        if(bl_UIReferences.Instance != null)
-        StartCoroutine(bl_UIReferences.Instance.FinalFade(true));
+        if (bl_UIReferences.Instance != null)
+            StartCoroutine(bl_UIReferences.Instance.FinalFade(true));
     }
 
     public bool isApplicationQuitting { get; set; } = false;
-    void OnApplicationQuit()
+    private void OnApplicationQuit()
     {
         isApplicationQuitting = true;
     }
