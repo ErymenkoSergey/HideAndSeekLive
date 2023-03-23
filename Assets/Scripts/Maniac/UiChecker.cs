@@ -3,8 +3,8 @@ using UnityEngine;
 public class UiChecker : MonoBehaviour
 {
     [SerializeField] private GameObject _mobileControler;
-    [SerializeField] private GameObject _pcControlerWeapons;
-    [SerializeField] private GameObject _pcControlerBullets;
+    [SerializeField] private GameObject[] _pcControlerWeapons;
+    //[SerializeField] private GameObject _pcControlerBullets;
 
     private void Awake()
     {
@@ -32,7 +32,10 @@ public class UiChecker : MonoBehaviour
     private void SetControl(bool isTach)
     {
         _mobileControler.SetActive(isTach);
-        //_pcControlerWeapons.SetActive(!isTach);
-        //_pcControlerBullets.SetActive(!isTach);
+
+        for (int i = 0; i < _pcControlerWeapons.Length; i++)
+        {
+            _pcControlerWeapons[i].SetActive(!isTach);
+        }
     }
 }

@@ -21,14 +21,14 @@ public class bl_MovementJoystick : MonoBehaviour
 
             if (!bl_MobileInput.Interactable)
                 return 0;
-#if UNITY_EDITOR
-            if (bl_MobileInputSettings.Instance.UseKeyboardOnEditor)
-            {
-                Debug.Log($"bl_MovementJoystick Vertical {sourceJoystick.Vertical}");
+//#if UNITY_EDITOR
+//            if (bl_MobileInputSettings.Instance.UseKeyboardOnEditor)
+//            {
+//                Debug.Log($"bl_MovementJoystick Vertical {sourceJoystick.Vertical}");
 
-                return Input.GetAxis("Vertical");
-            }
-#endif
+//                return Input.GetAxis("Vertical");
+//            }
+//#endif
             if (Cursor.lockState == CursorLockMode.Locked)
                 Cursor.lockState = CursorLockMode.None;
 
@@ -43,12 +43,12 @@ public class bl_MovementJoystick : MonoBehaviour
         {
             if (!bl_MobileInput.Interactable)
                 return 0;
-#if UNITY_EDITOR
-            if (bl_MobileInputSettings.Instance.UseKeyboardOnEditor)
-            {
-                return Input.GetAxis("Horizontal");
-            }
-#endif
+//#if UNITY_EDITOR
+//            if (bl_MobileInputSettings.Instance.UseKeyboardOnEditor)
+//            {
+//                return Input.GetAxis("Horizontal");
+//            }
+//#endif
             if (Cursor.lockState == CursorLockMode.Locked)
                 Cursor.lockState = CursorLockMode.None;
             bl_MobileInput.MobileHorizontal = sourceJoystick.Horizontal;
@@ -60,19 +60,16 @@ public class bl_MovementJoystick : MonoBehaviour
     {
         get
         {
-#if UNITY_EDITOR
-            if (bl_MobileInputSettings.Instance.UseKeyboardOnEditor)
-            {
-                return Input.GetKeyDown(KeyCode.LeftShift);
-            }
-#endif
+//#if UNITY_EDITOR
+//            if (bl_MobileInputSettings.Instance.UseKeyboardOnEditor)
+//            {
+//                return Input.GetKeyDown(KeyCode.LeftShift);
+//            }
+//#endif
             return (Vertical >= RunningOnMagnitudeOf);
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     void UpdateRunningAlpha(float vertical)
     {
         if (runningAlpha == null) 
@@ -83,7 +80,6 @@ public class bl_MovementJoystick : MonoBehaviour
             runningAlpha.alpha = 0; 
             return; 
         }
-        Debug.Log($"UpdateRunningAlpha vertical {vertical}");
 
         float percentage = Mathf.Clamp01(vertical / RunningOnMagnitudeOf);
         runningAlpha.alpha = percentage;

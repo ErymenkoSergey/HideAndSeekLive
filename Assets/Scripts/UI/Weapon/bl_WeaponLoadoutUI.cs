@@ -19,7 +19,7 @@ public class bl_WeaponLoadoutUI : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-        Alpha.alpha = 0;
+        Alpha.alpha = 1; //0
         Alpha.gameObject.SetActive(false);
         IconsImg = new Image[SlotsGroups.Length];
         for (int i = 0; i < SlotsGroups.Length; i++)

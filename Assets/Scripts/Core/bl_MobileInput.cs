@@ -2,14 +2,12 @@
 using System.Linq;
 using UnityEngine;
 using Lovatto.MobileInput;
-//using static bl_GameInput;
 #if INPUT_MANAGER
 using MFPS.InputManager;
 #endif
 
 public class bl_MobileInput
 {
-    // Set this to false to make the input unresponsive
     public static bool Interactable = true;
     public static List<int> ignoredTouches = new List<int>(); //{ get; private set; }
 
@@ -52,20 +50,6 @@ public class bl_MobileInput
         return mobileButtons[buttonName];
     }
 
-    //public static bool GetButton(string buttonName)
-    //{
-    //    if (!Interactable)
-    //        return false;
-
-    //    //if (!mobileButtons.ContainsKey(buttonName))
-    //    //{
-    //    //    Debug.LogWarning($"The button '{buttonName}' is not registered in the mobile input buttons."); return false;
-    //    //}
-    //    //Debug.Log($"MOBILE GetButton {buttonName}");
-
-    //    return mobileButtons[buttonName].isButton();
-    //}
-
     public static bool GetButtonDown(string buttonName, GameInputType inputType = GameInputType.Hold, int gun = 0)
     {
         if (!Interactable)
@@ -73,11 +57,10 @@ public class bl_MobileInput
 
         if (!mobileButtons.ContainsKey(buttonName))
         {
-            Debug.LogWarning($"The button '{buttonName}' is not registered in the mobile input buttons.");
+            Debug.LogError($"The button '{buttonName}' is not registered in the mobile input buttons.");
             return false;
         }
 
-        Debug.Log($"MOBILE GetButtonDown {buttonName}");
         ActionButton(buttonName, inputType, gun);
 
         return mobileButtons[buttonName].isButtonDown();
@@ -106,25 +89,6 @@ public class bl_MobileInput
             case "GeneralChat": GeneralChat(); break;
             case "TeamChat": TeamChat(); break;
         }
-
-
-        //if (name == "Fire") Fire();
-        //if (name == "Aim") Aim();
-        //if (name == "Crouch") Crouch(inputType);
-        //if (name == "Jump") Jump();
-
-        //if (name == "Interact") Interact();
-        //if (name == "Reload") Reload();
-        //if (name == "WeaponSlot") WeaponSlot(1); //?
-        //if (name == "QuickMelee") QuickMelee();
-
-        //if (name == "QuickNade") QuickNade();
-        //if (name == "Pause") Pause();
-        //if (name == "Scoreboard") Scoreboard();
-        //if (name == "SwitchFireMode") SwitchFireMode();
-
-        //if (name == "GeneralChat") GeneralChat();
-        //if (name == "TeamChat") TeamChat();
     }
 
     public static bool GetButtonUp(string buttonName)
@@ -139,7 +103,6 @@ public class bl_MobileInput
             return Input.GetKeyUp(mobileButtons[buttonName].fallBackKey);
         }
 #endif
-        Debug.Log($"MOBILE GetButtonDown {buttonName}");
 
         return mobileButtons[buttonName].isButtonUp();
     }
@@ -388,7 +351,7 @@ public class bl_MobileInput
         }
     }
 
-    public static float MouseX // мышка 
+    public static float MouseX
     {
         get
         {
@@ -419,15 +382,15 @@ public class bl_MobileInput
         if (!bl_RoomMenu.Instance.isCursorLocked || bl_GameData.Instance.isChating)
             return false;
 
-        if (inputType == GameInputType.Hold) 
+        if (inputType == GameInputType.Hold)
         {
-            return Input.GetKey(key); 
+            return Input.GetKey(key);
         }
         else if (inputType == GameInputType.Down)
         {
-            return Input.GetKeyDown(key); 
+            return Input.GetKeyDown(key);
         }
-        else 
+        else
         {
             return Input.GetKeyUp(key);
         }
@@ -435,20 +398,20 @@ public class bl_MobileInput
 
     public static bool GetButton(string key, GameInputType inputType)
     {
-        if (!bl_RoomMenu.Instance.isCursorLocked || bl_GameData.Instance.isChating) 
+        if (!bl_RoomMenu.Instance.isCursorLocked || bl_GameData.Instance.isChating)
             return false;
 
         if (inputType == GameInputType.Hold)
         {
-            return Input.GetKey(key); 
+            return Input.GetKey(key);
         }
         else if (inputType == GameInputType.Down)
         {
-            return Input.GetKeyDown(key); 
+            return Input.GetKeyDown(key);
         }
-        else 
+        else
         {
-            return Input.GetKeyUp(key); 
+            return Input.GetKeyUp(key);
         }
     }
 

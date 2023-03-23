@@ -21,31 +21,22 @@ public class bl_MobileButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     [Range(0.1f, 2)] public float transitionDuration = 0.25f;
 
     public ButtonState buttonState { get; private set; } = ButtonState.Idle;
-    [Serializable]public class OnClick : UnityEvent { }
+    [Serializable] public class OnClick : UnityEvent { }
     private bool hasDispatchClick = false;
     private bool hasDispatchUp = false;
     private bool isRegistered = false;
 
-    /// <summary>
-    /// 
-    /// </summary>
     void Awake()
     {
         Registre();
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     void OnEnable()
     {
         //also try in OnEnable cuz in some Unity versions OnEnable calls before Awake :/
         Registre();
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     void Registre()
     {
         if (!isRegistered)
@@ -62,9 +53,6 @@ public class bl_MobileButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     void OnDestroy()
     {
         if (isRegistered)
@@ -73,52 +61,36 @@ public class bl_MobileButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
     public bool isButton()
     {
         return buttonState == ButtonState.Down || buttonState == ButtonState.Click;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
     public bool isButtonDown()
     {
-        Debug.Log($"isButtonDown 0 {ButtonName}");
         if (buttonState == ButtonState.Idle || buttonState == ButtonState.Up)
             return false;
-        Debug.Log($"isButtonDown 1 {ButtonName}");
+
         hasDispatchUp = false;
 
         if (buttonState == ButtonState.Down)
             return false;
-        Debug.Log($"isButtonDown 2 {ButtonName}");
+
         if (hasDispatchClick)
         {
-            Debug.Log($"isButtonDown 3 {ButtonName}");
             buttonState = ButtonState.Down;
             hasDispatchClick = false;
             return false;
         }
         else
         {
-            Debug.Log($"isButtonDown 4 {ButtonName}");
             hasDispatchClick = true;
             return true;
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
     public bool isButtonUp()
     {
-        Debug.Log($"isButtonDown 5 {ButtonName}");
         if (buttonState == ButtonState.Idle || buttonState != ButtonState.Up) return false;
         hasDispatchClick = false;
         if (hasDispatchUp) { buttonState = ButtonState.Idle; hasDispatchUp = false; return false; }
@@ -126,12 +98,8 @@ public class bl_MobileButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         return true;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    public void OnPointerDown(PointerEventData eventData) // нажатия теперь работают
+    public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log($"OnPointerDown 0 ButtonName {ButtonName}");
         buttonState = ButtonState.Click;
         onClick?.Invoke();
         for (int i = 0; i < buttonGraphics.Length; i++)
@@ -141,15 +109,11 @@ public class bl_MobileButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
         if (blockTouchPad && !bl_MobileInput.ignoredTouches.Contains(eventData.pointerId))
         {
-            Debug.Log($"OnPointerDown 1 ButtonName {ButtonName}");
             bl_MobileInput.ignoredTouches.Add(eventData.pointerId);
         }
-        if(animatedChild != null) { StopAllCoroutines();StartCoroutine(DoAnimation(true)); }
+        if (animatedChild != null) { StopAllCoroutines(); StartCoroutine(DoAnimation(true)); }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void OnPointerUp(PointerEventData eventData)
     {
         buttonState = ButtonState.Up;
@@ -166,31 +130,20 @@ public class bl_MobileButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         if (animatedChild != null) { StopAllCoroutines(); StartCoroutine(DoAnimation(false)); }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="callback"></param>
     public void AddOnClickListener(UnityAction callback)
     {
         onClick.AddListener(callback);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="callback"></param>
     public void RemoveOnClickListener(UnityAction callback)
     {
         onClick.RemoveListener(callback);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     IEnumerator DoAnimation(bool forward)
     {
         float d = 0;
-        while(d < 1)
+        while (d < 1)
         {
             d += Time.deltaTime / transitionDuration;
             if (forward)
@@ -209,10 +162,10 @@ public class bl_MobileButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     void OnValidate()
     {
         if (buttonGraphics == null) return;
-        if(buttonGraphics.Length == 0)
+        if (buttonGraphics.Length == 0)
         {
             Graphic g = GetComponent<Graphic>();
-            if(g != null) { buttonGraphics = new Graphic[1]; buttonGraphics[0] = g; }
+            if (g != null) { buttonGraphics = new Graphic[1]; buttonGraphics[0] = g; }
             return;
         }
         foreach (var item in buttonGraphics)

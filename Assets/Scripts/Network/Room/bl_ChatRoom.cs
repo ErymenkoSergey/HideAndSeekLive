@@ -60,9 +60,6 @@ public class bl_ChatRoom : bl_MonoBehaviour
 #endif
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public override void OnUpdate()
     {
         if (!CanUseTheChat) return;

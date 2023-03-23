@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -16,9 +15,6 @@ namespace Lovatto.MobileInput
         private Touch m_Touch;
         private bool init = false;
 
-        /// <summary>
-        /// 
-        /// </summary>
         void Start()
         {
             m_Transform = GetComponent<RectTransform>();
@@ -26,19 +22,12 @@ namespace Lovatto.MobileInput
             init = true;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         public void GetDeafultPosition()
         {
             defaultPosition = m_Transform.anchoredPosition;
             defaultRawPosition = m_Transform.position;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="eventData"></param>
         public void OnPointerDown(PointerEventData eventData)
         {
             if (!init) return;
@@ -53,10 +42,6 @@ namespace Lovatto.MobileInput
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="eventData"></param>
         public void OnPointerUp(PointerEventData eventData)
         {
             if (!init) return;
@@ -73,11 +58,8 @@ namespace Lovatto.MobileInput
             } 
         }
         private int lastId = -2;
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="eventData"></param>
-        public void OnDrag(PointerEventData eventData) // this mouse?
+
+        public void OnDrag(PointerEventData eventData)// ПЕРЕделать 
         {
             if (!init) return;
 
