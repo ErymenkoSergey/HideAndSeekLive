@@ -284,7 +284,6 @@ public class bl_Gun : bl_GunBase
 
        // bool fireDown = bl_MobileInput.Fire(GameInputType.Down);
         bool fireDown = bl_MobileInput.GetButtonDown("Fire");
-        Debug.Log($"InputUpdate fireDown {fireDown}");
         // Did the user press fire.... and what kind of weapon are they using ?  ===============
         if (bl_UtilityHelper.isMobile)
         {

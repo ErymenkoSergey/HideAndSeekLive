@@ -8,9 +8,10 @@ using UnityEngine.Events;
 public class bl_MobileButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public string ButtonName;
+    public int WeaponId;
     public KeyCode fallBackKey = KeyCode.None;
     public bool blockTouchPad = false;
-    [SerializeField] public OnClick onClick;
+    [SerializeField] private OnClick onClick;
 
     [Header("Transition")]
     public Graphic[] buttonGraphics;
@@ -26,18 +27,18 @@ public class bl_MobileButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     private bool hasDispatchUp = false;
     private bool isRegistered = false;
 
-    void Awake()
+    private void Awake()
     {
         Registre();
     }
 
-    void OnEnable()
+    private void OnEnable()
     {
         //also try in OnEnable cuz in some Unity versions OnEnable calls before Awake :/
         Registre();
     }
 
-    void Registre()
+    private void Registre()
     {
         if (!isRegistered)
         {
@@ -53,7 +54,7 @@ public class bl_MobileButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         }
     }
 
-    void OnDestroy()
+    private void OnDestroy()
     {
         if (isRegistered)
         {
@@ -61,10 +62,35 @@ public class bl_MobileButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         }
     }
 
-    public bool isButton()
-    {
-        return buttonState == ButtonState.Down || buttonState == ButtonState.Click;
-    }
+    //public bool isButton(int gun)
+    //{
+    //    Debug.Log($"isButtonisButton 0 {gun}, WeaponId {WeaponId}");
+
+    //    if (gun == WeaponId)
+    //    {
+    //        Debug.Log($"isButtonisButton 1 {gun}, WeaponId {WeaponId}");
+    //        if (buttonState == ButtonState.Down)
+    //        {
+    //            Debug.Log($"isButtonisButton 2 {gun}, WeaponId {WeaponId}");
+    //            //bl_MobileInput.GetButton(fallBackKey , GameInputType.Down);
+    //            Input.GetKeyDown(fallBackKey);
+    //            return true;
+    //        }
+    //        else
+    //            return false;
+    //    }
+    //    else
+    //        return false;
+
+    //    //return buttonState == ButtonState.Down || buttonState == ButtonState.Click;
+
+
+    //    //if (buttonState == ButtonState.Idle || buttonState == ButtonState.Up)
+    //    //    return false;
+
+
+
+    //}
 
     public bool isButtonDown()
     {
@@ -73,8 +99,8 @@ public class bl_MobileButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
         hasDispatchUp = false;
 
-        if (buttonState == ButtonState.Down)
-            return false;
+        if (buttonState == ButtonState.Down) //туту было
+            return true;
 
         if (hasDispatchClick)
         {
@@ -87,6 +113,9 @@ public class bl_MobileButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
             hasDispatchClick = true;
             return true;
         }
+
+        //if (buttonState == ButtonState.Down)
+        //    return true;
     }
 
     public bool isButtonUp()
@@ -100,23 +129,31 @@ public class bl_MobileButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        buttonState = ButtonState.Click;
+        //buttonState = ButtonState.Click;
+        buttonState = ButtonState.Down;
         onClick?.Invoke();
+
         for (int i = 0; i < buttonGraphics.Length; i++)
         {
             buttonGraphics[i]?.CrossFadeColor(touchColor, transitionDuration, true, true);
         }
-
+        
         if (blockTouchPad && !bl_MobileInput.ignoredTouches.Contains(eventData.pointerId))
         {
             bl_MobileInput.ignoredTouches.Add(eventData.pointerId);
         }
-        if (animatedChild != null) { StopAllCoroutines(); StartCoroutine(DoAnimation(true)); }
+
+        if (animatedChild != null) 
+        {
+            StopAllCoroutines();
+            StartCoroutine(DoAnimation(true)); 
+        }
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         buttonState = ButtonState.Up;
+
         for (int i = 0; i < buttonGraphics.Length; i++)
         {
             buttonGraphics[i]?.CrossFadeColor(normalColor, transitionDuration, true, true);
@@ -127,7 +164,11 @@ public class bl_MobileButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
             bl_MobileInput.ignoredTouches.Remove(eventData.pointerId);
         }
 
-        if (animatedChild != null) { StopAllCoroutines(); StartCoroutine(DoAnimation(false)); }
+        if (animatedChild != null)
+        { 
+            StopAllCoroutines(); 
+            StartCoroutine(DoAnimation(false));
+        }
     }
 
     public void AddOnClickListener(UnityAction callback)
@@ -140,7 +181,7 @@ public class bl_MobileButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         onClick.RemoveListener(callback);
     }
 
-    IEnumerator DoAnimation(bool forward)
+    private IEnumerator DoAnimation(bool forward)
     {
         float d = 0;
         while (d < 1)
@@ -158,22 +199,22 @@ public class bl_MobileButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         }
     }
 
-#if UNITY_EDITOR
-    void OnValidate()
-    {
-        if (buttonGraphics == null) return;
-        if (buttonGraphics.Length == 0)
-        {
-            Graphic g = GetComponent<Graphic>();
-            if (g != null) { buttonGraphics = new Graphic[1]; buttonGraphics[0] = g; }
-            return;
-        }
-        foreach (var item in buttonGraphics)
-        {
-            item.canvasRenderer.SetColor(normalColor);
-        }
-    }
-#endif
+//#if UNITY_EDITOR
+//    void OnValidate()
+//    {
+//        if (buttonGraphics == null) return;
+//        if (buttonGraphics.Length == 0)
+//        {
+//            Graphic g = GetComponent<Graphic>();
+//            if (g != null) { buttonGraphics = new Graphic[1]; buttonGraphics[0] = g; }
+//            return;
+//        }
+//        foreach (var item in buttonGraphics)
+//        {
+//            item.canvasRenderer.SetColor(normalColor);
+//        }
+//    }
+//#endif
 
     [Serializable]
     public enum ButtonState

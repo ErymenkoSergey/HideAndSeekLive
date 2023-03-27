@@ -15,7 +15,7 @@ namespace Lovatto.MobileInput
             else
             {
                 Debug.LogWarning("Touch " + eventData.pointerId + " is already in the list of active touchesList to ignore!");
-            }
+            } 
         }
 
         public void OnPointerUp(PointerEventData eventData)

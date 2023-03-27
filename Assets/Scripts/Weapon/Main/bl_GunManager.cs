@@ -187,22 +187,22 @@ public class bl_GunManager : bl_MonoBehaviour
 
 #if !INPUT_MANAGER
         //if (bl_MobileInput.WeaponSlot(1))
-        if (bl_MobileInput.GetButtonDown("WeaponSlot", GameInputType.Down, 1))
+        if (bl_MobileInput.GetButtonDown("WeaponSlot1", GameInputType.Down, 1))
         {
             ChangeCurrentWeaponTo(0);
         }
         //else if (bl_MobileInput.WeaponSlot(2))
-        else if (bl_MobileInput.GetButtonDown("WeaponSlot", GameInputType.Down, 2))
+        else if (bl_MobileInput.GetButtonDown("WeaponSlot2", GameInputType.Down, 2))
         {
             ChangeCurrentWeaponTo(1);
         }
        // else if (bl_MobileInput.WeaponSlot(3))
-        else if (bl_MobileInput.GetButtonDown("WeaponSlot", GameInputType.Down, 3))
+        else if (bl_MobileInput.GetButtonDown("WeaponSlot3", GameInputType.Down, 3))
         {
             ChangeCurrentWeaponTo(2);
         }
         //else if (bl_MobileInput.WeaponSlot(4))
-        else if (bl_MobileInput.GetButtonDown("WeaponSlot", GameInputType.Down, 4))
+        else if (bl_MobileInput.GetButtonDown("WeaponSlot4", GameInputType.Down, 4))
         {
             ChangeCurrentWeaponTo(3);
         }

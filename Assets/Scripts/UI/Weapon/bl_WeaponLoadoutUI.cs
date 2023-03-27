@@ -14,9 +14,6 @@ public class bl_WeaponLoadoutUI : MonoBehaviour
     private int current = 0;
     public bool CanShow { get; set; } = true;
 
-    /// <summary>
-    /// 
-    /// </summary>
     private void Awake()
     {
         Alpha.alpha = 1; //0
@@ -29,9 +26,6 @@ public class bl_WeaponLoadoutUI : MonoBehaviour
         IconsImg[0].CrossFadeColor(Color.black, 0.1f, true, true);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void SetInitLoadout(List<bl_Gun> guns)
     {
         for (int i = 0; i < SlotsGroups.Length; i++)
@@ -47,9 +41,6 @@ public class bl_WeaponLoadoutUI : MonoBehaviour
         IconsImg[0].canvasRenderer.SetColor(Color.black);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void ReplaceSlot(int slot, bl_Gun newGun)
     {
         if(IconsImg[slot].sprite == null)
@@ -62,9 +53,6 @@ public class bl_WeaponLoadoutUI : MonoBehaviour
         SlotsGroups[slot].gameObject.SetActive(true);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void ChangeWeapon(int nextSlot)
     {
         if (!bl_GameData.Instance.ShowWeaponLoadout || !CanShow) return;
@@ -73,9 +61,6 @@ public class bl_WeaponLoadoutUI : MonoBehaviour
         StartCoroutine(ChangeSlot(nextSlot));
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void ClearAllIcons(bool playTransition = false)
     {
         for (int i = 0; i < IconsImg.Length; i++)
@@ -92,10 +77,6 @@ public class bl_WeaponLoadoutUI : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
     IEnumerator ChangeSlot(int nextSlot)
     {
         int cacheActual = current;
@@ -127,9 +108,6 @@ public class bl_WeaponLoadoutUI : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void SetActive(bool active)
     {
         Alpha.gameObject.SetActive(active);

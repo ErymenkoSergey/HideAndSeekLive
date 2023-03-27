@@ -243,7 +243,7 @@ public class bl_FirstPersonController : bl_MonoBehaviour
             if (KeepToCrouch)
             {
                 //Crounching = bl_MobileInput.Crouch();
-                Crounching = bl_MobileInput.GetButtonDown("Crouch");
+                Crounching = bl_MobileInput.GetButtonDown("Crouch", GameInputType.Hold); // было без 2-го пар-ра 
                 if (Crounching != lastCrouchState)
                 {
                     OnCrouchChanged();
@@ -254,7 +254,7 @@ public class bl_FirstPersonController : bl_MonoBehaviour
             else
             {
                 //if (bl_MobileInput.Crouch(GameInputType.Down))
-                if (bl_MobileInput.GetButtonDown("Crouch", GameInputType.Down))
+                if (bl_MobileInput.GetButtonDown("Crouch", GameInputType.Hold)) //Down
                 {
                     Crounching = !Crounching;
                     OnCrouchChanged();

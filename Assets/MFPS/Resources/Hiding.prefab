@@ -4150,8 +4150,8 @@ MonoBehaviour:
   HeadTarget: {fileID: 4662577801940100}
   SmoothingDelay: 8
   NetworkGuns:
-  - {fileID: 114022312832970738}
   - {fileID: 114587821545669848}
+  - {fileID: 114022312832970738}
   - {fileID: 114540253218494720}
   m_PositionModel:
     SynchronizeEnabled: 1
@@ -14566,7 +14566,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4375527284844988
 Transform:
   m_ObjectHideFlags: 0
@@ -14954,7 +14954,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4586533265303162
 Transform:
   m_ObjectHideFlags: 0

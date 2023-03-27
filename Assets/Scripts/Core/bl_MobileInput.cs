@@ -63,7 +63,21 @@ public class bl_MobileInput
 
         ActionButton(buttonName, inputType, gun);
 
-        return mobileButtons[buttonName].isButtonDown();
+        //if (buttonName == "WeaponSlot")
+        //{
+        //   var resu = mobileButtons[buttonName].isButton(gun);
+
+        //    //Debug.Log($"isButton {buttonName} , inputType {inputType}, result {result}");
+        //}
+        //else
+        //{
+        //    result = mobileButtons[buttonName].isButtonDown();
+        //    //Debug.Log($"isButtonDown {buttonName} , inputType {inputType}, result {result}");
+        //}
+        var result = mobileButtons[buttonName].isButtonDown();
+
+        //Debug.Log($"GetButtonDowns {buttonName} , result {result}");
+        return result;
     }
 
     private static void ActionButton(string name, GameInputType inputType, int gun)
@@ -73,7 +87,7 @@ public class bl_MobileInput
             case "Fire": Fire(); break;
             case "Run": Run(); break;
             case "Aim": Aim(); break;
-            case "Crouch": Crouch(inputType); break;
+            case "Crouch": Crouch(); break; //inputType Debug.Log($"name Crouch {name}");
             case "Jump": Jump(); break;
 
             case "Interact": Interact(); break;
@@ -96,13 +110,15 @@ public class bl_MobileInput
         if (!Interactable)
             return false;
 
-        if (!mobileButtons.ContainsKey(buttonName)) { Debug.LogWarning($"The button '{buttonName}' is not registered in the mobile input buttons."); return false; }
-#if UNITY_EDITOR
-        if (bl_MobileInputSettings.Instance.UseKeyboardOnEditor)
-        {
-            return Input.GetKeyUp(mobileButtons[buttonName].fallBackKey);
-        }
-#endif
+        if (!mobileButtons.ContainsKey(buttonName)) 
+        { Debug.LogWarning($"The button '{buttonName}' is not registered in the mobile input buttons.");
+            return false; }
+//#if UNITY_EDITOR
+//        if (bl_MobileInputSettings.Instance.UseKeyboardOnEditor)
+//        {
+//            return Input.GetKeyUp(mobileButtons[buttonName].fallBackKey);
+//        }
+//#endif
 
         return mobileButtons[buttonName].isButtonUp();
     }
@@ -381,7 +397,7 @@ public class bl_MobileInput
     {
         if (!bl_RoomMenu.Instance.isCursorLocked || bl_GameData.Instance.isChating)
             return false;
-
+        //Debug.Log($"isButtonisButton 4 {key}, WeaponId {inputType}");
         if (inputType == GameInputType.Hold)
         {
             return Input.GetKey(key);
