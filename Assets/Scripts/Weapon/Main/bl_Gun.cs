@@ -201,9 +201,6 @@ public class bl_Gun : bl_GunBase
 #endif
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     protected override void OnDisable()
     {
         base.OnDisable();

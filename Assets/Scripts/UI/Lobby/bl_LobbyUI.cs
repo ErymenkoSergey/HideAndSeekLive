@@ -286,7 +286,7 @@ public class bl_LobbyUI : MonoBehaviour
             bl_MFPS.MusicVolume = (float)bl_MFPS.Settings.GetSettingOf("Music Volume");
             bl_AudioController.Instance.ForceStopAllFades();
             bl_AudioController.Instance.BackgroundVolume = bl_MFPS.MusicVolume;
-            bl_AudioController.Instance.MaxBackgroundVolume = bl_MFPS.MusicVolume;
+            bl_AudioController.Instance.MaxBackgroundVolume = bl_MFPS.MaxMusicVolume;
         }
     }
 

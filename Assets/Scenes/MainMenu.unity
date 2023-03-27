@@ -394,6 +394,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2755409710317773348, guid: 49da5b86c6a8d424ea5f6ca7ba40e0d7,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2776495970376526676, guid: 49da5b86c6a8d424ea5f6ca7ba40e0d7,
+        type: 3}
+      propertyPath: BackgroundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0907a3eb64318514ca4181a1adffb2c3, type: 3}
     - target: {fileID: 2817098188988426950, guid: 49da5b86c6a8d424ea5f6ca7ba40e0d7,
         type: 3}
       propertyPath: m_IsActive

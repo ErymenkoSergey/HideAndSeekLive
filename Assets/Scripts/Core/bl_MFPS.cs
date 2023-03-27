@@ -8,7 +8,9 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public static class bl_MFPS
 {
-    public static float MusicVolume = 1;
+    public static float MusicVolume = 0.1f;
+    public static float BackGroundMusicVolume = 0.1f;
+    public static float MaxMusicVolume = 1f;
 
     public static bl_RuntimeSettingsProfile Settings => bl_GameData.Instance.RuntimeSettings;
     public static bl_PlayerReferences LocalPlayerReferences => bl_GameManager.Instance.LocalPlayerReferences;

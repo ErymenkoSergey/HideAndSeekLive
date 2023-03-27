@@ -10,7 +10,8 @@ namespace MFPS.Audio
 
         [Header("Background")]
         [SerializeField] private AudioClip BackgroundClip;
-        public float MaxBackgroundVolume = 0.3f;
+        public float MaxBackgroundVolume = 0.1f;
+
         public AudioSource backgroundSource;
 
         /// <summary>
@@ -18,7 +19,7 @@ namespace MFPS.Audio
         /// </summary>
         private void OnEnable()
         {
-            MaxBackgroundVolume = bl_MFPS.MusicVolume;
+            MaxBackgroundVolume = bl_MFPS.BackGroundMusicVolume;
         }
 
         public bl_AudioBank.AudioInfo GetAudioInfo(string name)
