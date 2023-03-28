@@ -1,9 +1,11 @@
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class UiChecker : MonoBehaviour
 {
     [SerializeField] private GameObject _mobileControler;
     [SerializeField] private GameObject[] _pcControlerWeapons;
+    [SerializeField] private GameObject[] _iconsHide;
     //[SerializeField] private GameObject _pcControlerBullets;
 
     private void Awake()
@@ -12,6 +14,7 @@ public class UiChecker : MonoBehaviour
         ////CheckPlatform();
 
         SetControl(true);
+        ClousedIcons();
     }
 
     //private void CheckPlatform()
@@ -36,6 +39,16 @@ public class UiChecker : MonoBehaviour
         for (int i = 0; i < _pcControlerWeapons.Length; i++)
         {
             _pcControlerWeapons[i].SetActive(!isTach);
+        }
+    }
+
+    private async void ClousedIcons()
+    {
+        await Task.Delay(1000);
+
+        for (int i = 0; i < _iconsHide.Length; i++)
+        {
+            _iconsHide[i].SetActive(false);
         }
     }
 }

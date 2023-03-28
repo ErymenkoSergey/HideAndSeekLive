@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Lovatto.MobileInput;
+﻿using UnityEngine;
 
 public class bl_MovementJoystick : MonoBehaviour
 {
@@ -9,16 +6,22 @@ public class bl_MovementJoystick : MonoBehaviour
     public AnimationCurve runningIconScale;
 
     public bl_JoystickBase sourceJoystick;
+    [Space]
     public RectTransform runningIndicator;
+    public bl_MobileButton _runningButton;
+
     public RectTransform stickTransform;
-    [HideInInspector]public CanvasGroup runningAlpha;
+    public CanvasGroup runningAlpha;
+
+    private void Update()
+    {
+        UpdateRunningAlpha(sourceJoystick.Vertical);
+    }
 
     public float Vertical
     {
         get
         {
-            Debug.Log($"bl_MovementJoystick Vertical 0 {sourceJoystick.Vertical}");
-
             if (!bl_MobileInput.Interactable)
                 return 0;
 //#if UNITY_EDITOR
@@ -32,7 +35,7 @@ public class bl_MovementJoystick : MonoBehaviour
             if (Cursor.lockState == CursorLockMode.Locked)
                 Cursor.lockState = CursorLockMode.None;
 
-            UpdateRunningAlpha(sourceJoystick.Vertical);
+            //UpdateRunningAlpha(sourceJoystick.Vertical);
             return sourceJoystick.Vertical;
         }
     }
@@ -70,7 +73,7 @@ public class bl_MovementJoystick : MonoBehaviour
         }
     }
 
-    void UpdateRunningAlpha(float vertical)
+    private void UpdateRunningAlpha(float vertical)
     {
         if (runningAlpha == null) 
             return;
@@ -80,10 +83,20 @@ public class bl_MovementJoystick : MonoBehaviour
             runningAlpha.alpha = 0; 
             return; 
         }
-
+        
         float percentage = Mathf.Clamp01(vertical / RunningOnMagnitudeOf);
         runningAlpha.alpha = percentage;
+
         runningIndicator.localScale = Vector3.one * runningIconScale.Evaluate(percentage);
+
+        if (percentage >= 1)
+        {
+            _runningButton.buttonState = bl_MobileButton.ButtonState.Down;
+        }
+        else
+        {
+            _runningButton.buttonState = bl_MobileButton.ButtonState.Idle;
+        }
     }
 
 #if UNITY_EDITOR

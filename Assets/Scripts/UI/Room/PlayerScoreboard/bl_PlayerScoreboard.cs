@@ -43,9 +43,6 @@ public class bl_PlayerScoreboard : bl_MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -55,9 +52,6 @@ public class bl_PlayerScoreboard : bl_MonoBehaviour
         if(updateOnEnable) ForceUpdateAll();
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     protected override void OnDisable()
     {
         base.OnDisable();

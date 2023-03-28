@@ -61,10 +61,12 @@ namespace Lovatto.MobileInput
 
         public void OnDrag(PointerEventData eventData)// ПЕРЕделать 
         {
-            if (!init) return;
+            if (!init)
+                return;
 
 
             //SetMouse(eventD);
+
             if (eventData.pointerId == lastId)
             {
                 Vector2 pos;
@@ -73,9 +75,9 @@ namespace Lovatto.MobileInput
                 {
                     //pos.x = (pos.x / m_Transform.sizeDelta.x);
                     //pos.y = (pos.y / m_Transform.sizeDelta.y);
-                   
+
                     inputVector = new Vector3(pos.x, 0, pos.y);
-                    inputVector = (inputVector.magnitude > 1.0f) ? inputVector.normalized : inputVector.normalized;
+                    inputVector = (inputVector.magnitude > 1.0f) ? inputVector.normalized : inputVector;
                     Debug.Log($"OnDrag {pos.x} / {pos.y}, inputVector {inputVector}");
                     //stickPosition.x = inputVector.x * (m_Transform.sizeDelta.x * ClampArea);
                     //stickPosition.y = inputVector.z * (m_Transform.sizeDelta.y * ClampArea);

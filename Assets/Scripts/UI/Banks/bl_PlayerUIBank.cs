@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class bl_PlayerUIBank : MonoBehaviour
@@ -30,17 +28,11 @@ public class bl_PlayerUIBank : MonoBehaviour
     public bl_WeaponLoadoutUI LoadoutUI;
     public Gradient AmmoTextColorGradient;
 
-    /// <summary>
-    /// 
-    /// </summary>
     private void Awake()
     {
         UpdateUIDisplay();
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void UpdateUIDisplay()
     {
         TimeUIRoot.SetActive(bl_UIReferences.Instance.UIMask.IsEnumFlagPresent(RoomUILayers.Time));
@@ -50,9 +42,6 @@ public class bl_PlayerUIBank : MonoBehaviour
         bl_EventHandler.DispatchUIMaskChange(bl_UIReferences.Instance.UIMask);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void UpdateWeaponState(bl_Gun gun)
     {
         int bullets = gun.bulletsLeft;

@@ -8,7 +8,7 @@ using UnityEngine.Events;
 public class bl_MobileButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public string ButtonName;
-    public int WeaponId;
+    //public int WeaponId;
     public KeyCode fallBackKey = KeyCode.None;
     public bool blockTouchPad = false;
     [SerializeField] private OnClick onClick;
@@ -21,7 +21,7 @@ public class bl_MobileButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     public AnimationCurve animationCurve;
     [Range(0.1f, 2)] public float transitionDuration = 0.25f;
 
-    public ButtonState buttonState { get; private set; } = ButtonState.Idle;
+    public ButtonState buttonState = ButtonState.Idle; // { get;  set; }
     [Serializable] public class OnClick : UnityEvent { }
     private bool hasDispatchClick = false;
     private bool hasDispatchUp = false;
@@ -62,38 +62,13 @@ public class bl_MobileButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         }
     }
 
-    //public bool isButton(int gun)
-    //{
-    //    Debug.Log($"isButtonisButton 0 {gun}, WeaponId {WeaponId}");
-
-    //    if (gun == WeaponId)
-    //    {
-    //        Debug.Log($"isButtonisButton 1 {gun}, WeaponId {WeaponId}");
-    //        if (buttonState == ButtonState.Down)
-    //        {
-    //            Debug.Log($"isButtonisButton 2 {gun}, WeaponId {WeaponId}");
-    //            //bl_MobileInput.GetButton(fallBackKey , GameInputType.Down);
-    //            Input.GetKeyDown(fallBackKey);
-    //            return true;
-    //        }
-    //        else
-    //            return false;
-    //    }
-    //    else
-    //        return false;
-
-    //    //return buttonState == ButtonState.Down || buttonState == ButtonState.Click;
-
-
-    //    //if (buttonState == ButtonState.Idle || buttonState == ButtonState.Up)
-    //    //    return false;
-
-
-
-    //}
-
     public bool isButtonDown()
     {
+        //if (ButtonName == "Run")
+        //{
+        //    return true;
+        //}
+
         if (buttonState == ButtonState.Idle || buttonState == ButtonState.Up)
             return false;
 

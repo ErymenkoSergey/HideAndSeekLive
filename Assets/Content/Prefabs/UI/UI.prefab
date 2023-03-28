@@ -2632,7 +2632,7 @@ Transform:
   - {fileID: 4156469052510188}
   - {fileID: 7761780025178664946}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &114052633521580696
 MonoBehaviour:
@@ -2695,6 +2695,11 @@ MonoBehaviour:
   - {fileID: 8965787463013684960}
   - {fileID: 1801229938682770}
   - {fileID: 1972540638999030}
+  _iconsHide:
+  - {fileID: 8013253863310108941}
+  - {fileID: 4957420045580321215}
+  - {fileID: 4050800888367746681}
+  - {fileID: 5448857801637950192}
 --- !u!1 &1347617747013792
 GameObject:
   m_ObjectHideFlags: 0
@@ -6142,7 +6147,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -63.200012, y: 0}
+  m_AnchoredPosition: {x: -63.19995, y: 0}
   m_SizeDelta: {x: 129.0344, y: 47.19}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &222612780113728220
@@ -11227,6 +11232,7 @@ GameObject:
   - component: {fileID: 225138961365365190}
   - component: {fileID: 225138961365365191}
   - component: {fileID: 225138961365365193}
+  - component: {fileID: 7327453604084238135}
   m_Layer: 5
   m_Name: Running Indicator
   m_TagString: Untagged
@@ -11251,7 +11257,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000014305, y: 79}
+  m_AnchoredPosition: {x: 2.2, y: 79}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &225138961365365190
@@ -11301,9 +11307,76 @@ CanvasGroup:
   m_GameObject: {fileID: 225138961365365189}
   m_Enabled: 1
   m_Alpha: 1
-  m_Interactable: 0
+  m_Interactable: 1
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &7327453604084238135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 225138961365365189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 549d57b9eaa44e84ea235bbbc257c666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ButtonName: Run
+  fallBackKey: 120
+  blockTouchPad: 0
+  onClick:
+    m_PersistentCalls:
+      m_Calls: []
+  buttonGraphics:
+  - {fileID: 1307784549399826483}
+  animatedChild: {fileID: 225138961365365188}
+  normalColor: {r: 1, g: 1, b: 1, a: 0.7294118}
+  touchColor: {r: 0.20784314, g: 0.8156863, b: 0.7294118, a: 1}
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.1478031
+      value: 0.9610531
+      inSlope: 0.0748267
+      outSlope: 0.0748267
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.23799145
+    - serializedVersion: 3
+      time: 0.88634044
+      value: 1.3343837
+      inSlope: -0.029873513
+      outSlope: -0.029873513
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 1
+    - serializedVersion: 3
+      time: 1.0041667
+      value: 1.25
+      inSlope: -0.17678799
+      outSlope: -0.17678799
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.17842318
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transitionDuration: 0.25
+  buttonState: 0
 --- !u!1 &483692731919187155
 GameObject:
   m_ObjectHideFlags: 0
@@ -11603,14 +11676,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.36078432}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 880c1bd1462273a429dcd5a21fbcff7b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 83191953378eaaa4b945d5a6e42defef, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -15462,7 +15535,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: WeaponSlot2
-  WeaponId: 2
   fallBackKey: 50
   blockTouchPad: 0
   onClick:
@@ -15517,6 +15589,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   transitionDuration: 0.25
+  buttonState: 0
 --- !u!1 &2094535050352087353
 GameObject:
   m_ObjectHideFlags: 0
@@ -15728,7 +15801,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -161, y: 155}
+  m_AnchoredPosition: {x: -129, y: 174}
   m_SizeDelta: {x: 56, y: 56}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &6689109619066932099
@@ -15752,7 +15825,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.5058824}
+  m_Color: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 0.19215687}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -15782,7 +15855,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: Interact
-  WeaponId: 0
   fallBackKey: 101
   blockTouchPad: 0
   onClick:
@@ -15837,6 +15909,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   transitionDuration: 0.25
+  buttonState: 0
 --- !u!1 &2336315204752320346
 GameObject:
   m_ObjectHideFlags: 0
@@ -15925,7 +15998,6 @@ GameObject:
   - component: {fileID: 8069124985131288427}
   - component: {fileID: 8261740139371568627}
   - component: {fileID: 7838959969270290402}
-  - component: {fileID: 6590617511282134162}
   m_Layer: 5
   m_Name: PauseButton
   m_TagString: Untagged
@@ -15950,7 +16022,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -25.5, y: -20}
+  m_AnchoredPosition: {x: -15.199951, y: -12.900024}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8069124985131288427
@@ -15974,7 +16046,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.7882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -16004,7 +16076,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: Pause
-  WeaponId: 0
   fallBackKey: 27
   blockTouchPad: 0
   onClick:
@@ -16040,20 +16111,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   transitionDuration: 0.25
---- !u!114 &6590617511282134162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2366887903630216212}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e07e82833c05cf34f9fb55356542a785, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Clamped: 0
-  ClampArea: 100
+  buttonState: 0
 --- !u!1 &2510228804006946529
 GameObject:
   m_ObjectHideFlags: 0
@@ -29114,7 +29172,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: GeneralChat
-  WeaponId: 0
   fallBackKey: 121
   blockTouchPad: 0
   onClick:
@@ -29169,6 +29226,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   transitionDuration: 0.25
+  buttonState: 0
 --- !u!1 &2776995338282283783
 GameObject:
   m_ObjectHideFlags: 0
@@ -29864,6 +29922,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   sourceJoystick: {fileID: 2970135465122135078}
   runningIndicator: {fileID: 225138961365365188}
+  _runningButton: {fileID: 7327453604084238135}
   stickTransform: {fileID: 2970135465728558101}
   runningAlpha: {fileID: 225138961365365193}
 --- !u!114 &2970135465122135074
@@ -31874,7 +31933,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -144.1}
+  m_AnchoredPosition: {x: 0, y: -140.4}
   m_SizeDelta: {x: 98.15, y: 115.5755}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1670079774895902260
@@ -31972,7 +32031,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -88.69995, y: 3.9000244}
+  m_AnchoredPosition: {x: -700, y: 251}
   m_SizeDelta: {x: 45, y: 45}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &3589320071108726544
@@ -32026,7 +32085,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: QuickNade
-  WeaponId: 0
   fallBackKey: 106
   blockTouchPad: 0
   onClick:
@@ -32081,6 +32139,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   transitionDuration: 0.25
+  buttonState: 0
 --- !u!1 &4083541164862775849
 GameObject:
   m_ObjectHideFlags: 0
@@ -32116,7 +32175,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000022888184, y: 0.0000019073486}
+  m_AnchoredPosition: {x: 0, y: 0.0000019073486}
   m_SizeDelta: {x: -18.35, y: -18.35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4305118943400186475
@@ -33201,7 +33260,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: WeaponSlot3
-  WeaponId: 3
   fallBackKey: 51
   blockTouchPad: 0
   onClick:
@@ -33256,6 +33314,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   transitionDuration: 0.25
+  buttonState: 0
 --- !u!1 &4603247161449949097
 GameObject:
   m_ObjectHideFlags: 0
@@ -33621,7 +33680,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: WeaponSlot1
-  WeaponId: 1
   fallBackKey: 49
   blockTouchPad: 0
   onClick:
@@ -33676,6 +33734,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   transitionDuration: 0.25
+  buttonState: 0
 --- !u!1 &4898046949437039355
 GameObject:
   m_ObjectHideFlags: 0
@@ -33789,7 +33848,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -7.199951, y: 160.1}
+  m_AnchoredPosition: {x: -750, y: 251}
   m_SizeDelta: {x: 45, y: 45}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &4962540459857405916
@@ -33843,7 +33902,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: QuickMelee
-  WeaponId: 0
   fallBackKey: 104
   blockTouchPad: 0
   onClick:
@@ -33898,6 +33956,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   transitionDuration: 0.25
+  buttonState: 0
 --- !u!1 &5021235740041666165
 GameObject:
   m_ObjectHideFlags: 0
@@ -34334,7 +34393,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: TeamChat
-  WeaponId: 0
   fallBackKey: 116
   blockTouchPad: 0
   onClick:
@@ -34389,6 +34447,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   transitionDuration: 0.25
+  buttonState: 0
 --- !u!1 &5448857801637950192
 GameObject:
   m_ObjectHideFlags: 0
@@ -45711,18 +45770,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6570103396932305976}
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1690704298798069169}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000022888184, y: 0.0000019073486}
-  m_SizeDelta: {x: -18.35, y: -18.35}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -10, y: -10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4306329920188954235
 CanvasRenderer:
@@ -45752,7 +45811,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: abaa592ab3317f44a8523d94914a1fa6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ca37e507e47f9f148b92dd984e3137f3, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -46248,8 +46307,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -751.9, y: 271.2}
-  m_SizeDelta: {x: 45, y: 45}
+  m_AnchoredPosition: {x: -698, y: 320}
+  m_SizeDelta: {x: 28.9289, y: 27}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &5988290898933828923
 CanvasRenderer:
@@ -46279,7 +46338,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 407a07a0976ef754b997718f89b54fd4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d6beee97baca15d40935142becc98813, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -46302,7 +46361,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: Scoreboard
-  WeaponId: 0
   fallBackKey: 9
   blockTouchPad: 0
   onClick:
@@ -46357,6 +46415,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   transitionDuration: 0.25
+  buttonState: 0
 --- !u!1 &7202871482704129867
 GameObject:
   m_ObjectHideFlags: 0
@@ -47218,7 +47277,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: 
-  WeaponId: 0
   fallBackKey: 0
   blockTouchPad: 0
   onClick:
@@ -47284,6 +47342,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   transitionDuration: 0.25
+  buttonState: 0
 --- !u!1 &7541961894569011068
 GameObject:
   m_ObjectHideFlags: 0
@@ -47394,7 +47453,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7541961894569011068}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 89bbd0685046e9a40845bf090102b8c2, type: 3}
   m_Name: 
@@ -47497,7 +47556,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: 
-  WeaponId: 0
   fallBackKey: 0
   blockTouchPad: 0
   onClick:
@@ -47563,6 +47621,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   transitionDuration: 0.25
+  buttonState: 0
 --- !u!1 &7542448285789651446
 GameObject:
   m_ObjectHideFlags: 0
@@ -47580,7 +47639,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7761540078458755438
 RectTransform:
   m_ObjectHideFlags: 0
@@ -47822,7 +47881,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: Fire
-  WeaponId: 0
   fallBackKey: 323
   blockTouchPad: 0
   onClick:
@@ -47877,6 +47935,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   transitionDuration: 0.25
+  buttonState: 0
 --- !u!1 &7542515640287640618
 GameObject:
   m_ObjectHideFlags: 0
@@ -47990,7 +48049,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -79.4, y: 150.6}
+  m_AnchoredPosition: {x: -155.09998, y: 6.200012}
   m_SizeDelta: {x: 45, y: 45}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &7763861978222250536
@@ -48014,7 +48073,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.5058824}
+  m_Color: {r: 1, g: 0, b: 0, a: 0.5058824}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -48044,7 +48103,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: Crouch
-  WeaponId: 0
   fallBackKey: 99
   blockTouchPad: 0
   onClick:
@@ -48099,6 +48157,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   transitionDuration: 0.25
+  buttonState: 0
 --- !u!1 &7542592404612636616
 GameObject:
   m_ObjectHideFlags: 0
@@ -48188,8 +48247,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -10.199951, y: 103}
-  m_SizeDelta: {x: 56, y: 56}
+  m_AnchoredPosition: {x: 0, y: 153.8}
+  m_SizeDelta: {x: 42, y: 44}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &7763202819310018840
 CanvasRenderer:
@@ -48242,7 +48301,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: Aim
-  WeaponId: 0
   fallBackKey: 324
   blockTouchPad: 0
   onClick:
@@ -48297,6 +48355,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   transitionDuration: 0.25
+  buttonState: 0
 --- !u!1 &7542757359707710622
 GameObject:
   m_ObjectHideFlags: 0
@@ -48470,7 +48529,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -13.099976, y: 16.299988}
+  m_AnchoredPosition: {x: 2.3000488, y: 88.599976}
   m_SizeDelta: {x: 56, y: 56}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &7760162589150602578
@@ -48524,7 +48583,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: Reload
-  WeaponId: 0
   fallBackKey: 114
   blockTouchPad: 0
   onClick:
@@ -48579,6 +48637,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   transitionDuration: 0.25
+  buttonState: 0
 --- !u!1 &7543471626149980620
 GameObject:
   m_ObjectHideFlags: 0
@@ -48616,7 +48675,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -154.40002, y: 22.900024}
+  m_AnchoredPosition: {x: -50.30005, y: 154.40002}
   m_SizeDelta: {x: 45, y: 45}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &7763875238465936064
@@ -48640,7 +48699,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.5058824}
+  m_Color: {r: 0, g: 1, b: 0.2231617, a: 0.5058824}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -48670,7 +48729,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: Jump
-  WeaponId: 0
   fallBackKey: 32
   blockTouchPad: 0
   onClick:
@@ -48725,6 +48783,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   transitionDuration: 0.25
+  buttonState: 0
 --- !u!1 &7582884842609962263
 GameObject:
   m_ObjectHideFlags: 0
@@ -49546,7 +49605,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3361059400470801581
 RectTransform:
   m_ObjectHideFlags: 0
@@ -49565,7 +49624,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -751.9, y: 143.5}
+  m_AnchoredPosition: {x: -751.9, y: 299.7}
   m_SizeDelta: {x: 45, y: 45}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &6606339446856404096
@@ -49619,7 +49678,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: Run
-  WeaponId: 0
   fallBackKey: 120
   blockTouchPad: 0
   onClick:
@@ -49674,6 +49732,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   transitionDuration: 0.25
+  buttonState: 0
 --- !u!1 &8108041770198402200
 GameObject:
   m_ObjectHideFlags: 0
@@ -53847,7 +53906,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: WeaponSlot4
-  WeaponId: 4
   fallBackKey: 52
   blockTouchPad: 0
   onClick:
@@ -53902,6 +53960,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   transitionDuration: 0.25
+  buttonState: 0
 --- !u!1 &8964663849154442399
 GameObject:
   m_ObjectHideFlags: 0

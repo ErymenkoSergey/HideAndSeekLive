@@ -21,7 +21,7 @@ namespace Lovatto.MobileInput
         private bool hasDetectedSomething = false;
         private RectTransform barFillRect;
         private Vector2 defaultSize;
-
+        //bl_PlayerSettings ?
         /// <summary>
         /// 
         /// </summary>
@@ -166,6 +166,11 @@ namespace Lovatto.MobileInput
                 if (_instance == null) { _instance = FindObjectOfType<bl_AutoFire>(); }
                 return _instance;
             }
+        }
+
+        public void SetTeam()
+        {
+
         }
     }
 }
