@@ -59,13 +59,10 @@ namespace Lovatto.MobileInput
         }
         private int lastId = -2;
 
-        public void OnDrag(PointerEventData eventData)// ПЕРЕделать 
+        public void OnDrag(PointerEventData eventData)
         {
             if (!init)
                 return;
-
-
-            //SetMouse(eventD);
 
             if (eventData.pointerId == lastId)
             {
@@ -73,16 +70,13 @@ namespace Lovatto.MobileInput
 
                 if (RectTransformUtility.ScreenPointToLocalPointInRectangle(m_Transform, eventData.position, null, out pos))
                 {
-                    //pos.x = (pos.x / m_Transform.sizeDelta.x);
-                    //pos.y = (pos.y / m_Transform.sizeDelta.y);
+                    pos.x = (pos.x / m_Transform.sizeDelta.x);
+                    pos.y = (pos.y / m_Transform.sizeDelta.y);
 
-                    inputVector = new Vector3(pos.x, 0, pos.y);
-                    inputVector = (inputVector.magnitude > 1.0f) ? inputVector.normalized : inputVector;
-                    Debug.Log($"OnDrag {pos.x} / {pos.y}, inputVector {inputVector}");
-                    //stickPosition.x = inputVector.x * (m_Transform.sizeDelta.x * ClampArea);
-                    //stickPosition.y = inputVector.z * (m_Transform.sizeDelta.y * ClampArea);
+                    Vector3 inputVector = new Vector3(pos.x, 0, pos.y);
+                    //inputVector = (inputVector.magnitude > .1f) ? inputVector.normalized : inputVector;
+
                     SetMouse(inputVector.x, inputVector.z);
-                    //m_Transform.anchoredPosition = stickPosition;
                 }
             }
 
@@ -97,29 +91,12 @@ namespace Lovatto.MobileInput
             m_Transform.position = eventData.position;
         }
 
-        //private Vector2 stickPosition = Vector2.zero;
-        private Vector2 stickPosition = Vector2.zero;
-        public Vector3 inputVector { get; set; }
-        //private void ConvertVector()
-        //{
-        //    inputVector = new Vector3(pos.x, 0, pos.y);
-        //    inputVector = (inputVector.magnitude > 1.0f) ? inputVector.normalized : inputVector;
-
-        //    stickPosition.x = inputVector.x * (joystickRoot.sizeDelta.x * stickArea);
-        //    stickPosition.y = inputVector.z * (joystickRoot.sizeDelta.y * stickArea);
-        //    SetMouse(inputVector.x, inputVector.z);
-        //}
-
         private void SetMouse(float vectorX, float vectorY)
         {
-            Debug.Log($"bl_PersitentButton vectorX {vectorX}, vectorY {vectorY}");
             bl_MobileInput.MobileMouseX = vectorX;
             bl_MobileInput.MobileMouseY = vectorY;
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
+
         IEnumerator OnUpdate()
         {
             while (true)
