@@ -175,26 +175,25 @@ public class bl_Maniac : bl_PhotonHelper, IGameMode
             int team1 = PhotonNetwork.CurrentRoom.GetRoomScore(Team.Hiding);
             int team2 = PhotonNetwork.CurrentRoom.GetRoomScore(Team.Maniac);
             bl_TeamDeathMatchUI.Instance.SetScores(team1, team2);
-            CheckScores(team1, team2);
+            //CheckScores(team1, team2);
         }
     }
 
-    private void CheckScores(int team1, int team2)
-    {
-        if (PhotonNetwork.OfflineMode || !bl_RoomSettings.Instance.RoomInfoFetched)
-            return;
-        //check if any of the team reach the max kills
-        if (team1 >= bl_RoomSettings.Instance.GameGoal)
-        {
-            //GameOver();
-            return;
-        }
-        if (team2 >= bl_RoomSettings.Instance.GameGoal)
-        {
-            //GameOver();
-        }
-    }
-
+    //private void CheckScores(int team1, int team2)
+    //{
+    //    if (PhotonNetwork.OfflineMode || !bl_RoomSettings.Instance.RoomInfoFetched)
+    //        return;
+    //    //check if any of the team reach the max kills
+    //    if (team1 >= bl_RoomSettings.Instance.GameGoal)
+    //    {
+    //        //GameOver();
+    //        return;
+    //    }
+    //    if (team2 >= bl_RoomSettings.Instance.GameGoal)
+    //    {
+    //        //GameOver();
+    //    }
+    //}
 
     private void GameOver(Team winner)
     {

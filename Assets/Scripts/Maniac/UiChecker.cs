@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class UiChecker : MonoBehaviour
+public class UiChecker : CommonMonoBehaviour
 {
     [SerializeField] private GameObject _mobileControler;
     [SerializeField] private GameObject[] _pcControlerWeapons;

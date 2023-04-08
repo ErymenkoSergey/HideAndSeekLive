@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 namespace Lovatto.MobileInput
 {
-    public class bl_PersitentButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
+    public class bl_PersitentButton : CommonMonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
     {
         public bool Clamped = true;
         public float ClampArea = 100;

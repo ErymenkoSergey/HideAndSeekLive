@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 
-public class bl_MobileButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class bl_MobileButton : CommonMonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public string ButtonName;
     //public int WeaponId;
@@ -27,10 +27,10 @@ public class bl_MobileButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     private bool hasDispatchUp = false;
     private bool isRegistered = false;
 
-    private void Awake()
-    {
-        Registre();
-    }
+    //private void Awake()
+    //{
+    //    Registre();
+    //}
 
     private void OnEnable()
     {
@@ -64,17 +64,12 @@ public class bl_MobileButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
     public bool isButtonDown()
     {
-        //if (ButtonName == "Run")
-        //{
-        //    return true;
-        //}
-
         if (buttonState == ButtonState.Idle || buttonState == ButtonState.Up)
             return false;
 
         hasDispatchUp = false;
 
-        if (buttonState == ButtonState.Down) //туту было
+        if (buttonState == ButtonState.Down)
             return true;
 
         if (hasDispatchClick)
@@ -88,9 +83,6 @@ public class bl_MobileButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
             hasDispatchClick = true;
             return true;
         }
-
-        //if (buttonState == ButtonState.Down)
-        //    return true;
     }
 
     public bool isButtonUp()
@@ -104,7 +96,6 @@ public class bl_MobileButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        //buttonState = ButtonState.Click;
         buttonState = ButtonState.Down;
         onClick?.Invoke();
 
@@ -172,31 +163,5 @@ public class bl_MobileButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
             }
             yield return null;
         }
-    }
-
-//#if UNITY_EDITOR
-//    void OnValidate()
-//    {
-//        if (buttonGraphics == null) return;
-//        if (buttonGraphics.Length == 0)
-//        {
-//            Graphic g = GetComponent<Graphic>();
-//            if (g != null) { buttonGraphics = new Graphic[1]; buttonGraphics[0] = g; }
-//            return;
-//        }
-//        foreach (var item in buttonGraphics)
-//        {
-//            item.canvasRenderer.SetColor(normalColor);
-//        }
-//    }
-//#endif
-
-    [Serializable]
-    public enum ButtonState
-    {
-        Idle,
-        Click,
-        Down,
-        Up,
     }
 }

@@ -2,7 +2,7 @@
 
 namespace MFPS.Internal
 {
-    public class bl_UpdateManager : MonoBehaviour
+    public class bl_UpdateManager : CommonMonoBehaviour
     {
         public float SlowUpdateTime = 0.5f;
         private int regularUpdateArrayCount = 0;

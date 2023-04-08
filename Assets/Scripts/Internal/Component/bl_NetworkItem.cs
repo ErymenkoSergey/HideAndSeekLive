@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-public class bl_NetworkItem : MonoBehaviour
+public class bl_NetworkItem : CommonMonoBehaviour
 {
     public ItemAuthority itemAuthority = ItemAuthority.All;
     public bool isSceneItem = false;

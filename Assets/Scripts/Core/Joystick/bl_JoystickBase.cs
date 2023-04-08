@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bl_JoystickBase : MonoBehaviour
+public class bl_JoystickBase : CommonMonoBehaviour
 {
     public Vector3 inputVector { get; set; }
     public virtual float StickHeight { get; set; }

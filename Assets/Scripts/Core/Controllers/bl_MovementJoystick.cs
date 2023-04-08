@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class bl_MovementJoystick : MonoBehaviour
+public class bl_MovementJoystick : CommonMonoBehaviour
 {
     [Range(0, 1)] public float RunningOnMagnitudeOf = 0.75f;
     public AnimationCurve runningIconScale;

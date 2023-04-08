@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class bl_ObjectPooling : MonoBehaviour
+public class bl_ObjectPooling : CommonMonoBehaviour
 {
     [SerializeField, FormerlySerializedAs("RegistreOnStart")]
     private PreRegister[] pooledPrefabs;
@@ -15,6 +16,18 @@ public class bl_ObjectPooling : MonoBehaviour
     /// </summary>
     private void Awake()
     {
+        
+    }
+
+    private void Start()
+    {
+        WaitLoad();
+    }
+
+    private async void WaitLoad()
+    {
+        await Task.Delay(1000);
+
         for (int i = 0; i < pooledPrefabs.Length; i++)
         {
             RegisterObject(pooledPrefabs[i].Name, pooledPrefabs[i].Prefab, pooledPrefabs[i].Lenght);
@@ -81,8 +94,8 @@ public class bl_ObjectPooling : MonoBehaviour
         }
     }
 
-    [System.Serializable]
-    public class PoolObject
+    [Serializable]
+    public class PoolObject // Struct?
     {
         public string Name;
         public GameObject Prefab;
@@ -105,7 +118,7 @@ public class bl_ObjectPooling : MonoBehaviour
         }
     } 
 
-    [System.Serializable]
+    [Serializable]
     public class PreRegister
     {
         public string Name;
