@@ -282,13 +282,15 @@ public class bl_LobbyUI : MonoBehaviour
         if (bl_MFPS.Settings != null)
         {
             bl_MFPS.Settings.ApplySettings(true, false);
-            Application.targetFrameRate = -1; //bl_MFPS.Settings.RefreshRates[(int)bl_MFPS.Settings.GetSettingOf("Frame Rate")];
+            Application.targetFrameRate = bl_MFPS.Settings.RefreshRates[(int)bl_MFPS.Settings.GetSettingOf("Frame Rate")]; //-1
             bl_MFPS.MusicVolume = (float)bl_MFPS.Settings.GetSettingOf("Music Volume");
             bl_AudioController.Instance.ForceStopAllFades();
             bl_AudioController.Instance.BackgroundVolume = bl_MFPS.MusicVolume;
             bl_AudioController.Instance.MaxBackgroundVolume = bl_MFPS.MaxMusicVolume;
         }
     }
+
+    
 
     public void FullSetUp()
     {

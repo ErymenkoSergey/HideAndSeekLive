@@ -10,10 +10,12 @@ using MFPS.Internal.Structures;
 [CreateAssetMenu(menuName = "GameData")]
 public class bl_GameData : ScriptableObject
 {
+    [Space(5)]
     [Header("Game Settings")]
     public bool singleMode = true;
     public bool MobileInput = true;
     public bool offlineMode = false;
+    [Space(5)]
     public bool UseLobbyChat = true;
     public bool UseVoiceChat = true;
     public bool BulletTracer = false;

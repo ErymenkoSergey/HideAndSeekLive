@@ -35,6 +35,7 @@ public class bl_PlayerUIBank : MonoBehaviour
     private void Awake()
     {
         UpdateUIDisplay();
+
     }
 
     public void UpdateUIDisplay()
