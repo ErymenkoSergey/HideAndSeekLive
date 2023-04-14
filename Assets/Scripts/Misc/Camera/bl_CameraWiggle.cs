@@ -12,10 +12,12 @@ public class bl_CameraWiggle : bl_MonoBehaviour
     public float m_time = 0.2f;
     public float DownAmount = 8;
     private bool wiggle = true;
+    private bool _mobileInput = false;
 
     protected override void Awake()
     {
         base.Awake();
+        _mobileInput = bl_GameData.Instance.MobileInput;
         this.m_transform = this.transform;
     }
 
@@ -34,30 +36,45 @@ public class bl_CameraWiggle : bl_MonoBehaviour
 
     public override void OnUpdate()
     {
-        if (!wiggle) return;
+        if (!wiggle)
+            return;
 
         if (bl_RoomMenu.Instance.isCursorLocked)
         {
             float t_amount = -bl_MobileInput.MouseX * this.tiltAngle;
             t_amount = Mathf.Clamp(t_amount, -this.tiltAngle, this.tiltAngle);
-            //if (!bl_MobileInput.Aim())
-            if (!bl_MobileInput.GetButtonDown("Aim"))
+
+            if (!_mobileInput)
             {
-                m_transform.localRotation = Quaternion.Lerp(this.m_transform.localRotation, Quaternion.Euler(0, 0, t_amount), Time.deltaTime * this.smooth);
+                if (!bl_MobileInput.Aim())
+                {
+                    m_transform.localRotation = Quaternion.Lerp(this.m_transform.localRotation, Quaternion.Euler(0, 0, t_amount), Time.deltaTime * this.smooth);
+                }
+                else
+                {
+                    m_transform.localRotation = Quaternion.Lerp(this.m_transform.localRotation, Quaternion.Euler(0, 0, t_amount / 2), Time.deltaTime * this.smooth);
+                }
             }
             else
             {
-                m_transform.localRotation = Quaternion.Lerp(this.m_transform.localRotation, Quaternion.Euler(0, 0, t_amount / 2), Time.deltaTime * this.smooth);
+                if (!bl_MobileInput.GetButtonDown("Aim"))
+                {
+                    m_transform.localRotation = Quaternion.Lerp(this.m_transform.localRotation, Quaternion.Euler(0, 0, t_amount), Time.deltaTime * this.smooth);
+                }
+                else
+                {
+                    m_transform.localRotation = Quaternion.Lerp(this.m_transform.localRotation, Quaternion.Euler(0, 0, t_amount / 2), Time.deltaTime * this.smooth);
+                }
             }
         }
     }
 
-    void OnSmallImpact()
+    private void OnSmallImpact()
     {
         StartCoroutine(FallEffect());
     }
 
-    IEnumerator FallEffect()
+    private IEnumerator FallEffect()
     {
         Quaternion m_default = this.transform.localRotation;
         Quaternion m_finaly = this.transform.localRotation * Quaternion.Euler(new Vector3(DownAmount, 0, 0));

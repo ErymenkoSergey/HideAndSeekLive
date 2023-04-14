@@ -121,12 +121,16 @@ public class bl_FirstPersonController : bl_MonoBehaviour
     private Vector3 surfaceNormal = Vector3.zero;
     #endregion
 
+    private bool _mobileInput = false;
+
     protected override void Awake()
     {
         if (!photonView.IsMine)
             return;
 
         base.Awake();
+
+        _mobileInput = bl_GameData.Instance.MobileInput;
         m_Transform = transform;
         playerReferences = GetComponent<bl_PlayerReferences>();
         m_CharacterController = playerReferences.characterController;
@@ -210,54 +214,95 @@ public class bl_FirstPersonController : bl_MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Handle the player input key/buttons for the player controller
-    /// </summary>
     private void MovementInput()
     {
         if (State == PlayerState.Sliding)
         {
             slideForce -= Time.deltaTime * slideFriction;
             speed = slideForce;
-            //if (bl_MobileInput.Jump())
-            if (bl_MobileInput.GetButtonDown("Jump"))
+
+            if (!_mobileInput)
             {
-                State = PlayerState.Jumping;
-                m_Jump = true;
+                if (bl_MobileInput.Jump())
+                {
+                    State = PlayerState.Jumping;
+                    m_Jump = true;
+                }
+                else
+                    return;
             }
-            else return;
+            else
+            {
+                if (bl_MobileInput.GetButtonDown("Jump"))
+                {
+                    State = PlayerState.Jumping;
+                    m_Jump = true;
+                }
+                else
+                    return;
+            }
         }
 
-        if (bl_UtilityHelper.isMobile) return;
+        if (bl_UtilityHelper.isMobile)
+            return;
 
         if (!m_Jump && State != PlayerState.Crouching && (Time.time - lastJumpTime) > JumpMinRate)
         {
-            //m_Jump = bl_MobileInput.Jump();
-            m_Jump = bl_MobileInput.GetButtonDown("Jump");
+            if (!_mobileInput)
+            {
+                m_Jump = bl_MobileInput.Jump();
+            }
+            else
+            {
+                m_Jump = bl_MobileInput.GetButtonDown("Jump");
+            }
         }
 
         if (State != PlayerState.Jumping && State != PlayerState.Climbing)
         {
             if (forcedCrouch)
                 return;
+
             if (KeepToCrouch)
             {
-                //Crounching = bl_MobileInput.Crouch();
-                Crounching = bl_MobileInput.GetButtonDown("Crouch", GameInputType.Hold); // было без 2-го пар-ра 
-                if (Crounching != lastCrouchState)
+                if (!_mobileInput)
                 {
-                    OnCrouchChanged();
-                    lastCrouchState = Crounching;
-                    footstep.IsCrouch = Crounching;
+                    Crounching = bl_MobileInput.Crouch();
+                    if (Crounching != lastCrouchState)
+                    {
+                        OnCrouchChanged();
+                        lastCrouchState = Crounching;
+                        footstep.IsCrouch = Crounching;
+                    }
+                }
+                else
+                {
+                    Crounching = bl_MobileInput.GetButtonDown("Crouch", GameInputType.Hold);// было без 2-го пар-ра 
+                    if (Crounching != lastCrouchState)
+                    {
+                        OnCrouchChanged();
+                        lastCrouchState = Crounching;
+                        footstep.IsCrouch = Crounching;
+                    }
                 }
             }
             else
             {
-                //if (bl_MobileInput.Crouch(GameInputType.Down))
-                if (bl_MobileInput.GetButtonDown("Crouch", GameInputType.Hold)) //Down
+                if (!_mobileInput)
                 {
-                    Crounching = !Crounching;
-                    OnCrouchChanged();
+                    if (bl_MobileInput.Crouch(GameInputType.Down))
+                    {
+                        Crounching = !Crounching;
+                        OnCrouchChanged();
+                    }
+                }
+                else
+                {
+                    if (bl_MobileInput.GetButtonDown("Crouch", GameInputType.Hold)) //Down
+                    {
+                        Crounching = !Crounching;
+                        OnCrouchChanged();
+                    }
                 }
             }
         }
@@ -310,11 +355,7 @@ public class bl_FirstPersonController : bl_MonoBehaviour
 
     public override void OnFixedUpdate()
     {
-        if (_isTeleportation)
-            return;
-        if (Finish)
-            return;
-        if (m_CharacterController == null || !m_CharacterController.enabled || MoveToStarted)
+        if (m_CharacterController == null || !m_CharacterController.enabled || MoveToStarted || _isTeleportation || Finish)
             return;
 
         //if player focus is in game
@@ -503,9 +544,6 @@ public class bl_FirstPersonController : bl_MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Make the player jump
-    /// </summary>
     private void DoJump()
     {
         m_MoveDir.y = (hasPlatformJump) ? PlatformJumpForce : jumpSpeed;
@@ -517,9 +555,6 @@ public class bl_FirstPersonController : bl_MonoBehaviour
         lastJumpTime = Time.time;
     }
 
-    /// <summary>
-    /// Make the player slide
-    /// </summary>
     private void DoSlide()
     {
         if ((Time.time - lastSlideTime) < slideTime * slideCoolDown)
@@ -553,9 +588,6 @@ public class bl_FirstPersonController : bl_MonoBehaviour
         });
     }
 
-    /// <summary>
-    /// Detect slope _angleLimit and apply slide physics.
-    /// </summary>
     private void SlopeControl()
     {
         float angle = Vector3.Angle(Vector3.up, surfaceNormal);
@@ -567,9 +599,6 @@ public class bl_FirstPersonController : bl_MonoBehaviour
         m_MoveDir.z += ((1f - surfaceNormal.y) * surfaceNormal.z) * (-Physics.gravity.y - slopeFriction);
     }
 
-    /// <summary>
-    /// Make the player dropping
-    /// </summary>
     public void DoDrop()
     {
         if (isGrounded)
@@ -580,9 +609,6 @@ public class bl_FirstPersonController : bl_MonoBehaviour
         State = PlayerState.Dropping;
     }
 
-    /// <summary>
-    /// Called each frame when the player is dropping (fall control is On)
-    /// </summary>
     private void OnDropping()
     {
         //get the camera upside down angle
@@ -647,22 +673,33 @@ public class bl_FirstPersonController : bl_MonoBehaviour
             m_MoveDir.y = desiredMove.y * climbSpeed;
             m_MoveDir.x = desiredMove.x * climbSpeed;
             m_MoveDir.z = desiredMove.z * climbSpeed;
-            //if (bl_MobileInput.Jump())
-            if (bl_MobileInput.GetButtonDown("Jump"))
+
+            if (!_mobileInput)
             {
-                ToggleClimbing();
-                m_Ladder.JumpOut();
-                m_MoveDir.y = jumpSpeed;
-                m_MoveDir.z = 30;
-                lastJumpTime = Time.time;
+                if (bl_MobileInput.Jump())
+                {
+                    ToggleClimbing();
+                    m_Ladder.JumpOut();
+                    m_MoveDir.y = jumpSpeed;
+                    m_MoveDir.z = 30;
+                    lastJumpTime = Time.time;
+                }
+            }
+            else
+            {
+                if (bl_MobileInput.GetButtonDown("Jump"))
+                {
+                    ToggleClimbing();
+                    m_Ladder.JumpOut();
+                    m_MoveDir.y = jumpSpeed;
+                    m_MoveDir.z = 30;
+                    lastJumpTime = Time.time;
+                }
             }
             m_CollisionFlags = m_CharacterController.Move(m_MoveDir * Time.fixedDeltaTime);
         }
     }
 
-    /// <summary>
-    /// Math behind the fall damage calculation
-    /// </summary>
     private void CalculateFall()
     {
         if (JumpInmune) { JumpInmune = false; return; }
@@ -763,25 +800,45 @@ public class bl_FirstPersonController : bl_MonoBehaviour
                 {
                     // On standalone builds, walk/run speed is modified by a key press.
                     // keep track of whether or not the character is walking or running
-                    //if (bl_MobileInput.Run() && State != PlayerState.Crouching && VelocityMagnitude > 0)
-                    if (bl_MobileInput.GetButtonDown("Run") && State != PlayerState.Crouching && VelocityMagnitude > 0)
-                    {
-                        State = PlayerState.Running;
-                    }
-                    //else if (bl_MobileInput.Run(GameInputType.Up) && State != PlayerState.Crouching && VelocityMagnitude > 0)
-                    else if (bl_MobileInput.GetButtonDown("Run", GameInputType.Up) && State != PlayerState.Crouching && VelocityMagnitude > 0)
-                    {
-                        State = PlayerState.Walking;
-                    }
-                    else if (State != PlayerState.Crouching && VelocityMagnitude > 0)
-                    {
-                        State = PlayerState.Walking;
-                    }
-                    else if (State != PlayerState.Jumping && State != PlayerState.Crouching)
-                    {
-                        State = PlayerState.Idle;
-                    }
 
+                    if (!_mobileInput)
+                    {
+                        if (bl_MobileInput.Run() && State != PlayerState.Crouching && VelocityMagnitude > 0)
+                        {
+                            State = PlayerState.Running;
+                        }
+                        else if (bl_MobileInput.Run(GameInputType.Up) && State != PlayerState.Crouching && VelocityMagnitude > 0)
+                        {
+                            State = PlayerState.Walking;
+                        }
+                        else if (State != PlayerState.Crouching && VelocityMagnitude > 0)
+                        {
+                            State = PlayerState.Walking;
+                        }
+                        else if (State != PlayerState.Jumping && State != PlayerState.Crouching)
+                        {
+                            State = PlayerState.Idle;
+                        }
+                    }
+                    else
+                    {
+                        if (bl_MobileInput.GetButtonDown("Run") && State != PlayerState.Crouching && VelocityMagnitude > 0)
+                        {
+                            State = PlayerState.Running;
+                        }
+                        else if (bl_MobileInput.GetButtonDown("Run", GameInputType.Up) && State != PlayerState.Crouching && VelocityMagnitude > 0)
+                        {
+                            State = PlayerState.Walking;
+                        }
+                        else if (State != PlayerState.Crouching && VelocityMagnitude > 0)
+                        {
+                            State = PlayerState.Walking;
+                        }
+                        else if (State != PlayerState.Jumping && State != PlayerState.Crouching)
+                        {
+                            State = PlayerState.Idle;
+                        }
+                    }
                 }
                 else
                 {

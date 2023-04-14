@@ -7,9 +7,6 @@ public class bl_FrameRateManager : MonoBehaviour
 {
     public Dropdown optionDropdown;
 
-    /// <summary>
-    /// 
-    /// </summary>
     void OnStart()
     {
         if(optionDropdown != null && bl_MFPS.Settings != null)
@@ -29,18 +26,12 @@ public class bl_FrameRateManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void OnChange(int option)
     {
         Application.targetFrameRate = -1; // bl_MFPS.Settings.RefreshRates[option];
         PlayerPrefs.SetInt(PropertiesKeys.FrameRateOption, option);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void OnChangeCustom(int option)
     {
         Application.targetFrameRate = -1;//bl_MFPS.Settings.RefreshRates[option];

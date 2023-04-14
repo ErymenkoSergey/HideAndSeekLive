@@ -8,7 +8,6 @@ using UnityEngine.Events;
 public class bl_MobileButton : CommonMonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public string ButtonName;
-    //public int WeaponId;
     public KeyCode fallBackKey = KeyCode.None;
     public bool blockTouchPad = false;
     [SerializeField] private OnClick onClick;
@@ -27,10 +26,10 @@ public class bl_MobileButton : CommonMonoBehaviour, IPointerDownHandler, IPointe
     private bool hasDispatchUp = false;
     private bool isRegistered = false;
 
-    //private void Awake()
-    //{
-    //    Registre();
-    //}
+    private void Awake()
+    {
+        Registre();
+    }
 
     private void OnEnable()
     {
@@ -69,20 +68,24 @@ public class bl_MobileButton : CommonMonoBehaviour, IPointerDownHandler, IPointe
 
         hasDispatchUp = false;
 
-        if (buttonState == ButtonState.Down)
-            return true;
+        //if (buttonState == ButtonState.Down)
+        //    return true;
 
         if (hasDispatchClick)
         {
-            buttonState = ButtonState.Down;
+            //buttonState = ButtonState.Down;
             hasDispatchClick = false;
             return false;
         }
         else
         {
+            buttonState = ButtonState.Down;
             hasDispatchClick = true;
             return true;
         }
+
+        //if (buttonState == ButtonState.Down)
+        //    return true;
     }
 
     public bool isButtonUp()

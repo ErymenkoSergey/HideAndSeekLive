@@ -14662,7 +14662,7 @@ Terrain:
   m_HeightmapMaximumLOD: 0
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
-  m_DrawInstanced: 1
+  m_DrawInstanced: 0
   m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
@@ -23732,6 +23732,11 @@ PrefabInstance:
     - target: {fileID: 5103856385671451712, guid: c3c2b2b588061954dbb6044474df0805,
         type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7541961894569011059, guid: c3c2b2b588061954dbb6044474df0805,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8843609363879218391, guid: c3c2b2b588061954dbb6044474df0805,

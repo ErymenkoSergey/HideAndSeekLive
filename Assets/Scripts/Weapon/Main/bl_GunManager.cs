@@ -1,9 +1,4 @@
-/////////////////////////////////////////////////////////////////////////////////
-///////////////////////////bl_GunManager.cs//////////////////////////////////////
 /////////////Use this to manage all weapons Player///////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////Lovatto Studio/////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -58,9 +53,12 @@ public class bl_GunManager : bl_MonoBehaviour
 #endif
     #endregion
 
+    private bool _mobileInput = false;
+
     protected override void Awake()
     {
         base.Awake();
+        _mobileInput = bl_GameData.Instance.MobileInput;
         pickupManager = bl_GunPickUpManager.Instance;
         ASource = GetComponent<AudioSource>();
         isGameStarted = bl_MatchTimeManager.Instance.TimeState == RoomTimeState.Started;
@@ -186,40 +184,46 @@ public class bl_GunManager : bl_MonoBehaviour
 #endif
 
 #if !INPUT_MANAGER
-        //if (bl_MobileInput.WeaponSlot(1))
-        if (bl_MobileInput.GetButtonDown("WeaponSlot1", GameInputType.Down, 1))
+        if (_mobileInput)
         {
-            ChangeCurrentWeaponTo(0);
+            if (bl_MobileInput.GetButtonDown("WeaponSlot1", GameInputType.Down, 1))
+                ChangeCurrentWeaponTo(0);
+            else if (bl_MobileInput.GetButtonDown("WeaponSlot2", GameInputType.Down, 2))
+                ChangeCurrentWeaponTo(1);
+            else if (bl_MobileInput.GetButtonDown("WeaponSlot3", GameInputType.Down, 3))
+                ChangeCurrentWeaponTo(2);
+            else if (bl_MobileInput.GetButtonDown("WeaponSlot4", GameInputType.Down, 4))
+                ChangeCurrentWeaponTo(3);
         }
-        //else if (bl_MobileInput.WeaponSlot(2))
-        else if (bl_MobileInput.GetButtonDown("WeaponSlot2", GameInputType.Down, 2))
+        else
         {
-            ChangeCurrentWeaponTo(1);
-        }
-       // else if (bl_MobileInput.WeaponSlot(3))
-        else if (bl_MobileInput.GetButtonDown("WeaponSlot3", GameInputType.Down, 3))
-        {
-            ChangeCurrentWeaponTo(2);
-        }
-        //else if (bl_MobileInput.WeaponSlot(4))
-        else if (bl_MobileInput.GetButtonDown("WeaponSlot4", GameInputType.Down, 4))
-        {
-            ChangeCurrentWeaponTo(3);
+            if (bl_MobileInput.WeaponSlot(1))
+                ChangeCurrentWeaponTo(0);
+            else if (bl_MobileInput.WeaponSlot(2))
+                ChangeCurrentWeaponTo(1);
+            else if (bl_MobileInput.WeaponSlot(3))
+                ChangeCurrentWeaponTo(2);
+            else if (bl_MobileInput.WeaponSlot(4))
+                ChangeCurrentWeaponTo(3);
         }
 
         //fast fire knife
-        //if (bl_MobileInput.QuickMelee() && PlayerEquip[3] != null && PlayerEquip[3].m_AllowQuickFire && currentWeaponIndex != 3 && !isFastFire)
-        if (bl_MobileInput.GetButtonDown("QuickMelee") && PlayerEquip[3] != null && PlayerEquip[3].m_AllowQuickFire && currentWeaponIndex != 3 && !isFastFire)
+        if (!_mobileInput)
         {
-            DoFastKnifeShot();
+            if (bl_MobileInput.QuickMelee() && PlayerEquip[3] != null && PlayerEquip[3].m_AllowQuickFire && currentWeaponIndex != 3 && !isFastFire)
+                DoFastKnifeShot();
+            if (bl_MobileInput.QuickNade() && PlayerEquip[2] != null && PlayerEquip[2].AllowQuickFire() && currentWeaponIndex != 2 && !isFastFire)
+                DoSingleGrenadeThrow();
+        }
+        else
+        {
+            if (bl_MobileInput.GetButtonDown("QuickMelee") && PlayerEquip[3] != null && PlayerEquip[3].m_AllowQuickFire && currentWeaponIndex != 3 && !isFastFire)
+                DoFastKnifeShot();
+
+            if (bl_MobileInput.GetButtonDown("QuickNade") && PlayerEquip[2] != null && PlayerEquip[2].AllowQuickFire() && currentWeaponIndex != 2 && !isFastFire)
+                DoSingleGrenadeThrow();
         }
 
-        //fast throw grenade
-        //if (bl_MobileInput.QuickNade() && PlayerEquip[2] != null && PlayerEquip[2].AllowQuickFire() && currentWeaponIndex != 2 && !isFastFire)
-        if (bl_MobileInput.GetButtonDown("QuickNade") && PlayerEquip[2] != null && PlayerEquip[2].AllowQuickFire() && currentWeaponIndex != 2 && !isFastFire)
-        {
-            DoSingleGrenadeThrow();
-        }
 
 #else
         InputManagerControll();
@@ -247,15 +251,13 @@ public class bl_GunManager : bl_MonoBehaviour
 #endif
 
         int next = (this.currentWeaponIndex + 1) % this.PlayerEquip.Count;
-        if (PlayerEquip[next] == null) return 0;
+        if (PlayerEquip[next] == null)
+            return 0;
 
         ChangeCurrentWeaponTo(next);
         return currentWeaponIndex;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public int SwitchPrevious()
     {
         if (PlayerEquip.Count <= 0 || PlayerEquip == null)
@@ -278,9 +280,6 @@ public class bl_GunManager : bl_MonoBehaviour
         return currentWeaponIndex;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void DoFastKnifeShot()
     {
         var equippedKnife = PlayerEquip[3];
@@ -295,9 +294,6 @@ public class bl_GunManager : bl_MonoBehaviour
         CanSwich = false;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void DoSingleGrenadeThrow()
     {
         var equippedGrenade = PlayerEquip[2];// 2 = GRENADE position in list
@@ -312,9 +308,6 @@ public class bl_GunManager : bl_MonoBehaviour
         CanSwich = false;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void OnReturnWeapon()
     {
         PlayerEquip[currentWeaponIndex].gameObject.SetActive(false);

@@ -88,6 +88,7 @@ public class bl_Gun : bl_GunBase
     private bl_WeaponSway SwayGun = null;
     private bl_Recoil RecoilManager;
     private bl_UCrosshair Crosshair;
+    private bool _mobileInput = false;
 #if MFPSM
     private bl_TouchHelper TouchHelper;
     private bl_AutoWeaponFire AutoFire;
@@ -118,22 +119,17 @@ public class bl_Gun : bl_GunBase
     RaycastHit hit;
     #endregion
 
-    /// <summary>
-    /// 
-    /// </summary>
     protected override void Awake()
     {
         base.Awake();
         Initialized();
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void Initialized()
     {
-        if (isInitialized) return;
-
+        if (isInitialized)
+            return;
+        _mobileInput = bl_GameData.Instance.MobileInput;
         m_Transform = transform;
         GunBob = PlayerReferences.weaponBob;
         SwayGun = PlayerReferences.weaponSway;
@@ -161,9 +157,6 @@ public class bl_Gun : bl_GunBase
         isInitialized = true;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     protected override void OnEnable()
     {
 #if MFPSM
@@ -272,15 +265,24 @@ public class bl_Gun : bl_GunBase
         spread = Mathf.Clamp(spread, BaseSpread, spreadMinMax.y);
     }
 
+    private bool _fireDown = false;
     /// <summary>
     /// All Input events 
     /// </summary>
-    void InputUpdate()
+    private void InputUpdate()
     {
-        if (bl_GameData.Instance.isChating || !gunManager.isGameStarted || !bl_RoomMenu.Instance.isCursorLocked) return;
+        if (bl_GameData.Instance.isChating || !gunManager.isGameStarted || !bl_RoomMenu.Instance.isCursorLocked)
+            return;
 
-       // bool fireDown = bl_MobileInput.Fire(GameInputType.Down);
-        bool fireDown = bl_MobileInput.GetButtonDown("Fire");
+        if (!_mobileInput)
+        {
+            _fireDown = bl_MobileInput.Fire(GameInputType.Down);
+        }
+        else
+        {
+            _fireDown = bl_MobileInput.GetButtonDown("Fire");
+        }
+
         // Did the user press fire.... and what kind of weapon are they using ?  ===============
         if (bl_UtilityHelper.isMobile)
         {
@@ -305,29 +307,34 @@ public class bl_Gun : bl_GunBase
                 HandleAutoFire();
             }
 #endif
-            
+
             if (CanFire)
             {
-                if (fireDown)//is was pressed
+                if (_fireDown)//is was pressed
                 {
                     SingleFire();
                 }
-               // if (bl_MobileInput.Fire())//if keep pressed
-                if (bl_MobileInput.GetButtonDown("Fire"))//if keep pressed
+                if (!_mobileInput)
                 {
-                    LoopFire();
+                    if (bl_MobileInput.Fire())//if keep pressed
+                        LoopFire();
+                }
+                else
+                {
+                    if (bl_MobileInput.GetButtonDown("Fire"))//if keep pressed
+                        LoopFire();
                 }
             }
             else
             {
-                if (fireDown && bulletsLeft <= 0 && !isReloading)//if try fire and don't have more bullets
+                if (_fireDown && bulletsLeft <= 0 && !isReloading)//if try fire and don't have more bullets
                 {
                     PlayEmptyFireSound();
                 }
             }
         }
 
-        if (fireDown && isReloading)//if try fire while reloading 
+        if (_fireDown && isReloading)//if try fire while reloading 
         {
             if (WeaponType == GunType.Sniper || WeaponType == GunType.Shotgun)
             {
@@ -346,8 +353,14 @@ public class bl_Gun : bl_GunBase
         }
         else
         {
-            //isAiming = bl_MobileInput.Aim() && CanAiming;
-            isAiming = bl_MobileInput.GetButtonDown("Aim") && CanAiming;
+            if (!_mobileInput)
+            {
+                isAiming = bl_MobileInput.Aim() && CanAiming;
+            }
+            else
+            {
+                isAiming = bl_MobileInput.GetButtonDown("Aim") && CanAiming;
+            }
         }
 
         if (bl_RoomMenu.Instance.isCursorLocked)
@@ -355,10 +368,15 @@ public class bl_Gun : bl_GunBase
             Crosshair.OnAim(isAiming);
         }
 
-        //if (bl_MobileInput.Reload() && CanReload)
-        if (bl_MobileInput.GetButtonDown("Reload") && CanReload)
+        if (!_mobileInput)
         {
-            Reload();
+            if (bl_MobileInput.Reload() && CanReload)
+                Reload();
+        }
+        else
+        {
+            if (bl_MobileInput.GetButtonDown("Reload") && CanReload)
+                Reload();
         }
 
         if (WeaponType == GunType.Machinegun || WeaponType == GunType.Burst || WeaponType == GunType.Pistol)
@@ -382,12 +400,18 @@ public class bl_Gun : bl_GunBase
             {
                 if (WeaponType == GunType.Machinegun)
                 {
-                    //isFiring = (bl_MobileInput.Fire() && CanFire); // fire is down, gun is firing
-                    isFiring = (bl_MobileInput.GetButtonDown("Fire") && CanFire); // fire is down, gun is firing
+                    if (!_mobileInput)
+                    {
+                        isFiring = (bl_MobileInput.Fire() && CanFire); // fire is down, gun is firing
+                    }
+                    else
+                    {
+                        isFiring = (bl_MobileInput.GetButtonDown("Fire") && CanFire); // fire is down, gun is firing
+                    }
                 }
                 else
                 {
-                    if (fireDown && CanFire)
+                    if (_fireDown && CanFire)
                     {
                         isFiring = true;
                         CancelInvoke("CancelFiring");
@@ -403,8 +427,16 @@ public class bl_Gun : bl_GunBase
     /// </summary>
     private void ChangeTypeFire()
     {
-        //bool inp = bl_MobileInput.SwitchFireMode();
-        bool inp = bl_MobileInput.GetButtonDown("SwitchFireMode");
+        bool inp = false;
+        if (!_mobileInput)
+        {
+            inp = bl_MobileInput.SwitchFireMode();
+        }
+        else
+        {
+            inp = bl_MobileInput.GetButtonDown("SwitchFireMode");
+        }
+
         if (inp)
         {
             switch (WeaponType)
@@ -430,7 +462,7 @@ public class bl_Gun : bl_GunBase
     /// <summary>
     /// Called by mobile button event
     /// </summary>
-    void OnFire()
+    private void OnFire()
     {
         if (!gunManager.isGameStarted) return;
 
@@ -456,10 +488,7 @@ public class bl_Gun : bl_GunBase
         SingleFire();
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    void HandleAutoFire()
+    private void HandleAutoFire()
     {
         if (!CanFire) return;
 
@@ -476,10 +505,7 @@ public class bl_Gun : bl_GunBase
 #endif
     }
 
-    /// <summary>
-    /// Fire one time
-    /// </summary>
-    void SingleFire()
+    private void SingleFire()
     {
         if (weaponLogic != null) { weaponLogic.OnFireDown(); }
         else
@@ -511,7 +537,7 @@ public class bl_Gun : bl_GunBase
     /// <summary>
     /// Fire continuously
     /// </summary>
-    void LoopFire()
+    private void LoopFire()
     {
         if (WeaponType != GunType.Machinegun) return;
 
@@ -910,7 +936,7 @@ public class bl_Gun : bl_GunBase
     public void OnFireCommons()
     {
         PlayFireAudio();
-        if(Info.Type != GunType.Knife) bulletsLeft--;
+        if (Info.Type != GunType.Knife) bulletsLeft--;
         UpdateUI();
         nextFireTime += Info.FireRate;
         EjectShell();
@@ -1103,7 +1129,7 @@ public class bl_Gun : bl_GunBase
             {
                 if (AmmoType == AmmunitionType.Clips)
                 {
-                   if(!HaveInfinityAmmo) numberOfClips--;
+                    if (!HaveInfinityAmmo) numberOfClips--;
                 }
             }
             if (WeaponType == GunType.Grenade) { OnAmmoLauncher.ForEach(x => { x?.SetActive(true); }); }
@@ -1151,7 +1177,7 @@ public class bl_Gun : bl_GunBase
         bulletsLeft = bulletsPerClip;
         numberOfClips = AmmoType == AmmunitionType.Bullets ? bulletsPerClip * numberOfClips : numberOfClips;
         if (gameObject.activeInHierarchy)
-        UpdateUI();
+            UpdateUI();
     }
 
     /// <summary>

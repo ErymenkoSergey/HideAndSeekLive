@@ -21,13 +21,13 @@ public class bl_RoomCamera : bl_MonoBehaviour
     private Transform m_Transform;
     private Quaternion origiRotation;
     private Vector3 originPosition;
+    private bool _mobileInput = false;
 
-    /// <summary>
-    /// 
-    /// </summary>
+
     protected override void Awake()
     {
         base.Awake();
+        _mobileInput = bl_GameData.Instance.MobileInput;
         m_Transform = transform;
         origiRotation = m_Transform.localRotation;
         originPosition = m_Transform.localPosition;
@@ -100,10 +100,15 @@ public class bl_RoomCamera : bl_MonoBehaviour
         if (Input.GetKey(KeyCode.Q)) { transform.position += transform.up * climbSpeed * Time.deltaTime; }
         if (Input.GetKey(KeyCode.E)) { transform.position -= transform.up * climbSpeed * Time.deltaTime; }
 
-        //if (bl_MobileInput.Jump())
-        if (bl_MobileInput.GetButtonDown("Jump"))
+        if (_mobileInput)
         {
-            bl_UtilityHelper.LockCursor((bl_RoomMenu.Instance.isCursorLocked == false) ? true : false);
+            if (bl_MobileInput.Jump())
+                bl_UtilityHelper.LockCursor((bl_RoomMenu.Instance.isCursorLocked == false) ? true : false);
+        }
+        else
+        {
+            if (bl_MobileInput.GetButtonDown("Jump"))
+                bl_UtilityHelper.LockCursor((bl_RoomMenu.Instance.isCursorLocked == false) ? true : false);
         }
     }
 
@@ -112,9 +117,6 @@ public class bl_RoomCamera : bl_MonoBehaviour
         gameObject.SetActive(active);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void BackToOriginal()
     {
         cameraControl = false;

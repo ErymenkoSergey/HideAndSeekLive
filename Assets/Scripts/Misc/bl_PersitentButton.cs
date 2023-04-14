@@ -6,8 +6,8 @@ namespace Lovatto.MobileInput
 {
     public class bl_PersitentButton : CommonMonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
     {
-        public bool Clamped = true;
-        public float ClampArea = 100;
+        private bool Clamped = true;
+        private float ClampArea = 50;
 
         private Vector3 defaultPosition, defaultRawPosition;
         private RectTransform m_Transform;
@@ -76,7 +76,7 @@ namespace Lovatto.MobileInput
                     Vector3 inputVector = new Vector3(pos.x, 0, pos.y);
                     //inputVector = (inputVector.magnitude > .1f) ? inputVector.normalized : inputVector;
 
-                    SetMouse(inputVector.x, inputVector.z);
+                    SetMouse(inputVector.x, inputVector.z / 3f);
                 }
             }
 
@@ -93,23 +93,24 @@ namespace Lovatto.MobileInput
 
         private void SetMouse(float vectorX, float vectorY)
         {
+            //Debug.Log($"SetMouse vectorX {vectorX}, vectorY {vectorY} ");
             bl_MobileInput.MobileMouseX = vectorX;
             bl_MobileInput.MobileMouseY = vectorY;
         }
 
-        IEnumerator OnUpdate()
-        {
-            while (true)
-            {
-                Follow();
-                yield return null;
-            }
-        }
+        //IEnumerator OnUpdate()
+        //{
+        //    while (true)
+        //    {
+        //        Follow();
+        //        yield return null;
+        //    }
+        //}
 
-        void Follow()
-        {
-            m_Touch = Input.GetTouch(touchID);
-            m_Transform.position = new Vector3(m_Touch.position.x, m_Touch.position.y, transform.position.z);
-        }
+        //void Follow()
+        //{
+        //    m_Touch = Input.GetTouch(touchID);
+        //    m_Transform.position = new Vector3(m_Touch.position.x, m_Touch.position.y, transform.position.z);
+        //}
     }
 }

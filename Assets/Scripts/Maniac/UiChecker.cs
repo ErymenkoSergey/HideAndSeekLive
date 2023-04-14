@@ -6,31 +6,28 @@ public class UiChecker : CommonMonoBehaviour
     [SerializeField] private GameObject _mobileControler;
     [SerializeField] private GameObject[] _pcControlerWeapons;
     [SerializeField] private GameObject[] _iconsHide;
-    //[SerializeField] private GameObject _pcControlerBullets;
+
+    private bool _isMobileInput = false;
 
     private void Awake()
     {
-        //Debug.Log($"Application {Application.platform}");
-        ////CheckPlatform();
-
-        SetControl(true);
-        ClousedIcons();
+        _isMobileInput = bl_GameData.Instance.MobileInput;
+        CheckPlatform();
     }
 
-    //private void CheckPlatform()
-    //{
-    //    if (bl_GameData.Instance.MobileInput)
-    //    {
-    //        bl_GameData.Instance.MobileInput = true;
-    //        SetControl(true);
-    //    }
-    //    else
-    //    if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
-    //    {
-    //        bl_GameData.Instance.MobileInput = false;
-    //        SetControl(false);
-    //    }
-    //}
+    private void CheckPlatform()
+    {
+        if (_isMobileInput)
+        {
+            SetControl(true);
+            ClousedIcons();
+        }
+        else
+        if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
+        {
+            SetControl(false);
+        }
+    }
 
     private void SetControl(bool isTach)
     {
@@ -44,7 +41,7 @@ public class UiChecker : CommonMonoBehaviour
 
     private async void ClousedIcons()
     {
-        await Task.Delay(1000);
+        await Task.Delay(100);
 
         for (int i = 0; i < _iconsHide.Length; i++)
         {

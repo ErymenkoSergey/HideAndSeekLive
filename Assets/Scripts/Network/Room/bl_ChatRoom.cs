@@ -17,30 +17,23 @@ public class bl_ChatRoom : bl_MonoBehaviour
     public Text chatText;
 
     public bool CanUseTheChat { get; set; } = true;
+    private bool _mobileInput = false;  
 
-    /// <summary>
-    /// 
-    /// </summary>
     protected override void Awake()
     {
         base.Awake();
+        _mobileInput = bl_GameData.Instance.MobileInput;
         bl_GameData.Instance.isChating = false;
         this.InvokeAfter(5, HideChat);
         if (chatInputField != null) chatInputField.gameObject.SetActive(false);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     protected override void OnEnable()
     {
         base.OnEnable();
         bl_PhotonNetwork.Instance.AddCallback(PropertiesKeys.ChatEvent, OnNetworkMessageReceived);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     protected override void OnDisable()
     {
         base.OnDisable();
@@ -48,9 +41,6 @@ public class bl_ChatRoom : bl_MonoBehaviour
             bl_PhotonNetwork.Instance.RemoveCallback(OnNetworkMessageReceived);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     private void Start()
     {
 #if LOCALIZATION
@@ -62,21 +52,36 @@ public class bl_ChatRoom : bl_MonoBehaviour
 
     public override void OnUpdate()
     {
-        if (!CanUseTheChat) return;
+        if (!CanUseTheChat) 
+            return;
 
         if (!bl_GameData.Instance.isChating)
         {
-            //if (bl_MobileInput.GeneralChat())
-            if (bl_MobileInput.GetButtonDown("GeneralChat"))
+            if (!_mobileInput)
             {
-                messageTarget = MessageTarget.All;
-                OnSubmit();
+                if (bl_MobileInput.GeneralChat())
+                {
+                    messageTarget = MessageTarget.All;
+                    OnSubmit();
+                }
+                if (bl_MobileInput.TeamChat())
+                {
+                    messageTarget = MessageTarget.Team;
+                    OnSubmit();
+                }
             }
-            //if (bl_MobileInput.TeamChat())
-            if (bl_MobileInput.GetButtonDown("TeamChat"))
+            else
             {
-                messageTarget = MessageTarget.Team;
-                OnSubmit();
+                if (bl_MobileInput.GetButtonDown("GeneralChat"))
+                {
+                    messageTarget = MessageTarget.All;
+                    OnSubmit();
+                }
+                if (bl_MobileInput.GetButtonDown("TeamChat"))
+                {
+                    messageTarget = MessageTarget.Team;
+                    OnSubmit();
+                }
             }
         }
         else
@@ -88,11 +93,7 @@ public class bl_ChatRoom : bl_MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Receive network message from chat event from the server
-    /// </summary>
-    /// <param name="data"></param>
-    void OnNetworkMessageReceived(ExitGames.Client.Photon.Hashtable data)
+    private void OnNetworkMessageReceived(ExitGames.Client.Photon.Hashtable data)
     {
         var messageTarget = (MessageTarget)data["target"];
         var sender = (Player)data["sender"];
@@ -125,10 +126,6 @@ public class bl_ChatRoom : bl_MonoBehaviour
         Invoke(nameof(HideChat), 5);
     }
 
-    /// <summary>
-    /// Send text message over network to all other clients
-    /// </summary>
-    /// <param name="txt"></param>
     public void SetChat(string txt)
     {
         if (!PhotonNetwork.IsConnected || !CanUseTheChat)
@@ -143,9 +140,6 @@ public class bl_ChatRoom : bl_MonoBehaviour
         bl_PhotonNetwork.Instance.SendDataOverNetwork(PropertiesKeys.ChatEvent, data);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void OnSubmit()
     {
         bl_GameData.Instance.isChating = !bl_GameData.Instance.isChating;
@@ -163,18 +157,11 @@ public class bl_ChatRoom : bl_MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void HideChat()
     {
         chatText.CrossFadeAlpha(0, 2, true);
     }
 
-    /// <summary>
-    /// Post a message in the chat locally only.
-    /// </summary>
-    /// <param name="newLine"></param>
     public void AddChatLocally(string newLine)
     {
         this.messages.Add(newLine);
@@ -184,9 +171,6 @@ public class bl_ChatRoom : bl_MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void Refresh()
     {
         chatText.text = string.Empty;
@@ -194,13 +178,10 @@ public class bl_ChatRoom : bl_MonoBehaviour
             chatText.text += m + "\n";
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="field"></param>
+
     public void SubmitInputField(InputField field)
     {
-
+        //??
     }
 
     public enum MessageTarget

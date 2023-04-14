@@ -14,6 +14,8 @@ public class bl_RoomMenu : bl_MonoBehaviour
     public bool isPlaying { get; set; }
     public bool isFinish { get; set; } = false;
 
+    private bool _mobileInput = false;
+
     /// <summary>
     /// 
     /// </summary>
@@ -23,6 +25,7 @@ public class bl_RoomMenu : bl_MonoBehaviour
             return;
 
         base.Awake();
+        _mobileInput = bl_GameData.Instance.MobileInput;
 #if ULSP
         if (bl_DataBase.IsUserLogged) { bl_DataBase.Instance.RecordTime(); }
 #endif
@@ -92,8 +95,16 @@ public class bl_RoomMenu : bl_MonoBehaviour
     /// </summary>
     private void PauseControll()
     {
-        if (bl_MobileInput.GetButtonDown("Pause"))
-            TogglePause();
+        if (!_mobileInput)
+        {
+            if (bl_MobileInput.Pause())
+                TogglePause();
+        }
+        else
+        {
+            if (bl_MobileInput.GetButtonDown("Pause"))
+                TogglePause();
+        }
     }
 
     /// <summary>
@@ -111,26 +122,40 @@ public class bl_RoomMenu : bl_MonoBehaviour
         bl_EventHandler.DispatchGamePauseEvent(paused);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     private void ScoreboardInput()
     {
-        if (bl_UIReferences.Instance.isOnlyMenuActive || isFinish) return;
+        if (bl_UIReferences.Instance.isOnlyMenuActive || isFinish)
+            return;
 
-        //if (bl_MobileInput.Scoreboard())
-        if (bl_MobileInput.GetButtonDown("Scoreboard"))
+        if (!_mobileInput)
         {
-            bool asb = bl_UIReferences.Instance.isScoreboardActive;
-            asb = !asb;
-            bl_UIReferences.Instance.ShowScoreboard(asb);
+            if (bl_MobileInput.Scoreboard())
+            {
+                bool asb = bl_UIReferences.Instance.isScoreboardActive;
+                asb = !asb;
+                bl_UIReferences.Instance.ShowScoreboard(asb);
+            }
+            else if (bl_MobileInput.Scoreboard(GameInputType.Up))
+            {
+                bool asb = bl_UIReferences.Instance.isScoreboardActive;
+                asb = !asb;
+                bl_UIReferences.Instance.ShowScoreboard(asb);
+            }
         }
-        //else if (bl_MobileInput.Scoreboard(GameInputType.Up))
-        else if (bl_MobileInput.GetButtonDown("Scoreboard", GameInputType.Up))
+        else
         {
-            bool asb = bl_UIReferences.Instance.isScoreboardActive;
-            asb = !asb;
-            bl_UIReferences.Instance.ShowScoreboard(asb);
+            if (bl_MobileInput.GetButtonDown("Scoreboard"))
+            {
+                bool asb = bl_UIReferences.Instance.isScoreboardActive;
+                asb = !asb;
+                bl_UIReferences.Instance.ShowScoreboard(asb);
+            }
+            else if (bl_MobileInput.GetButtonDown("Scoreboard", GameInputType.Up))
+            {
+                bool asb = bl_UIReferences.Instance.isScoreboardActive;
+                asb = !asb;
+                bl_UIReferences.Instance.ShowScoreboard(asb);
+            }
         }
     }
 
