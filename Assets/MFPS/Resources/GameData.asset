@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GameData
   m_EditorClassIdentifier: 
   singleMode: 0
-  MobileInput: 0
+  MobileInput: 1
   offlineMode: 0
   UseLobbyChat: 1
   UseVoiceChat: 1
