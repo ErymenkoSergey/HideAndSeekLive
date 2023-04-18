@@ -69,9 +69,10 @@ public class bl_RoomCamera : bl_MonoBehaviour
     /// <summary>
     /// 
     /// </summary>
-    void FlyMovement()
+    private void FlyMovement()
     {
-        if (!cameraControl) return;
+        if (!cameraControl) 
+            return;
 
         rotationX += bl_MobileInput.MouseX * cameraSensitivity * Time.deltaTime;
         rotationY += bl_MobileInput.MouseY * cameraSensitivity * Time.deltaTime;
@@ -97,8 +98,10 @@ public class bl_RoomCamera : bl_MonoBehaviour
         }
 
 
-        if (Input.GetKey(KeyCode.Q)) { transform.position += transform.up * climbSpeed * Time.deltaTime; }
-        if (Input.GetKey(KeyCode.E)) { transform.position -= transform.up * climbSpeed * Time.deltaTime; }
+        if (Input.GetKey(KeyCode.Q)) 
+        { transform.position += transform.up * climbSpeed * Time.deltaTime; }
+        if (Input.GetKey(KeyCode.E))
+        { transform.position -= transform.up * climbSpeed * Time.deltaTime; }
 
         if (_mobileInput)
         {

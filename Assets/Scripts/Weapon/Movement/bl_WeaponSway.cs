@@ -64,8 +64,8 @@ public class bl_WeaponSway : bl_MonoBehaviour
     /// </summary>
     void DelayMovement()
     {
-        if (bl_UtilityHelper.isMobile) return;
-
+        //if (bl_UtilityHelper.isMobile) return;
+         
         factorX = -bl_MobileInput.MouseX * deltaTime * Amount;
         factorY = -bl_MobileInput.MouseY * deltaTime * Amount;
         factorZ = -bl_MobileInput.Vertical * (isAiming ? pushAmplutide * 0.1f : pushAmplutide);

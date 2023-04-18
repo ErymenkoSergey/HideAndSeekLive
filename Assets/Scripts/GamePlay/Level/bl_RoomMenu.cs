@@ -71,18 +71,12 @@ public class bl_RoomMenu : bl_MonoBehaviour
         isPlaying = true;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     private void OnPlayerLocalDeath()
     {
         bl_UIReferences.Instance.PlayerUI.PlayerUICanvas.enabled = false;
         isPlaying = false;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public override void OnUpdate()
     {
         isCursorLocked = bl_UtilityHelper.GetCursorState;
@@ -90,9 +84,6 @@ public class bl_RoomMenu : bl_MonoBehaviour
         ScoreboardInput();
     }
 
-    /// <summary>
-    /// Check the input for open/hide the pause menu
-    /// </summary>
     private void PauseControll()
     {
         if (!_mobileInput)
@@ -112,7 +103,8 @@ public class bl_RoomMenu : bl_MonoBehaviour
     /// </summary>
     public void TogglePause()
     {
-        if (!bl_GameManager.Instance.FirstSpawnDone || isFinish) return;
+        if (!bl_GameManager.Instance.FirstSpawnDone || isFinish)
+            return;
 
         bool paused = isPaused;
         paused = !paused;
@@ -159,18 +151,12 @@ public class bl_RoomMenu : bl_MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Event called when the player will be automatically assigned to a team
-    /// </summary>
     public void OnAutoTeam()
     {
         bl_UtilityHelper.LockCursor(true);
         isPlaying = true;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void JoinTeam(int id)
     {
         Team team = (Team)id;

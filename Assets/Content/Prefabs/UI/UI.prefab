@@ -15864,8 +15864,7 @@ MonoBehaviour:
       m_Calls: []
   buttonGraphics:
   - {fileID: 6101426044967681181}
-  - {fileID: 2573053228842853582}
-  animatedChild: {fileID: 6856679960227555503}
+  animatedChild: {fileID: 0}
   normalColor: {r: 1, g: 1, b: 1, a: 0.7294118}
   touchColor: {r: 0.20784314, g: 0.8156863, b: 0.7294118, a: 1}
   animationCurve:
@@ -32251,10 +32250,10 @@ RectTransform:
   m_Father: {fileID: 7761360507370045728}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.15, y: 0.15}
-  m_AnchorMax: {x: 0.85, y: 0.85}
-  m_AnchoredPosition: {x: -0.000024795532, y: -0.0000019073486}
-  m_SizeDelta: {x: -14.023411, y: -14.023411}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -0.000022888184, y: 0}
+  m_SizeDelta: {x: -40.02341, y: -40.02341}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4304777770152388219
 CanvasRenderer:
@@ -47364,7 +47363,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7761780025178664946
 RectTransform:
   m_ObjectHideFlags: 0
@@ -47888,8 +47887,7 @@ MonoBehaviour:
       m_Calls: []
   buttonGraphics:
   - {fileID: 7583519588675579042}
-  - {fileID: 4124698958194623067}
-  animatedChild: {fileID: 4302196644154688461}
+  animatedChild: {fileID: 0}
   normalColor: {r: 1, g: 1, b: 1, a: 0.7294118}
   touchColor: {r: 0.20784314, g: 0.8156863, b: 0.7294118, a: 1}
   animationCurve:
@@ -48049,7 +48047,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -155.09998, y: 6.200012}
+  m_AnchoredPosition: {x: -206.7, y: 6.200012}
   m_SizeDelta: {x: 45, y: 45}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &7763861978222250536
@@ -48247,7 +48245,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -47, y: 166}
+  m_AnchoredPosition: {x: -52, y: 162.3}
   m_SizeDelta: {x: 42, y: 44}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &7763202819310018840

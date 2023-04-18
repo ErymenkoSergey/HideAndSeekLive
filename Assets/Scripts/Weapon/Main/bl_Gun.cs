@@ -284,8 +284,8 @@ public class bl_Gun : bl_GunBase
         }
 
         // Did the user press fire.... and what kind of weapon are they using ?  ===============
-        if (bl_UtilityHelper.isMobile)
-        {
+        //if (bl_UtilityHelper.isMobile)
+        //{
 #if MFPSM
             if (bl_GameData.Instance.AutoWeaponFire && AutoFire != null)
                 HandleAutoFire();
@@ -298,9 +298,9 @@ public class bl_Gun : bl_GunBase
                 }
             }
 #endif
-        }
-        else
-        {
+        //}
+        //else
+        //{
 #if MFPSM
             if (bl_GameData.Instance.AutoWeaponFire && AutoFire != null)
             {
@@ -332,7 +332,7 @@ public class bl_Gun : bl_GunBase
                     PlayEmptyFireSound();
                 }
             }
-        }
+        //}
 
         if (_fireDown && isReloading)//if try fire while reloading 
         {
@@ -345,14 +345,14 @@ public class bl_Gun : bl_GunBase
             }
         }
 
-        if (bl_UtilityHelper.isMobile)
-        {
+        //if (bl_UtilityHelper.isMobile)
+        //{
 #if MFPSM
             isAiming = TouchHelper.isAim && CanAiming;
 #endif
-        }
-        else
-        {
+        //}
+        //else
+        //{
             if (!_mobileInput)
             {
                 isAiming = bl_MobileInput.Aim() && CanAiming;
@@ -361,7 +361,7 @@ public class bl_Gun : bl_GunBase
             {
                 isAiming = bl_MobileInput.GetButtonDown("Aim") && CanAiming;
             }
-        }
+        //}
 
         if (bl_RoomMenu.Instance.isCursorLocked)
         {
@@ -387,17 +387,17 @@ public class bl_Gun : bl_GunBase
         //used to decrease weapon accuracy as long as the trigger remains down =====================
         if (WeaponType != GunType.Grenade && WeaponType != GunType.Knife)
         {
-            if (bl_UtilityHelper.isMobile)
-            {
+            //if (bl_UtilityHelper.isMobile)
+            //{
 #if MFPSM
                 if (!bl_GameData.Instance.AutoWeaponFire)
                 {
                     isFiring = (TouchHelper.FireDown && CanFire);
                 }
 #endif
-            }
-            else
-            {
+            //}
+            //else
+            //{
                 if (WeaponType == GunType.Machinegun)
                 {
                     if (!_mobileInput)
@@ -418,7 +418,7 @@ public class bl_Gun : bl_GunBase
                         Invoke("CancelFiring", 0.12f);
                     }
                 }
-            }
+            //}
         }
     }
 

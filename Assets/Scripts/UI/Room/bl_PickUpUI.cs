@@ -51,9 +51,9 @@ public class bl_PickUpUI : MonoBehaviour
         mainText.text = text;
         iconImg.sprite = icon;
         iconImg.gameObject.SetActive(icon != null);
-        if (!bl_UtilityHelper.isMobile)
-            keyText.text = pickKey.ToUpper();
-        else
+        //if (!bl_UtilityHelper.isMobile)
+        //    keyText.text = pickKey.ToUpper();
+        //else
             keyText.text = bl_GameTexts.Touch.ToUpper();
 
         content.SetActive(true);

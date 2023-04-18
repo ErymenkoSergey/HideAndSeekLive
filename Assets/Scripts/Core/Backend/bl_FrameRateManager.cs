@@ -21,18 +21,18 @@ public class bl_FrameRateManager : MonoBehaviour
             optionDropdown.AddOptions(ol);
             int df = PlayerPrefs.GetInt(PropertiesKeys.FrameRateOption, (int)bl_MFPS.Settings.GetSettingOf("Frame Rate"));
             optionDropdown.value = df;
-            Application.targetFrameRate = bl_MFPS.Settings.RefreshRates[df]; //-1
+            Application.targetFrameRate = -1; //bl_MFPS.Settings.RefreshRates[df]; //
         }
     }
 
     public void OnChange(int option)
     {
-        Application.targetFrameRate = bl_MFPS.Settings.RefreshRates[option]; //-1
+        Application.targetFrameRate = -1;// bl_MFPS.Settings.RefreshRates[option]; //-1
         PlayerPrefs.SetInt(PropertiesKeys.FrameRateOption, option);
     }
 
     public void OnChangeCustom(int option)
     {
-        Application.targetFrameRate = bl_MFPS.Settings.RefreshRates[option];
+        Application.targetFrameRate = -1;// bl_MFPS.Settings.RefreshRates[option];
     }
 }

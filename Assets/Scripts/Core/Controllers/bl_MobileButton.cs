@@ -68,8 +68,8 @@ public class bl_MobileButton : CommonMonoBehaviour, IPointerDownHandler, IPointe
 
         hasDispatchUp = false;
 
-        //if (buttonState == ButtonState.Down)
-        //    return true;
+        if (buttonState == ButtonState.Down)
+            return true;
 
         if (hasDispatchClick)
         {

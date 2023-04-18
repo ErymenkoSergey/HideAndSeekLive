@@ -243,8 +243,8 @@ public class bl_FirstPersonController : bl_MonoBehaviour
             }
         }
 
-        if (bl_UtilityHelper.isMobile)
-            return;
+        //if (bl_UtilityHelper.isMobile)
+        //    return;
 
         if (!m_Jump && State != PlayerState.Crouching && (Time.time - lastJumpTime) > JumpMinRate)
         {
@@ -577,7 +577,7 @@ public class bl_FirstPersonController : bl_MonoBehaviour
         mouseLook.UseOnlyCameraRotation();
         this.InvokeAfter(slideTime, () =>
         {
-            if (Crounching && !bl_UtilityHelper.isMobile)
+            if (Crounching) // && !bl_UtilityHelper.isMobile
                 State = PlayerState.Crouching;
             else if (State != PlayerState.Jumping)
                 State = PlayerState.Idle;
@@ -796,8 +796,8 @@ public class bl_FirstPersonController : bl_MonoBehaviour
         {
             if (m_Input.sqrMagnitude > 0)
             {
-                if (!bl_UtilityHelper.isMobile)
-                {
+                //if (!bl_UtilityHelper.isMobile)
+                //{
                     // On standalone builds, walk/run speed is modified by a key press.
                     // keep track of whether or not the character is walking or running
 
@@ -839,9 +839,9 @@ public class bl_FirstPersonController : bl_MonoBehaviour
                             State = PlayerState.Idle;
                         }
                     }
-                }
-                else
-                {
+                //}
+                //else
+                //{
                     if (VerticalInput > 1 && VelocityMagnitude > 0.1f && State != PlayerState.Crouching)
                     {
                         State = PlayerState.Running;
@@ -858,7 +858,7 @@ public class bl_FirstPersonController : bl_MonoBehaviour
                     {
                         State = PlayerState.Idle;
                     }
-                }
+                //}
             }
             else if (m_CharacterController.isGrounded)
             {

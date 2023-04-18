@@ -91,12 +91,13 @@ public static class bl_UtilityHelper
     /// <param name="mLock">cursor state</param>
     public static void LockCursor(bool mLock)
     {
-        if (BlockCursorForUser) return;
+        if (BlockCursorForUser)
+            return;
         if (mLock == true)
         {
-            CursorLockMode cm = isMobile ? CursorLockMode.None : CursorLockMode.Locked;
+            //CursorLockMode cm = isMobile ? CursorLockMode.None : CursorLockMode.Locked;
             Cursor.visible = false;
-            Cursor.lockState = cm;
+            Cursor.lockState = CursorLockMode.None;// cm;
         }
         else
         {
@@ -106,9 +107,6 @@ public static class bl_UtilityHelper
     }
     public static bool BlockCursorForUser = false;
 
-    /// <summary>
-    /// 
-    /// </summary>
     public static bool GetCursorState
     {
         get
@@ -131,20 +129,20 @@ public static class bl_UtilityHelper
     /// <summary>
     /// Are we currently playing in a mobile build or using Unity Remote in editor
     /// </summary>
-    public static bool isMobile
-    {
-        get
-        {
-#if (UNITY_ANDROID || UNITY_IOS || UNITY_IPHONE) && !UNITY_EDITOR
-            return true;
-#else
-#if MFPSM && UNITY_EDITOR
-            if (EditorApplication.isRemoteConnected) return true;
-#endif
-            return false;
-#endif
-        }
-    }
+//    public static bool isMobile
+//    {
+//        get
+//        {
+//#if (UNITY_ANDROID || UNITY_IOS || UNITY_IPHONE) && !UNITY_EDITOR
+//            return true;
+//#else
+//#if MFPSM && UNITY_EDITOR
+//            if (EditorApplication.isRemoteConnected) return true;
+//#endif
+//            return true; // it me correct / false
+//#endif
+//        }
+//    }
 
     /// <summary>
     /// The angle between dirA and dirB around axis

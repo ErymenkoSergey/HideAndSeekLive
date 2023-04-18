@@ -282,7 +282,7 @@ public class bl_LobbyUI : MonoBehaviour
         if (bl_MFPS.Settings != null)
         {
             bl_MFPS.Settings.ApplySettings(true, false);
-            Application.targetFrameRate = bl_MFPS.Settings.RefreshRates[(int)bl_MFPS.Settings.GetSettingOf("Frame Rate")]; //-1
+            Application.targetFrameRate = -1;// bl_MFPS.Settings.RefreshRates[(int)bl_MFPS.Settings.GetSettingOf("Frame Rate")]; //-1
             bl_MFPS.MusicVolume = (float)bl_MFPS.Settings.GetSettingOf("Music Volume");
             bl_AudioController.Instance.ForceStopAllFades();
             bl_AudioController.Instance.BackgroundVolume = bl_MFPS.MusicVolume;
