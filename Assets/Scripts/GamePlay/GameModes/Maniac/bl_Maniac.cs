@@ -4,10 +4,13 @@ using MFPS.GameModes.TeamDeathMatch;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Threading.Tasks;
 
 public class bl_Maniac : bl_PhotonHelper, IGameMode
 {
+    [SerializeField] private float _timeCheckWinner = 10f;
+    [SerializeField] private Team _currentTeam;
+
+
     private void Awake()
     {
         if (!PhotonNetwork.IsConnected)
@@ -17,6 +20,7 @@ public class bl_Maniac : bl_PhotonHelper, IGameMode
             return;
 
         Initialize();
+        _currentTeam = PhotonNetwork.LocalPlayer.GetPlayerTeam();
     }
 
     public bool isLocalPlayerWinner
@@ -39,7 +43,8 @@ public class bl_Maniac : bl_PhotonHelper, IGameMode
         { winner = Team.Maniac; }
         else
         { winner = Team.None; }
-        return winner;
+        return 
+            winner;
     }
 
     [SerializeField] private List<Player> _teamOne = new List<Player>();
@@ -53,9 +58,9 @@ public class bl_Maniac : bl_PhotonHelper, IGameMode
     private bool _isLoopCheckWinner = true;
     private float _loopTime = 1.0f;
 
-    private async void DeleyCheckWinner()
+    private IEnumerator DeleyCheckWinner()
     {
-        await Task.Delay(12000);
+        yield return new WaitForSeconds(_timeCheckWinner);
         StartCoroutine(CheckPlayerCounts());
     }
 
@@ -127,7 +132,7 @@ public class bl_Maniac : bl_PhotonHelper, IGameMode
             bl_TeamDeathMatchUI.Instance.Hide();
         }
 
-        DeleyCheckWinner();
+        StartCoroutine(DeleyCheckWinner());
     }
 
     public void OnFinishTime(bool gameOver)

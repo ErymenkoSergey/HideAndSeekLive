@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
+using Lovatto.MobileInput;
 
 public class bl_PlayerSettings : bl_PhotonHelper
 {
@@ -34,6 +35,7 @@ public class bl_PlayerSettings : bl_PhotonHelper
         if (isMine)
         {
             OnLocalPlayer();
+            bl_AutoFire.Instance?.SetTeam(PlayerCamera, PlayerTeam);
         }
         else
         {

@@ -2632,7 +2632,7 @@ Transform:
   - {fileID: 4156469052510188}
   - {fileID: 7761780025178664946}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &114052633521580696
 MonoBehaviour:
@@ -47454,7 +47454,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7541961894569011068}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 89bbd0685046e9a40845bf090102b8c2, type: 3}
   m_Name: 
@@ -47462,8 +47462,7 @@ MonoBehaviour:
   playerCamera: {fileID: 0}
   fillBarMethod: 1
   roundProgressBy: 10
-  detectionTags:
-  - Enemy
+  _myTeam: 0
   waitProgressUI: {fileID: 7542448285789651446}
   waitProgressBar: {fileID: 7583961074603167318}
 --- !u!1 &7542444370618044336

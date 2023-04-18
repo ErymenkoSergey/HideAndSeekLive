@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b33f0ff16976a942b2873cb5a7b974f, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  singleMode: 1
+  singleMode: 0
   MobileInput: 1
   offlineMode: 0
   UseLobbyChat: 1
@@ -192,7 +192,7 @@ MonoBehaviour:
     isEnabled: 1
     supportBots: 0
     AutoTeamSelection: 0
-    RequiredPlayersToStart: 1
+    RequiredPlayersToStart: 2
     onRoundStartedSpawn: 0
     onPlayerDie: 1
     GoalName: Rounds

@@ -207,7 +207,10 @@ public class bl_Gun : bl_GunBase
         }
 #endif
         alreadyKnife = false;
-        if (PlayerCamera == null) { PlayerCamera = transform.root.GetComponent<bl_PlayerSettings>().PlayerCamera; }
+        if (PlayerCamera == null) 
+        { 
+            PlayerCamera = transform.root.GetComponent<bl_PlayerSettings>().PlayerCamera; 
+        }
         StopAllCoroutines();
         if (isReloading) { inReloadMode = true; isReloading = false; }
         isAiming = false;

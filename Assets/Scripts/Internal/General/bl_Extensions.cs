@@ -144,7 +144,8 @@ static class bl_Extensions
     /// <returns></returns>
     public static Team GetPlayerTeam(this Player p)
     {
-        if (p == null) return Team.None;
+        if (p == null)
+            return Team.None;
         object teamId;
         string t = (string)p.CustomProperties[PropertiesKeys.TeamKey];
         if (p.CustomProperties.TryGetValue(PropertiesKeys.TeamKey, out teamId))

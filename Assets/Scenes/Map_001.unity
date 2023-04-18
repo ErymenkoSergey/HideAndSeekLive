@@ -139,6 +139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0cd1b30d8b9ae84ebab521003b9eb24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _timeCheckWinner: 10
+  _currentTeam: 0
 --- !u!1001 &7161771
 PrefabInstance:
   m_ObjectHideFlags: 0
