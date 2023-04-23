@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b33f0ff16976a942b2873cb5a7b974f, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  singleMode: 0
+  singleMode: 1
   MobileInput: 1
   offlineMode: 0
   UseLobbyChat: 1
@@ -53,8 +53,8 @@ MonoBehaviour:
   VirtualCoins:
     InitialCoins: 1000
     CoinScoreValue: 100
-    UserCoins: 2962
-    _totalCoins: 2743
+    UserCoins: 3853
+    _totalCoins: 2962
   AllWeapons:
   - Name: Rifle
     Type: 1
@@ -192,7 +192,7 @@ MonoBehaviour:
     isEnabled: 1
     supportBots: 0
     AutoTeamSelection: 0
-    RequiredPlayersToStart: 2
+    RequiredPlayersToStart: 1
     onRoundStartedSpawn: 0
     onPlayerDie: 1
     GoalName: Rounds

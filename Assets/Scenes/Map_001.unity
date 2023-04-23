@@ -8,9 +8,8 @@ OcclusionCullingSettings:
     smallestOccluder: 10
     smallestHole: 0.25
     backfaceThreshold: 75
-  m_SceneGUID: 4cc1f2b5a62fb4f4c8d17ba1caa662b4
-  m_OcclusionCullingData: {fileID: 36300000, guid: ccc65485ab42af849b258337510c21f4,
-    type: 2}
+  m_SceneGUID: 00000000000000000000000000000000
+  m_OcclusionCullingData: {fileID: 0}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -6524,6 +6523,16 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 1692946229122152657, guid: 8ed1e53445980e045b70e19825673016,
+        type: 3}
+      propertyPath: m_LODs.Array.data[0].screenRelativeHeight
+      value: 0.17858322
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692946229122152657, guid: 8ed1e53445980e045b70e19825673016,
+        type: 3}
+      propertyPath: m_LODs.Array.data[1].screenRelativeHeight
+      value: 0.1452519
+      objectReference: {fileID: 0}
     - target: {fileID: 1692946229122720143, guid: 8ed1e53445980e045b70e19825673016,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -11083,6 +11092,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692946230396285783, guid: 8ed1e53445980e045b70e19825673016,
+        type: 3}
+      propertyPath: m_LODs.Array.data[0].screenRelativeHeight
+      value: 0.21055247
       objectReference: {fileID: 0}
     - target: {fileID: 1692946230396525427, guid: 8ed1e53445980e045b70e19825673016,
         type: 3}
@@ -23440,6 +23454,16 @@ PrefabInstance:
     - target: {fileID: 4546315386055472, guid: c3c2b2b588061954dbb6044474df0805, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1321075817391664103, guid: c3c2b2b588061954dbb6044474df0805,
+        type: 3}
+      propertyPath: _sensativeVertical
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1321075817391664103, guid: c3c2b2b588061954dbb6044474df0805,
+        type: 3}
+      propertyPath: _sensativeHorizontal
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 1390487219729431951, guid: c3c2b2b588061954dbb6044474df0805,
         type: 3}
