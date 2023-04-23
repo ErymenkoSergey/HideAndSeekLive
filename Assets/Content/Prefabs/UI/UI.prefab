@@ -2717,6 +2717,9 @@ MonoBehaviour:
   playerCamera: {fileID: 0}
   fillBarMethod: 1
   roundProgressBy: 10
+  detectionTags:
+  - Remote
+  - BodyPart
   _myTeam: 0
   waitProgressUI: {fileID: 7542448285789651446}
   waitProgressBar: {fileID: 7583961074603167318}
@@ -5070,6 +5073,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 1
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -6883,6 +6887,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 1
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -47421,6 +47426,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -47867,6 +47873,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e07e82833c05cf34f9fb55356542a785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sensativeHorizontal: 2.5
+  _sensativeVertical: 2
 --- !u!114 &7541721307058239272
 MonoBehaviour:
   m_ObjectHideFlags: 0

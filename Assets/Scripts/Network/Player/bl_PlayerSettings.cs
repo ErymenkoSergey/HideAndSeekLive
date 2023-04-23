@@ -17,6 +17,7 @@ public class bl_PlayerSettings : bl_PhotonHelper
     public GameObject RemoteObjects;
     [Header("Player References")]
     public Camera PlayerCamera;
+    public GameObject PointCamera;
     public Transform FlagPosition;
     public Transform carrierPoint;
     public GameObject AimPositionReference;
@@ -35,7 +36,7 @@ public class bl_PlayerSettings : bl_PhotonHelper
         if (isMine)
         {
             OnLocalPlayer();
-            bl_AutoFire.Instance?.SetTeam(PlayerCamera, PlayerTeam);
+            bl_AutoFire.Instance?.SetTeam(PointCamera.transform, PlayerTeam);
         }
         else
         {

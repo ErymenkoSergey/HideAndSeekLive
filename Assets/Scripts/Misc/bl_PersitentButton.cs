@@ -15,8 +15,8 @@ namespace Lovatto.MobileInput
         private Touch m_Touch;
         private bool init = false;
 
-        [SerializeField] private float _sensativeHorizontal;
-        [SerializeField] private float _sensativeVertical;
+        [SerializeField] private float _sensativeHorizontal = 2.5f;
+        [SerializeField] private float _sensativeVertical = 2f;
 
         private void Start()
         {

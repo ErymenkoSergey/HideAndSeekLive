@@ -9,10 +9,10 @@ namespace Lovatto.MobileInput
 {
     public class bl_AutoFire : MonoBehaviour
     {
-        public Camera playerCamera;
+        public Transform playerCamera;
         public FillBarMethod fillBarMethod = FillBarMethod.ImageWidth;
         public float roundProgressBy = 10;
-        //public string[] detectionTags;
+        public string[] detectionTags;
         public Team _myTeam = Team.None;
         [Header("References")]
         public GameObject waitProgressUI;
@@ -50,64 +50,115 @@ namespace Lovatto.MobileInput
             //that is a simple but useful optimization method to avoid fire a raycast each frame :)
             //if ((Time.frameCount % bl_MobileInputSettings.Instance.detectRate) != 0)
             //    return;
-            Debug.Log($"bl_PlayerSettings SetTeam  Detect 1 ");
-            //fire a ray from the camera position to the front of the camera view
-            ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
 
-            if (Physics.Raycast(ray, out raycastHit, 10f))
+            //fire a ray from the camera position to the front of the camera view
+            ray = new Ray(playerCamera.position, playerCamera.forward);
+            
+            if (Physics.Raycast(ray, out raycastHit, bl_MobileInputSettings.Instance.detectRate))
             {
                 Debug.Log($"bl_PlayerSettings SetTeam  Detect 2 ");
+
                 bool detected = false;
                 //check if the hitted object contains any of the trigger tags
-
-                //for (int i = 0; i < detectionTags.Length; i++)
-                //{
-                //    //if is so
-                //    if (raycastHit.transform.CompareTag(detectionTags[i]))
-                //    {
-                //        //and was not detecting anything previously
-                //        if (!hasDetectedSomething)
-                //        {
-                //            //cache the detection time to wait until first fire
-                //            detectTime = Time.time;
-                //            StartCoroutine(DisplayProgress());
-                //        }
-                //        detected = true;
-                //        break;
-                //    }                 
-                //}
-
-                //if you want detect the target in some other way like for example by checking if contains a specific script
-                //there is the place where you should do it, example:
-                //if (raycastHit.transform.GetComponent<bl_PlayerSettings>() != null &&
-                //    raycastHit.transform.GetComponent<bl_PlayerSettings>().PlayerTeam != _myTeam)
-                if (raycastHit.transform.TryGetComponent(out bl_PlayerSettings component))
+                Debug.Log($"bl_PlayerSettings 2.1 Tag: {raycastHit.transform.tag}");
+                Debug.DrawRay(playerCamera.position, playerCamera.forward, Color.green, bl_MobileInputSettings.Instance.detectRate);
+                for (int i = 0; i < detectionTags.Length; i++)
                 {
-                    Debug.Log($"bl_PlayerSettings SetTeam  Detect 3 ");
-                    if (component != null)
+                    //if is so
+                    if (raycastHit.transform.CompareTag(detectionTags[i]))
+                    //if (raycastHit.transform.CompareTag(bl_PlayerSettings.RemoteTag))
                     {
-                        Debug.Log($"bl_PlayerSettings SetTeam  Detect 3.1 ");
+                        Debug.Log($"bl_PlayerSettings SetTeam  Detect 2 1");
 
-                        if (raycastHit.transform.GetComponent<bl_PlayerSettings>().PlayerTeam != _myTeam)
+                        if (raycastHit.transform.TryGetComponent(out bl_PlayerSettings component))
                         {
-                            Debug.Log($"bl_PlayerSettings SetTeam  Detect 4 ");
-                            if (!hasDetectedSomething)
+                            Debug.Log($"bl_PlayerSettings SetTeam  Detect 3 ");
+                            if (component != null)
                             {
-                                Debug.Log($"bl_PlayerSettings SetTeam  Detect 5 ");
-                                detectTime = Time.time;
-                                StartCoroutine(DisplayProgress());
+                                Debug.Log($"bl_PlayerSettings SetTeam  Detect 3.1 ");
                             }
                         }
 
+                        bl_FirstPersonController fpc = raycastHit.transform.GetComponent<bl_FirstPersonController>();
+
+                        if (fpc != null)
+                        {
+                            Debug.Log($"bl_PlayerSettings SetTeam  Detect 3.2 ");
+                        }
+
+                        //and was not detecting anything previously
+                        if (!hasDetectedSomething)
+                        {
+                            Debug.Log($"bl_PlayerSettings SetTeam  Detect 2 2");
+                            //cache the detection time to wait until first fire
+                            detectTime = Time.time;
+                            StartCoroutine(DisplayProgress());
+                        }
                         detected = true;
-                    }
-                    else
-                    {
-                        Debug.Log($"bl_PlayerSettings SetTeam  Detect 3.2 ");
+                        break;
                     }
                 }
 
-                    
+
+                //if (raycastHit.transform.CompareTag(bl_PlayerSettings.LocalTag))
+                //{
+                //    Debug.Log($"bl_PlayerSettings SetTeam  Detect 2.1 ");
+
+                //    bl_PlayerSettings fpc = raycastHit.transform.GetComponent<bl_PlayerSettings>();
+                //    Debug.Log($"bl_PlayerSettings SetTeam  Detect 3 ");
+
+                //    if (fpc != null)
+                //    {
+                //        Debug.Log($"bl_PlayerSettings SetTeam  Detect 3.1 ");
+
+                //        if (raycastHit.transform.GetComponent<bl_PlayerSettings>().PlayerTeam != _myTeam)
+                //        {
+                //            Debug.Log($"bl_PlayerSettings SetTeam  Detect 4 ");
+                //            if (!hasDetectedSomething)
+                //            {
+                //                Debug.Log($"bl_PlayerSettings SetTeam  Detect 5 ");
+                //                detectTime = Time.time;
+                //                StartCoroutine(DisplayProgress());
+                //            }
+                //        }
+
+                //        detected = true;
+                //    }
+                //    else
+                //    {
+                //        Debug.Log($"bl_PlayerSettings SetTeam  Detect 3.2 ");
+                //    }
+                //}
+
+
+
+                //if you want detect the target in some other way like for example by checking if contains a specific script
+                //there is the place where you should do it, example:
+                //////if (raycastHit.transform.TryGetComponent(out bl_PlayerSettings component))
+                //////{
+                //////    Debug.Log($"bl_PlayerSettings SetTeam  Detect 3 ");
+                //////    if (component != null)
+                //////    {
+                //////        Debug.Log($"bl_PlayerSettings SetTeam  Detect 3.1 ");
+
+                //////        if (raycastHit.transform.GetComponent<bl_PlayerSettings>().PlayerTeam != _myTeam)
+                //////        {
+                //////            Debug.Log($"bl_PlayerSettings SetTeam  Detect 4 ");
+                //////            if (!hasDetectedSomething)
+                //////            {
+                //////                Debug.Log($"bl_PlayerSettings SetTeam  Detect 5 ");
+                //////                detectTime = Time.time;
+                //////                StartCoroutine(DisplayProgress());
+                //////            }
+                //////        }
+
+                //////        detected = true;
+                //////    }
+                //////    else
+                //////    {
+                //////        Debug.Log($"bl_PlayerSettings SetTeam  Detect 3.2 ");
+                //////    }
+                //////}
 
                 //if before was detecting something but now doesn't
                 if (hasDetectedSomething && !detected)
@@ -117,7 +168,9 @@ namespace Lovatto.MobileInput
             }
             else
             {
-                if (hasDetectedSomething) { Undetect(); }
+                if (hasDetectedSomething)
+                    Undetect();
+
                 hasDetectedSomething = false;
             }
         }
@@ -184,12 +237,12 @@ namespace Lovatto.MobileInput
             }
         }
 
-        public async void SetTeam(Camera camera, Team team)
+        public async void SetTeam(Transform camera, Team team)
         {
             await Task.Delay(2000);
             _myTeam = team;
             playerCamera = camera;
-            
+
 
             Debug.Log($"bl_PlayerSettings SetTeam  team {team}");
         }
