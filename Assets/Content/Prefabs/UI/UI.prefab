@@ -2608,6 +2608,7 @@ GameObject:
   - component: {fileID: 4546315386055472}
   - component: {fileID: 114052633521580696}
   - component: {fileID: 202530153104966439}
+  - component: {fileID: 5758590953488249295}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
@@ -2631,8 +2632,9 @@ Transform:
   - {fileID: 224873977715337678}
   - {fileID: 4156469052510188}
   - {fileID: 7761780025178664946}
+  - {fileID: 7761540078458755438}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &114052633521580696
 MonoBehaviour:
@@ -2700,6 +2702,24 @@ MonoBehaviour:
   - {fileID: 4957420045580321215}
   - {fileID: 4050800888367746681}
   - {fileID: 5448857801637950192}
+--- !u!114 &5758590953488249295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299505474656762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89bbd0685046e9a40845bf090102b8c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 0}
+  fillBarMethod: 1
+  roundProgressBy: 10
+  _myTeam: 0
+  waitProgressUI: {fileID: 7542448285789651446}
+  waitProgressBar: {fileID: 7583961074603167318}
 --- !u!1 &1347617747013792
 GameObject:
   m_ObjectHideFlags: 0
@@ -47356,7 +47376,6 @@ GameObject:
   - component: {fileID: 7759893322102577022}
   - component: {fileID: 7584059384866888548}
   - component: {fileID: 7583069308912040380}
-  - component: {fileID: 7541961894569011059}
   m_Layer: 5
   m_Name: MobileControl
   m_TagString: Untagged
@@ -47447,24 +47466,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &7541961894569011059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7541961894569011068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89bbd0685046e9a40845bf090102b8c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerCamera: {fileID: 0}
-  fillBarMethod: 1
-  roundProgressBy: 10
-  _myTeam: 0
-  waitProgressUI: {fileID: 7542448285789651446}
-  waitProgressBar: {fileID: 7583961074603167318}
 --- !u!1 &7542444370618044336
 GameObject:
   m_ObjectHideFlags: 0
@@ -47647,18 +47648,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7542448285789651446}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7761770736187142800}
-  m_Father: {fileID: 7761782769032578248}
-  m_RootOrder: 2
+  m_Father: {fileID: 4546315386055472}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -56}
+  m_AnchoredPosition: {x: 800, y: 238}
   m_SizeDelta: {x: 100, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7760161789339868188
@@ -48186,7 +48187,6 @@ RectTransform:
   - {fileID: 8602916361414330936}
   - {fileID: 7760857425096001158}
   - {fileID: 2970135465122135077}
-  - {fileID: 7761540078458755438}
   - {fileID: 7761604956038284086}
   - {fileID: 7760340429262796694}
   - {fileID: 7761094081540213192}

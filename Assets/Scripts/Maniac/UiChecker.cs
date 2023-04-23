@@ -23,7 +23,7 @@ public class UiChecker : CommonMonoBehaviour
             ClousedIcons();
         }
         else
-        if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
+        //if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
         {
             SetControl(false);
         }

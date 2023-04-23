@@ -15,7 +15,10 @@ namespace Lovatto.MobileInput
         private Touch m_Touch;
         private bool init = false;
 
-        void Start()
+        [SerializeField] private float _sensativeHorizontal = 2f;
+        [SerializeField] private float _sensativeVertical = 0.5f;
+
+        private void Start()
         {
             m_Transform = GetComponent<RectTransform>();
             GetDeafultPosition();
@@ -32,9 +35,7 @@ namespace Lovatto.MobileInput
         {
             if (!init) return;
             touchID = eventData.pointerId;
-#if !UNITY_EDITOR
-          //  StartCoroutine(OnUpdate());
-#endif
+
 
             if (lastId == -2)
             {
@@ -45,17 +46,14 @@ namespace Lovatto.MobileInput
         public void OnPointerUp(PointerEventData eventData)
         {
             if (!init) return;
-#if !UNITY_EDITOR
-           // StopAllCoroutines();
-#endif
+
             m_Transform.anchoredPosition = defaultPosition;
 
             if (eventData.pointerId == lastId)
             {
                 lastId = -2;
                 SetMouse(0f, 0f);
-                
-            } 
+            }
         }
         private int lastId = -2;
 
@@ -76,7 +74,7 @@ namespace Lovatto.MobileInput
                     Vector3 inputVector = new Vector3(pos.x, 0, pos.y);
                     //inputVector = (inputVector.magnitude > .1f) ? inputVector.normalized : inputVector;
 
-                    SetMouse(inputVector.x, inputVector.z / 3f);
+                    SetMouse(inputVector.x * _sensativeHorizontal, inputVector.z * _sensativeVertical);
                 }
             }
 
@@ -93,24 +91,8 @@ namespace Lovatto.MobileInput
 
         private void SetMouse(float vectorX, float vectorY)
         {
-            //Debug.Log($"SetMouse vectorX {vectorX}, vectorY {vectorY} ");
             bl_MobileInput.MobileMouseX = vectorX;
             bl_MobileInput.MobileMouseY = vectorY;
         }
-
-        //IEnumerator OnUpdate()
-        //{
-        //    while (true)
-        //    {
-        //        Follow();
-        //        yield return null;
-        //    }
-        //}
-
-        //void Follow()
-        //{
-        //    m_Touch = Input.GetTouch(touchID);
-        //    m_Transform.position = new Vector3(m_Touch.position.x, m_Touch.position.y, transform.position.z);
-        //}
     }
 }

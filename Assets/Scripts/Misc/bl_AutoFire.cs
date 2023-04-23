@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -52,7 +53,8 @@ namespace Lovatto.MobileInput
             Debug.Log($"bl_PlayerSettings SetTeam  Detect 1 ");
             //fire a ray from the camera position to the front of the camera view
             ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
-            if (Physics.Raycast(ray, out raycastHit, bl_MobileInputSettings.Instance.viewDetectionRange))
+
+            if (Physics.Raycast(ray, out raycastHit, 10f))
             {
                 Debug.Log($"bl_PlayerSettings SetTeam  Detect 2 ");
                 bool detected = false;
@@ -79,23 +81,33 @@ namespace Lovatto.MobileInput
                 //there is the place where you should do it, example:
                 //if (raycastHit.transform.GetComponent<bl_PlayerSettings>() != null &&
                 //    raycastHit.transform.GetComponent<bl_PlayerSettings>().PlayerTeam != _myTeam)
-                if (raycastHit.transform.GetComponent<bl_PlayerSettings>() != null)
+                if (raycastHit.transform.TryGetComponent(out bl_PlayerSettings component))
                 {
                     Debug.Log($"bl_PlayerSettings SetTeam  Detect 3 ");
-
-                    if (raycastHit.transform.GetComponent <bl_PlayerSettings>().PlayerTeam != _myTeam)
+                    if (component != null)
                     {
-                        Debug.Log($"bl_PlayerSettings SetTeam  Detect 4 ");
-                        if (!hasDetectedSomething)
+                        Debug.Log($"bl_PlayerSettings SetTeam  Detect 3.1 ");
+
+                        if (raycastHit.transform.GetComponent<bl_PlayerSettings>().PlayerTeam != _myTeam)
                         {
-                            Debug.Log($"bl_PlayerSettings SetTeam  Detect 5 ");
-                            detectTime = Time.time;
-                            StartCoroutine(DisplayProgress());
+                            Debug.Log($"bl_PlayerSettings SetTeam  Detect 4 ");
+                            if (!hasDetectedSomething)
+                            {
+                                Debug.Log($"bl_PlayerSettings SetTeam  Detect 5 ");
+                                detectTime = Time.time;
+                                StartCoroutine(DisplayProgress());
+                            }
                         }
+
+                        detected = true;
                     }
-                    
-                    detected = true;
+                    else
+                    {
+                        Debug.Log($"bl_PlayerSettings SetTeam  Detect 3.2 ");
+                    }
                 }
+
+                    
 
                 //if before was detecting something but now doesn't
                 if (hasDetectedSomething && !detected)
@@ -114,8 +126,8 @@ namespace Lovatto.MobileInput
         public bool isTriggered()
         {
             //if raycast has hit nothing
-            //if (!hasDetectedSomething)
-            //    return false;
+            if (!hasDetectedSomething)
+                return false;
 
             return
                 (Time.time - detectTime) >= bl_MobileInputSettings.Instance.waitBeforeFire;
@@ -172,10 +184,12 @@ namespace Lovatto.MobileInput
             }
         }
 
-        public void SetTeam(Camera camera, Team team)
+        public async void SetTeam(Camera camera, Team team)
         {
-            playerCamera = camera;
+            await Task.Delay(2000);
             _myTeam = team;
+            playerCamera = camera;
+            
 
             Debug.Log($"bl_PlayerSettings SetTeam  team {team}");
         }

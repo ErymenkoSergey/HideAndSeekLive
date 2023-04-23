@@ -8,8 +8,8 @@ using UnityEngine;
 public class bl_Maniac : bl_PhotonHelper, IGameMode
 {
     [SerializeField] private float _timeCheckWinner = 10f;
-    [SerializeField] private Team _currentTeam;
-
+    [SerializeField] private AudioClip _audioClipFinish;
+    [SerializeField] private AudioSource _audioSource;
 
     private void Awake()
     {
@@ -20,7 +20,6 @@ public class bl_Maniac : bl_PhotonHelper, IGameMode
             return;
 
         Initialize();
-        _currentTeam = PhotonNetwork.LocalPlayer.GetPlayerTeam();
     }
 
     public bool isLocalPlayerWinner
@@ -137,7 +136,6 @@ public class bl_Maniac : bl_PhotonHelper, IGameMode
 
     public void OnFinishTime(bool gameOver)
     {
-        //determine the winner
         string finalText = "";
         if (!PhotonNetwork.OfflineMode && GetWinnerTeam() != Team.None)
         {
@@ -152,7 +150,7 @@ public class bl_Maniac : bl_PhotonHelper, IGameMode
 
     public void OnLocalPlayerDeath()
     {
-        //? check count Players two Teams..
+       
     }
 
     public void OnLocalPlayerKill()
@@ -180,30 +178,14 @@ public class bl_Maniac : bl_PhotonHelper, IGameMode
             int team1 = PhotonNetwork.CurrentRoom.GetRoomScore(Team.Hiding);
             int team2 = PhotonNetwork.CurrentRoom.GetRoomScore(Team.Maniac);
             bl_TeamDeathMatchUI.Instance.SetScores(team1, team2);
-            //CheckScores(team1, team2);
         }
     }
-
-    //private void CheckScores(int team1, int team2)
-    //{
-    //    if (PhotonNetwork.OfflineMode || !bl_RoomSettings.Instance.RoomInfoFetched)
-    //        return;
-    //    //check if any of the team reach the max kills
-    //    if (team1 >= bl_RoomSettings.Instance.GameGoal)
-    //    {
-    //        //GameOver();
-    //        return;
-    //    }
-    //    if (team2 >= bl_RoomSettings.Instance.GameGoal)
-    //    {
-    //        //GameOver();
-    //    }
-    //}
 
     private void GameOver(Team winner)
     {
         string finalText = $"{winner}";
         bl_UIReferences.Instance.SetFinalText(finalText);
         bl_MatchTimeManager.Instance.FinishRound();
+        _audioSource.PlayOneShot(_audioClipFinish);
     }
 }

@@ -32,7 +32,7 @@ public class bl_ItemManager : bl_MonoBehaviour
         base.OnDisable();
         bl_PhotonNetwork.Instance?.RemoveCallback(OnNetworkItemInstance);
         bl_PhotonNetwork.Instance?.RemoveCallback(OnNetworkItemChange);
-        bl_PhotonNetwork.Instance.RemoveCallback(OnNetworkTeleport);
+        bl_PhotonNetwork.Instance?.RemoveCallback(OnNetworkTeleport);
     }
 
     void OnNetworkItemInstance(ExitGames.Client.Photon.Hashtable data)
