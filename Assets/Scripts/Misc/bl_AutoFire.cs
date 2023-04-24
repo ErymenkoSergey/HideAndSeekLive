@@ -56,12 +56,12 @@ namespace Lovatto.MobileInput
             
             if (Physics.Raycast(ray, out raycastHit, bl_MobileInputSettings.Instance.detectRate))
             {
-                Debug.Log($"bl_PlayerSettings SetTeam  Detect 2 ");
+                //Debug.Log($"bl_PlayerSettings SetTeam  Detect 2 ");
 
                 bool detected = false;
                 //check if the hitted object contains any of the trigger tags
                 Debug.Log($"bl_PlayerSettings 2.1 Tag: {raycastHit.transform.tag}");
-                Debug.DrawRay(playerCamera.position, playerCamera.forward, Color.green, bl_MobileInputSettings.Instance.detectRate);
+                //Debug.DrawRay(playerCamera.position, playerCamera.forward, Color.green, bl_MobileInputSettings.Instance.detectRate);
                 for (int i = 0; i < detectionTags.Length; i++)
                 {
                     //if is so
@@ -69,22 +69,22 @@ namespace Lovatto.MobileInput
                     //if (raycastHit.transform.CompareTag(bl_PlayerSettings.RemoteTag))
                     {
                         Debug.Log($"bl_PlayerSettings SetTeam  Detect 2 1");
+                        bl_MobileInput.AutoFireTriggered(true);
+                        //if (raycastHit.transform.TryGetComponent(out bl_PlayerSettings component))
+                        //{
+                        //    Debug.Log($"bl_PlayerSettings SetTeam  Detect 3 ");
+                        //    if (component != null)
+                        //    {
+                        //        Debug.Log($"bl_PlayerSettings SetTeam  Detect 3.1 ");
+                        //    }
+                        //}
 
-                        if (raycastHit.transform.TryGetComponent(out bl_PlayerSettings component))
-                        {
-                            Debug.Log($"bl_PlayerSettings SetTeam  Detect 3 ");
-                            if (component != null)
-                            {
-                                Debug.Log($"bl_PlayerSettings SetTeam  Detect 3.1 ");
-                            }
-                        }
+                        //bl_FirstPersonController fpc = raycastHit.transform.GetComponent<bl_FirstPersonController>();
 
-                        bl_FirstPersonController fpc = raycastHit.transform.GetComponent<bl_FirstPersonController>();
-
-                        if (fpc != null)
-                        {
-                            Debug.Log($"bl_PlayerSettings SetTeam  Detect 3.2 ");
-                        }
+                        //if (fpc != null)
+                        //{
+                        //    Debug.Log($"bl_PlayerSettings SetTeam  Detect 3.2 ");
+                        //}
 
                         //and was not detecting anything previously
                         if (!hasDetectedSomething)
@@ -172,6 +172,9 @@ namespace Lovatto.MobileInput
                     Undetect();
 
                 hasDetectedSomething = false;
+
+                Debug.Log($"bl_PlayerSettings SetTeam  Detect 3 1");
+                bl_MobileInput.AutoFireTriggered(false);
             }
         }
 

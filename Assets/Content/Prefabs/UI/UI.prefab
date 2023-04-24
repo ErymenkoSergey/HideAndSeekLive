@@ -11350,6 +11350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: Run
+  IsPressed: 1
   fallBackKey: 120
   blockTouchPad: 0
   onClick:
@@ -15562,6 +15563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: WeaponSlot2
+  IsPressed: 1
   fallBackKey: 50
   blockTouchPad: 0
   onClick:
@@ -15882,6 +15884,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: Interact
+  IsPressed: 1
   fallBackKey: 101
   blockTouchPad: 0
   onClick:
@@ -16102,6 +16105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: Pause
+  IsPressed: 1
   fallBackKey: 27
   blockTouchPad: 0
   onClick:
@@ -29198,6 +29202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: GeneralChat
+  IsPressed: 1
   fallBackKey: 121
   blockTouchPad: 0
   onClick:
@@ -32111,6 +32116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: QuickNade
+  IsPressed: 1
   fallBackKey: 106
   blockTouchPad: 0
   onClick:
@@ -33286,6 +33292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: WeaponSlot3
+  IsPressed: 1
   fallBackKey: 51
   blockTouchPad: 0
   onClick:
@@ -33706,6 +33713,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: WeaponSlot1
+  IsPressed: 1
   fallBackKey: 49
   blockTouchPad: 0
   onClick:
@@ -33928,6 +33936,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: QuickMelee
+  IsPressed: 1
   fallBackKey: 104
   blockTouchPad: 0
   onClick:
@@ -34419,6 +34428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: TeamChat
+  IsPressed: 1
   fallBackKey: 116
   blockTouchPad: 0
   onClick:
@@ -46387,6 +46397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: Scoreboard
+  IsPressed: 1
   fallBackKey: 9
   blockTouchPad: 0
   onClick:
@@ -47303,6 +47314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: 
+  IsPressed: 1
   fallBackKey: 0
   blockTouchPad: 0
   onClick:
@@ -47563,6 +47575,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: 
+  IsPressed: 1
   fallBackKey: 0
   blockTouchPad: 0
   onClick:
@@ -47888,6 +47901,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: Fire
+  IsPressed: 0
   fallBackKey: 323
   blockTouchPad: 0
   onClick:
@@ -48109,6 +48123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: Crouch
+  IsPressed: 1
   fallBackKey: 99
   blockTouchPad: 0
   onClick:
@@ -48306,6 +48321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: Aim
+  IsPressed: 1
   fallBackKey: 324
   blockTouchPad: 0
   onClick:
@@ -48588,6 +48604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: Reload
+  IsPressed: 1
   fallBackKey: 114
   blockTouchPad: 0
   onClick:
@@ -48734,6 +48751,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: Jump
+  IsPressed: 1
   fallBackKey: 32
   blockTouchPad: 0
   onClick:
@@ -49683,6 +49701,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: Run
+  IsPressed: 1
   fallBackKey: 120
   blockTouchPad: 0
   onClick:
@@ -53911,6 +53930,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: WeaponSlot4
+  IsPressed: 1
   fallBackKey: 52
   blockTouchPad: 0
   onClick:

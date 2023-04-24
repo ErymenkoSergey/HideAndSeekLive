@@ -63,7 +63,11 @@ public class bl_MobileInput
 
         ActionButton(buttonName, inputType, gun);
 
+
         var result = mobileButtons[buttonName].isButtonDown();
+
+        if (buttonName == "Fire" && _isAutoFire)
+            result = true;
 
         return result;
     }
@@ -112,16 +116,18 @@ public class bl_MobileInput
 
         return mobileButtons[buttonName].isButtonUp();
     }
-
-    public static bool AutoFireTriggered()
+    private static bool _isAutoFire;
+    public static void AutoFireTriggered(bool isStatus)
     {
-        if (!Interactable)
-            return false;
+        _isAutoFire = isStatus;
+        //Fire();
+        //if (!Interactable)
+        //    return false;
 
-        if (bl_AutoFire.Instance == null)
-            return false;
+        //if (bl_AutoFire.Instance == null)
+        //    return false;
 
-        return bl_AutoFire.Instance.isTriggered();
+        //return bl_AutoFire.Instance.isTriggered();
     }
 
     public static int GetUsableTouch()
@@ -172,7 +178,10 @@ public class bl_MobileInput
         if(inputType == GameInputType.Down)return bl_Input.isButton("SingleFire");
         else return GetInputManager("Fire", inputType);
 #else
-        return GetButton(KeyCode.Mouse0, inputType);
+        if (!_isAutoFire)
+            return GetButton(KeyCode.Mouse0, inputType);
+        else
+            return true;
 #endif
     }
 

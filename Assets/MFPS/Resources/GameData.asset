@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GameData
   m_EditorClassIdentifier: 
   singleMode: 0
-  MobileInput: 0
+  MobileInput: 1
   offlineMode: 0
   UseLobbyChat: 1
   UseVoiceChat: 1
@@ -53,8 +53,8 @@ MonoBehaviour:
   VirtualCoins:
     InitialCoins: 1000
     CoinScoreValue: 100
-    UserCoins: 5563
-    _totalCoins: 4984
+    UserCoins: 6829
+    _totalCoins: 6829
   AllWeapons:
   - Name: Rifle
     Type: 1

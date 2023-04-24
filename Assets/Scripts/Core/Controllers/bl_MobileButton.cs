@@ -8,6 +8,7 @@ using UnityEngine.Events;
 public class bl_MobileButton : CommonMonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public string ButtonName;
+    public bool IsPressed = true;
     public KeyCode fallBackKey = KeyCode.None;
     public bool blockTouchPad = false;
     [SerializeField] private OnClick onClick;
@@ -68,7 +69,7 @@ public class bl_MobileButton : CommonMonoBehaviour, IPointerDownHandler, IPointe
 
         hasDispatchUp = false;
 
-        if (buttonState == ButtonState.Down)
+        if (buttonState == ButtonState.Down && IsPressed)
             return true;
 
         if (hasDispatchClick)
@@ -99,6 +100,9 @@ public class bl_MobileButton : CommonMonoBehaviour, IPointerDownHandler, IPointe
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (!IsPressed)
+            return;
+
         buttonState = ButtonState.Down;
         onClick?.Invoke();
 
@@ -121,6 +125,9 @@ public class bl_MobileButton : CommonMonoBehaviour, IPointerDownHandler, IPointe
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        if (!IsPressed)
+            return;
+
         buttonState = ButtonState.Up;
 
         for (int i = 0; i < buttonGraphics.Length; i++)
