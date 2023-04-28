@@ -53,8 +53,8 @@ MonoBehaviour:
   VirtualCoins:
     InitialCoins: 1000
     CoinScoreValue: 100
-    UserCoins: 6829
-    _totalCoins: 6829
+    UserCoins: 7480
+    _totalCoins: 7480
   AllWeapons:
   - Name: Rifle
     Type: 1

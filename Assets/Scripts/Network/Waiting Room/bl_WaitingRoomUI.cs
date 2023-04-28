@@ -25,9 +25,12 @@ public class bl_WaitingRoomUI : bl_PhotonHelper
     public Image MapPreview;
     public List<RectTransform> PlayerListHeaders = new List<RectTransform>();
     private Player[] _players;
+
+    [SerializeField] private int _playersCountHiding;
+    [SerializeField] private int _playersCountManiac;
     public Button[] readyButtons;
     [SerializeField] private Button _changeTeamButton;
-    private List<bl_WaitingPlayerUI> playerListCache = new List<bl_WaitingPlayerUI>();
+    [SerializeField] private List<bl_WaitingPlayerUI> playerListCache = new List<bl_WaitingPlayerUI>();
 
     private void OnEnable()
     {
@@ -42,6 +45,7 @@ public class bl_WaitingRoomUI : bl_PhotonHelper
 
     private void ChangeTeam()
     {
+        
         var name = bl_Lobby.Instance.GetNickName();
         var index = 0;
 
@@ -86,6 +90,8 @@ public class bl_WaitingRoomUI : bl_PhotonHelper
         playerListCache.ForEach(x => { if (x != null) { Destroy(x.gameObject); } });
         playerListCache.Clear();
 
+        _playersCountHiding = _playersCountManiac = 0;
+
         _players = PhotonNetwork.PlayerList;
         List<Player> secondTeam = new List<Player>();
         bool otm = isOneTeamModeUpdate;
@@ -109,10 +115,12 @@ public class bl_WaitingRoomUI : bl_PhotonHelper
                 if (_players[i].GetPlayerTeam() == Team.Hiding)
                 {
                     SetPlayerToList(_players[i]);
+                    _playersCountHiding++;
                 }
                 else if (_players[i].GetPlayerTeam() == Team.Maniac)
                 {
                     secondTeam.Add(_players[i]);
+                    _playersCountManiac++;
                 }
             }
         }
@@ -165,19 +173,32 @@ public class bl_WaitingRoomUI : bl_PhotonHelper
 
     public void UpdatePlayerCount()
     {
+        
         int required = GetGameModeUpdated.GetGameModeInfo().RequiredPlayersToStart;
         if (required > 1)
         {
             bool allRequired = (PhotonNetwork.PlayerList.Length >= required);
-            readyButtons[0].interactable = (PhotonNetwork.IsMasterClient && PhotonNetwork.PlayerList.Length >= required);
+
+            if (_playersCountHiding >= 1 && _playersCountManiac >= 1)
+            {
+                readyButtons[0].interactable = (PhotonNetwork.IsMasterClient && PhotonNetwork.PlayerList.Length >= required);
+            }
+            else
+            {
+                readyButtons[0].interactable = false;
+            }
+            
             PlayerCountText.text = string.Format("{0} OF {2} PLAYERS ({1} MAX)", PhotonNetwork.PlayerList.Length, PhotonNetwork.CurrentRoom.MaxPlayers, required);
             waitingRequiredPlayersUI?.SetActive(!allRequired);
         }
         else
         {
-            readyButtons[0].interactable = true;
-            waitingRequiredPlayersUI?.SetActive(false);
-            PlayerCountText.text = string.Format("{0} PLAYERS ({1} MAX)", PhotonNetwork.PlayerList.Length, PhotonNetwork.CurrentRoom.MaxPlayers);
+            if (_playersCountHiding >= 1 && _playersCountManiac >= 1)
+            {
+                readyButtons[0].interactable = true;
+                waitingRequiredPlayersUI?.SetActive(false);
+                PlayerCountText.text = string.Format("{0} PLAYERS ({1} MAX)", PhotonNetwork.PlayerList.Length, PhotonNetwork.CurrentRoom.MaxPlayers);
+            }
         }
     }
 
