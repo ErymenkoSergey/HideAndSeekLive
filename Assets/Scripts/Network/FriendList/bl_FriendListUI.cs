@@ -38,7 +38,12 @@ namespace MFPS.Runtime.FriendList
         /// <summary>
         /// 
         /// </summary>
-        void Awake()
+        /// 
+        //private void OnValidate()
+        //{
+            
+        //}
+        void OnValidate()
         {
             FriendManager = FindObjectOfType<bl_FriendList>();
             onlineFirst = SortOnline;

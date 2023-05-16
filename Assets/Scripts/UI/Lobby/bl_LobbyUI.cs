@@ -156,7 +156,6 @@ public class bl_LobbyUI : MonoBehaviour
             return;//the window with that windowName doesn't exist
 
         StopCoroutine(DoChangeWindow(w));
-        //StopCoroutine("DoChangeWindow");
         StartCoroutine(DoChangeWindow(w));
         currentWindow = window;
     }

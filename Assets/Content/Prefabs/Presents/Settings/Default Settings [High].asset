@@ -79,4 +79,7 @@ MonoBehaviour:
   - Name: Input Device
     valueType: 3
     Value: 0
+  - Name: TouchControl
+    valueType: 2
+    Value: 0
   RefreshRates: 1e0000003c0000007800000090000000c80000000401000000000000
