@@ -107,7 +107,10 @@ public class bl_GameFinish : bl_PhotonHelper, IMFPSResumeScreen
 
     public void GoToLobby()
     {
+        Interstitial.Instance?.ShowInterstitialAd();
+
         CancelInvoke();
+
         if (PhotonNetwork.IsConnected && PhotonNetwork.InRoom)
         {
             PhotonNetwork.LeaveRoom();

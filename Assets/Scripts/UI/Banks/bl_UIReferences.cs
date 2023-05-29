@@ -377,6 +377,8 @@ public class bl_UIReferences : bl_PhotonHelper, IInRoomCallbacks
     /// </summary>
     public void LeftRoom(bool quit)
     {
+        Interstitial.Instance?.ShowInterstitialAd();
+
         if (!quit)
         {
             bl_UtilityHelper.LockCursor(false);
